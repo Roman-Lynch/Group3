@@ -1,6 +1,5 @@
 CREATE TABLE users(
-	user_id SERIAL PRIMARY KEY,
-	username VARCHAR(50),
+	username VARCHAR(50) PRIMARY KEY,
 	password CHAR(60) NOT NULL
 );
 
@@ -28,16 +27,16 @@ CREATE TABLE water(
 );
 
 CREATE TABLE user_fitness(
-	user_id INT NOT NULL REFERENCES users(user_id),
+	user_id INT NOT NULL REFERENCES users(username),
 	fitness_id INT NOT NULL REFERENCES fitness(fitness_id)
 );
 
 CREATE TABLE user_nutrition(
-	user_id INT NOT NULL REFERENCES users(user_id),
+	user_id INT NOT NULL REFERENCES users(username),
 	nutrition_id INT NOT NULL REFERENCES nutrition(nutrition_id)
 );
 
 CREATE TABLE user_water(
-	user_id INT NOT NULL REFERENCES users(user_id),
+	user_id INT NOT NULL REFERENCES users(username),
 	water_id INT NOT NULL REFERENCES water(water_id)
 );
