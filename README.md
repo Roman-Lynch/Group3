@@ -19,14 +19,15 @@ Our application is designed to allow users to track their progress in their purs
 
 Contributors: 
     - Cole Krant
+    - Maxwell Chang
     - Roman Lynch
     - Jaskarn Kahlon
-    - Maxwell Chang
     - Ian Pavlecic
+    - Stefan Bobick
 
 
-Brief Application description
-Contributors - In this case, it will be the team Members
+
+
 Technology Stack used for the project
 Prerequisites to run the application - Any software that needs to be installed to run the application
 Instructions on how to run the application locally.
