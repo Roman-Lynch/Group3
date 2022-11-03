@@ -46,10 +46,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-    let query = `CREATE TABLE IF NOT EXISTS users(
-	username VARCHAR(50) PRIMARY KEY,
-	password CHAR(60) NOT NULL
-);INSERT INTO users(username, password) VALUES ($1, $2);`;
+    let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
     const values = [req.body.username, req.body.password];
     db.any(query, values)
         .then((rows) => {
