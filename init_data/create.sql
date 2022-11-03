@@ -27,16 +27,16 @@ CREATE TABLE water(
 );
 
 CREATE TABLE user_fitness(
-	user_id INT NOT NULL REFERENCES users(username),
+	username VARCHAR(50) REFERENCES users(username),
 	fitness_id INT NOT NULL REFERENCES fitness(fitness_id)
 );
 
 CREATE TABLE user_nutrition(
-	user_id INT NOT NULL REFERENCES users(username),
+	username VARCHAR(50) REFERENCES users(username),
 	nutrition_id INT NOT NULL REFERENCES nutrition(nutrition_id)
 );
 
 CREATE TABLE user_water(
-	user_id INT NOT NULL REFERENCES users(username),
+	username VARCHAR(50) REFERENCES users(username),
 	water_id INT NOT NULL REFERENCES water(water_id)
 );

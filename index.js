@@ -34,7 +34,7 @@ app.use(
     })
 );
 app.get('/', (req, res) => {
-    res.render("pages/register");
+    res.render("pages/dashboard");
 });
 
 app.get('/register', (req, res) => {
@@ -66,7 +66,7 @@ app.post('/login', (req, res) => {
         })
         .catch((err) => {
             console.log("Incorrect username or password.")
-            res.send({ 'message': error });
+            console.log(err);
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
