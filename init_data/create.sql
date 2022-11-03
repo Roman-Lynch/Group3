@@ -2,3 +2,8 @@ CREATE TABLE IF NOT EXISTS users(
 	username VARCHAR(50) PRIMARY KEY,
 	password CHAR(60) NOT NULL
 )
+
+CREATE TABLE fitness(
+	exercise_id INT PRIMARY KEY,
+	
+)
