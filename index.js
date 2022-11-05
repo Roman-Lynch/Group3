@@ -51,6 +51,7 @@ app.post('/register', (req, res) => {
     db.any(query, values)
         .then((rows) => {
             res.send({ "message": "Data inserted successfully" });
+            res.redirect("views/pages/login");              // once the data is inserted, navigate to the login page
         })
         .catch((error) => {
             res.send({ 'message': error });
@@ -63,6 +64,7 @@ app.post('/login', (req, res) => {
     db.one(query, values)
         .then((data) => {
             res.send({ "message": "Data inserted successfully" });
+            res.redirect("views/pages/dashboard.ejs");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
             console.log("Incorrect username or password.")
