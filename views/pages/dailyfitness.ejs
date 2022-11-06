@@ -1,3 +1,5 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
 
 <!DOCTYPE html>
 <html>
@@ -11,14 +13,49 @@
 
   <body>
     <style type="text/css">
-      body{background-image: linear-gradient(to bottom right, #FF77CC, #33475b, #0033CC, rgb(255, 122, 89));}
+       body {
+                background-color:rgba(164, 195, 178);
+            }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <b><i><h1>Today</h1></i></b>
+
     <div class="card-group">
+      <style type="text/css">
+        div {
+                 background-color:rgba(164, 195, 178);
+             }
+     </style>
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="/resources/muscles.jpg" class="card-img-top" alt="Exercise">
+        <div class="card-body">
+          <u><h5 class="card-title">Muscle Group(s)</h5></u>
+          <p class="card-text">Log your muscle group(s) worked today:</p>
+          
+          <table padding-bottom: 30px>
+            <tr style="border-bottom:1px solid black">
+              <th>Muscle(s) worked today:</th>
+            </tr>
+
+            <% for (i = 1; i <= 3; i++){ %>
+              <tr>
+                <style type="text/css">
+                  table {
+                           background-color:rgba(164, 195, 178);
+                       }
+               </style>
+                <td> <input muscle="fitness.muscle"> </td>
+              </tr>
+            <%  }%>
+
+          </table>
+          <p class="card-text"><small class="text-muted">Updated just now</small></p>
+        </div>
+
+      </div>
+      <div class="card">
+        <img src="/resources/exercise.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <u><h5 class="card-title">Exercises</h5></u>
           <p class="card-text">Log your exercises for today below:</p>
@@ -27,33 +64,67 @@
             <tr style="border-bottom:1px solid black">
               <th>Exercise:</th>
             </tr>
-            <td>Bench Press</td>
+
+            <% for (i = 1; i < 9; i++){ %>
+              <tr>
+                <td> <input exercise="fitness.exercise"> </td>
+              </tr>
+            <%  }%>
             
-            <td>
-              Barbell curl
-            </td>
           </table>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <p class="card-text"><small class="text-muted">Updated just now</small></p>
         </div>
       </div>
+
       <div class="card">
-        <img src="exercise.jpg" class="card-img-top" alt="...">
+        <img src="./resources/weight.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <u><h5 class="card-title">Weight</h5></u>
           <p class="card-text">Log your weight for their respective exercises below:</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+          <table padding-bottom: 30px>
+            <tr style="border-bottom:1px solid black">
+              <th>Weight:</th>
+            </tr>
+
+            <% for (i = 1; i < 9; i++){ %>
+              <tr>
+                <td> <input exercise="fitness.weight"> </td>
+              </tr>
+            <%  }%>
+            </table>
+
+            <p class="card-text"><small class="text-muted">Updated just now</small></p>
+
         </div>
       </div>
+
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="./resources/sets x reps.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <u><h5 class="card-title">Sets x Reps</h5></u>
           <p class="card-text">Log your sets & reps for their respective exercises below:</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>  
-          </p>
+            
+            <table padding-bottom: 30px>
+              <tr style="border-bottom:1px solid black">
+                <th>Sets & Reps:</th>
+              </tr>
+  
+              <% for (i = 1; i < 9; i++){ %>
+                <tr>
+                  <td> <input exercise="fitness.sets"> </td>
+                </tr>
+              <%  }%>
+
+            </table>
+
+            <p class="card-text"><small class="text-muted">Updated just now</small></p>
+
         </div>
       </div>
     </div>
 </body>
   
 </html>
+
+<%- include ('../partials/footer') %>

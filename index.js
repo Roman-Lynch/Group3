@@ -45,6 +45,10 @@ app.get('/login', (req, res) => {
     res.render("pages/login");
 });
 
+app.get('/fitness', (req, res) => {
+    res.render("pages/dailyfitness");
+});
+
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
     const values = [req.body.username, req.body.password];
