@@ -3,8 +3,9 @@
     "",
     "\\init_data",
     "\\views",
-    "\\views\\pages"
+    "\\views\\pages",
+    "\\views\\partials"
   ],
-  "SelectedNode": "\\.env",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

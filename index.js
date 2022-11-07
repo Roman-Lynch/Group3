@@ -50,11 +50,10 @@ app.post('/register', (req, res) => {
     const values = [req.body.username, req.body.password];
     db.any(query, values)
         .then((rows) => {
-            res.send({ "message": "Data inserted successfully" });
-            res.redirect("views/pages/login");              // once the data is inserted, navigate to the login page
+            res.render("pages/login");              // once the data is inserted, navigate to the login page
         })
         .catch((error) => {
-            res.send({ 'message': error });
+            res.render("pages/register");
         });
 });
 
@@ -63,12 +62,12 @@ app.post('/login', (req, res) => {
     const values = [req.body.username];
     db.one(query, values)
         .then((data) => {
-            res.send({ "message": "Data inserted successfully" });
-            res.redirect("views/pages/dashboard.ejs");         // once the data is inserted, render the proper page
+            res.render("pages/dashboard.ejs");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
             console.log("Incorrect username or password.")
             console.log(err);
+            res.render("pages/login");
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
@@ -81,5 +80,8 @@ app.post('/login', (req, res) => {
 
     // Authentication Required
     app.use(auth);
+});
+app.get('/fitness', (req, res) => {
+    res.render("pages/dailyfitness");
 });
 app.listen(3000);

@@ -1,5 +1,64 @@
 <%- include ('../partials/header') %>
 <%- include ('../partials/menu') %>
-
-
+<main>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-6">
+        Welcome, User <!--Replace with users actual name-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="card" style="width: 18rem;"> <!-- Card One: Exercise History-->
+          <img 
+          src="https://i.ytimg.com/vi/W23xfdEqHtg/maxresdefault.jpg" class="card-img-top" alt="..."
+          alt="Logo"
+          width="30px"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Exercise History</h5>
+            <div class="dropdown"> <!-- Body Part Selection for information -->
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Select a Body Part
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Chest</a></li>
+                <li><a class="dropdown-item" href="#">Arms</a></li>
+                <li><a class="dropdown-item" href="#">Shoulders</a></li>
+                <li><a class="dropdown-item" href="#">Back</a></li>
+                <li><a class="dropdown-item" href="#">Legs</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="card" style="width: 18rem;"> <!--Card #2: Water Intake-->
+          <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Man_Drinking_Water_Cartoon.svg/800px-Man_Drinking_Water_Cartoon.svg.png" class="card-img-top"
+          alt="Logo"
+          width="30px"
+          />
+          <h5 class="card-title">Water History</h5>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Amount of Time
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Week</a></li>
+                <li><a class="dropdown-item" href="#">Month</a></li>
+                <li><a class="dropdown-item" href="#">Year</a></li>
+              </ul>
+            </div>
+          </div>
+        <br>
+        <br>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+</main>
 <%- include ('../partials/footer') %>
