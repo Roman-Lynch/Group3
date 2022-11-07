@@ -53,7 +53,7 @@ app.post('/register', (req, res) => {
             res.render("pages/login");              // once the data is inserted, navigate to the login page
         })
         .catch((error) => {
-            res.send({ 'message': error });
+            res.render("pages/register");
         });
 });
 
@@ -67,6 +67,7 @@ app.post('/login', (req, res) => {
         .catch((err) => {
             console.log("Incorrect username or password.")
             console.log(err);
+            res.render("pages/login");
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
@@ -79,5 +80,8 @@ app.post('/login', (req, res) => {
 
     // Authentication Required
     app.use(auth);
+});
+app.get('/fitness', (req, res) => {
+    res.render("pages/dailyfitness");
 });
 app.listen(3000);
