@@ -1,4 +1,5 @@
 /* DATABASE INITIALIZATION ------------------------------------------------------ */
+/* INCLUDES */
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -9,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = 80;
 
+/* DATABSE CONFIGURATION */
 const dbConfig = {
     host: 'db',
     port: 5432,
@@ -18,6 +20,8 @@ const dbConfig = {
 };
 
 const db = pgp(dbConfig);
+
+/* TEST DATABASE CONNECTION */
 db.connect()
     .then(obj => {
         console.log('Database connection successful');
@@ -26,7 +30,11 @@ db.connect()
     .catch(error => {
         console.log('ERROR:', error.message || error);
     });
+
+/* SET THE VIEW ENGINE TO EJS */
 app.set("view engine", "ejs");
+
+/* INITIALIZE SESSION VARIABLES */
 app.use(
     session({
         secret: "XASDASDA",
@@ -35,37 +43,66 @@ app.use(
     })
 );
 
-/* ---------------------------------------------------------------------------- */
-app.get('/', (req, res) => {
-    res.render("pages/dashboard");
-});
+/* HASH FUNCTION */
+// String.hashKey = function() {
+//     var hash = 0;
+//     var i, char;
 
-app.get('/register', (req, res) => {
-    res.render("pages/register");
-});
+//     if(this.length === 0)
+//         return hash;
 
-app.get('/register_survey', (req, res) => {
-    res.render("pages/registrationSurvey");
-});
+//     for(i = 0; i < this.length; i++) {
+//         char = this.charCodeAt(i);
+//         hash = ((hash << 5) - hash) + char;
+//         hash = hash | 0;
+//     }
+//     return hash;
+// }
+/* Usage:  
+    req.password = ralphie   // hash encrypts with a corresponding code
+    console.log(req.password, req.password.hashCode());   // store hashCode
+*/
 
-app.get('/login', (req, res) => {
+/* NAVIGATION ROUTES -------------------------------------------------------------- */
+app.get('/', (req, res) => {                    // upon entry user goes to login
     res.render("pages/login");
 });
 
-app.get('/fitness', (req, res) => {
+app.get('/register', (req, res) => {            // navigate to register page
+    res.render("pages/register");
+});
+
+app.get('/register_survey', (req, res) => {     // navigate to the survey to intake and initialize data
+    res.render("pages/registrationSurvey");
+});
+
+app.get('/login', (req, res) => {               // navigate to the login page
+    res.render("pages/login");
+});
+
+app.get('/fitness', (req, res) => {             // navigate to the fitness page
     res.render("pages/dailyfitness");
 });
+/* ---------------------------------------------------------------------------------- */
+app.get('/:username', (req, res) => {
+    res.render('dashboard', req.body.username);                    // links ejs scripts to dashboard.ejs
+});
+
 
 /* ---------------------------------------------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
+    // var password = req.body.password;
+
+    // const hash = password.hashKey();
     const values = [req.body.username, req.body.password];
+
     db.any(query, values)
         .then((rows) => {
-            res.render("pages/login");              // once the data is inserted, navigate to the login page
+            res.render('pages/login');              // once the data is inserted, navigate to the login page
         })
         .catch((error) => {
-            res.render("pages/register");
+            res.render('pages/register');
         });
 });
 
