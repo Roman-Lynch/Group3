@@ -1,4 +1,5 @@
 /* DATABASE INITIALIZATION ------------------------------------------------------ */
+/* INCLUDES */
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -9,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = 80;
 
+/* DATABSE CONFIGURATION */
 const dbConfig = {
     host: 'db',
     port: 5432,
@@ -18,6 +20,8 @@ const dbConfig = {
 };
 
 const db = pgp(dbConfig);
+
+/* TEST DATABASE CONNECTION */
 db.connect()
     .then(obj => {
         console.log('Database connection successful');
@@ -26,7 +30,11 @@ db.connect()
     .catch(error => {
         console.log('ERROR:', error.message || error);
     });
+
+/* SET THE VIEW ENGINE TO EJS */
 app.set("view engine", "ejs");
+
+/* INITIALIZE SESSION VARIABLES */
 app.use(
     session({
         secret: "XASDASDA",
@@ -34,38 +42,64 @@ app.use(
         resave: true,
     })
 );
+const users = {
+    username:undefined,
+    password:undefined,
+}
+/* HASH FUNCTION */
+// String.hashKey = function() {
+//     var hash = 0;
+//     var i, char;
 
-/* ---------------------------------------------------------------------------- */
-app.get('/', (req, res) => {
-    res.render("pages/dashboard");
-});
+//     if(this.length === 0)
+//         return hash;
 
-app.get('/register', (req, res) => {
-    res.render("pages/register");
-});
+//     for(i = 0; i < this.length; i++) {
+//         char = this.charCodeAt(i);
+//         hash = ((hash << 5) - hash) + char;
+//         hash = hash | 0;
+//     }
+//     return hash;
+// }
+/* Usage:  
+    req.password = ralphie   // hash encrypts with a corresponding code
+    console.log(req.password, req.password.hashCode());   // store hashCode
+*/
 
-app.get('/register_survey', (req, res) => {
-    res.render("pages/registrationSurvey");
-});
-
-app.get('/login', (req, res) => {
+/* NAVIGATION ROUTES -------------------------------------------------------------- */
+app.get('/', (req, res) => {                    // upon entry user goes to login
     res.render("pages/login");
 });
 
-app.get('/fitness', (req, res) => {
-    res.render("pages/dailyfitness");
+app.get('/register', (req, res) => {            // navigate to register page
+    res.render("pages/register");
 });
 
+app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
+    res.render("pages/registrationSurvey");
+});
+
+app.get('/login', (req, res) => {               // navigate to the login page
+    res.render("pages/login");
+});
+
+app.get('/fitness', (req, res) => {             // navigate to the fitness page
+    res.render("pages/dailyfitness");
+});
 /* ---------------------------------------------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
+    // var password = req.body.password;
+
+    // const hash = password.hashKey();
     const values = [req.body.username, req.body.password];
+
     db.any(query, values)
         .then((rows) => {
-            res.render("pages/login");              // once the data is inserted, navigate to the login page
+            res.render('pages/login');              // once the data is inserted, navigate to the login page
         })
         .catch((error) => {
-            res.render("pages/register");
+            res.render('pages/register');
         });
 });
 
@@ -75,12 +109,16 @@ app.post('/login', (req, res) => {
     const values = [req.body.username];
     db.one(query, values)
         .then((data) => {
-            res.render("pages/dashboard.ejs");         // once the data is inserted, render the proper page
+            users.username = values;
+            users.password = data.password;
+            req.session.user = users;
+            req.session.save();
+            res.redirect("/dashboard");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
             console.log("Incorrect username or password.")
             console.log(err);
-            res.redirect("pages/register");
+            res.redirect("/register");
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
@@ -120,6 +158,9 @@ app.get('/get_username', (req, res) => { // need to implement specific muscle
         .catch((error) => {
             console.log("ERROR:", error.message || error );
         })
+});
+app.get('/dashboard', (req, res) => {
+    res.render("pages/dashboard", {username:req.session.user.username,})
 });
 /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
