@@ -42,7 +42,10 @@ app.use(
         resave: true,
     })
 );
-
+const users = {
+    username:undefined,
+    password:undefined,
+}
 /* HASH FUNCTION */
 // String.hashKey = function() {
 //     var hash = 0;
@@ -84,12 +87,6 @@ app.get('/fitness', (req, res) => {             // navigate to the fitness page
     res.render("pages/dailyfitness");
 });
 /* ---------------------------------------------------------------------------------- */
-app.get('/:username', (req, res) => {
-    res.render('dashboard', req.body.username);                    // links ejs scripts to dashboard.ejs
-});
-
-
-/* ---------------------------------------------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
     // var password = req.body.password;
@@ -112,7 +109,11 @@ app.post('/login', (req, res) => {
     const values = [req.body.username];
     db.one(query, values)
         .then((data) => {
-            res.render("pages/dashboard.ejs");         // once the data is inserted, render the proper page
+            users.username = values;
+            users.password = data.password;
+            req.session.user = users;
+            req.session.save();
+            res.redirect("/dashboard");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
             console.log("Incorrect username or password.")
@@ -157,6 +158,9 @@ app.get('/get_username', (req, res) => { // need to implement specific muscle
         .catch((error) => {
             console.log("ERROR:", error.message || error );
         })
+});
+app.get('/dashboard', (req, res) => {
+    res.render("pages/dashboard", {username:req.session.user.username,})
 });
 /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
