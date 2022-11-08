@@ -117,7 +117,7 @@ app.post('/login', (req, res) => {
         .catch((err) => {
             console.log("Incorrect username or password.")
             console.log(err);
-            res.redirect("pages/register");
+            res.redirect("/register");
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
