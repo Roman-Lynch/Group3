@@ -6,6 +6,6 @@
     "\\views\\pages",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\views\\pages\\home.ejs",
   "PreviewInSolutionExplorer": false
 }
