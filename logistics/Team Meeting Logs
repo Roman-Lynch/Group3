@@ -57,3 +57,20 @@ We began by giving Cory an overview of our Project Board. To his approval.
 After that we went over the remaining project requirements. We realized that 
 we didn't have release notes, so following the meeting we began working on
 release notes and updates for each. 
+
+----- Group Work #2 ----- Tuesday, November 8th ----- 2:00-4:30 pm
+
+Our group gathered and discussed the status of each aspect of our platform.
+    - Login and Registration fully implemented
+        - TO DO: look into hashing
+        - TO DO: ejs back end to page connection
+    - Discussed Daily Fitness page implementation and progression as such
+    - Discussed registrationSurvey and our plans in that regard
+        - TO DO: change to "set goals" on post registration and home page
+            - this way users can continuously set goals
+        - TO DO: impliment goal weight
+        - TO DO: impliment goal water intake
+            - both of the above will have its own table in SQL
+        - TO DO: impliment exercise 
+            - this will be its own table as well
+        

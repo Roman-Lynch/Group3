@@ -75,7 +75,7 @@ app.get('/register', (req, res) => {            // navigate to register page
     res.render("pages/register");
 });
 
-app.get('/registrationSurvey', (req, res) => {     // navigate to the survey to intake and initialize data
+app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/registrationSurvey");
 });
 
