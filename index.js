@@ -86,7 +86,6 @@ app.get('/fitness', (req, res) => {
 });
 
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
-
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
     new Date();
     var day = Date.getFullYear();   // gets the current date
