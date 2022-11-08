@@ -41,6 +41,11 @@ app.get('/register', (req, res) => {
     res.render("pages/register");
 });
 
+app.get('/register_survey', (req, res) => {
+    res.render("pages/registerSurvey");
+});
+
+
 app.get('/login', (req, res) => {
     res.render("pages/login");
 });
