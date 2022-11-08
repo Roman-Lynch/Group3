@@ -67,7 +67,7 @@ app.post('/login', (req, res) => {
         .catch((err) => {
             console.log("Incorrect username or password.")
             console.log(err);
-            res.render("pages/login");
+            res.redirect("pages/register");
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
@@ -84,4 +84,33 @@ app.post('/login', (req, res) => {
 app.get('/fitness', (req, res) => {
     res.render("pages/dailyfitness");
 });
+
+/* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
+
+app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
+    new Date();
+    var day = Date.getFullYear();   // gets the current date
+    var query = "SELECT TOP 1 * FROM fitness WHERE fitness.day < " + day + " ORDER BY fitness.day DESC;";
+    db.one(query)
+        .then((rows) => {
+            res.send(rows);
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error );
+        })
+});
+
+/* GET USERNAME ---------------------------------------------------------------------- */
+// app.get('/get_username', (req, res) => { // need to implement specific muscle
+//     var query = "SELECT username FROM users WHERE username = $1;";
+//     var values = [req.body.username]
+//     db.one(query, values)
+//         .then((rows) => {
+//             res.send(rows);
+//         })
+//         .catch((error) => {
+//             console.log("ERROR:", error.message || error );
+//         })
+// });
+/* ------------------------------------------------------------------------------------ */
 app.listen(3000);
