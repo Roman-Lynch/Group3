@@ -1,3 +1,4 @@
+/* DATABASE INITIALIZATION ------------------------------------------------------ */
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -33,6 +34,8 @@ app.use(
         resave: true,
     })
 );
+
+/* ---------------------------------------------------------------------------- */
 app.get('/', (req, res) => {
     res.render("pages/dashboard");
 });
@@ -41,10 +44,19 @@ app.get('/register', (req, res) => {
     res.render("pages/register");
 });
 
+app.get('/register_survey', (req, res) => {
+    res.render("pages/registrationSurvey");
+});
+
 app.get('/login', (req, res) => {
     res.render("pages/login");
 });
 
+app.get('/fitness', (req, res) => {
+    res.render("pages/dailyfitness");
+});
+
+/* ---------------------------------------------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
     const values = [req.body.username, req.body.password];
@@ -57,6 +69,7 @@ app.post('/register', (req, res) => {
         });
 });
 
+/* POST LOGIN : redirect to register ? survey? ------------------------------------- */
 app.post('/login', (req, res) => {
     let query = `SELECT * FROM users WHERE username = $1;`;
     const values = [req.body.username];
@@ -67,7 +80,7 @@ app.post('/login', (req, res) => {
         .catch((err) => {
             console.log("Incorrect username or password.")
             console.log(err);
-            res.render("pages/login");
+            res.redirect("pages/register");
         })
     // Authentication Middleware.
     const auth = (req, res, next) => {
@@ -81,7 +94,32 @@ app.post('/login', (req, res) => {
     // Authentication Required
     app.use(auth);
 });
-app.get('/fitness', (req, res) => {
-    res.render("pages/dailyfitness");
+
+/* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
+app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
+    new Date();
+    var day = Date.getFullYear();   // gets the current date
+    var query = "SELECT TOP 1 * FROM fitness WHERE fitness.day < " + day + " ORDER BY fitness.day DESC;";
+    db.one(query)
+        .then((rows) => {
+            res.send(rows);
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error );
+        })
 });
+
+/* GET USERNAME ---------------------------------------------------------------------- */
+app.get('/get_username', (req, res) => { // need to implement specific muscle
+    var query = "SELECT username FROM users WHERE username = $1;";
+    var values = [req.body.username]
+    db.one(query, values)
+        .then((rows) => {
+            res.send(rows);
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error );
+        })
+});
+/* ------------------------------------------------------------------------------------ */
 app.listen(3000);
