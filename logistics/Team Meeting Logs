@@ -61,16 +61,28 @@ release notes and updates for each.
 ----- Group Work #2 ----- Tuesday, November 8th ----- 2:00-4:30 pm
 
 Our group gathered and discussed the status of each aspect of our platform.
-    - Login and Registration fully implemented
-        - TO DO: look into hashing
-        - TO DO: ejs back end to page connection
-    - Discussed Daily Fitness page implementation and progression as such
-    - Discussed registrationSurvey and our plans in that regard
-        - TO DO: change to "set goals" on post registration and home page
-            - this way users can continuously set goals
-        - TO DO: impliment goal weight
-        - TO DO: impliment goal water intake
-            - both of the above will have its own table in SQL
-        - TO DO: impliment exercise 
-            - this will be its own table as well
+1. Login and Registration fully implemented
+    - TO DO: look into hashing
+    - TO DO: ejs back end to page connection
+2. Discussed Daily Fitness page implementation and progression as such
+3. Discussed registrationSurvey and our plans in that regard
+    - TO DO: change to "set goals" on post registration and home page
+        - this way users can continuously set goals
+    - TO DO: impliment goal weight
+    - TO DO: impliment goal water intake
+        - both of the above will have its own table in SQL
+    - TO DO: impliment exercise 
+        - this will be its own table as well
         
+Here is what we're doing now:
+1. Maxwell and Cole are connecting the back-end to the front end
+    - dailyfitness --> database
+    - database --> dashboard
+2. Stefan is perfecting the dailyFitness page
+3. Roman is making the registration survey page, and improving dashboard
+4. Jas is validating the post registration survey
+5. Ian will continue to work on the weeklyFitness page
+
+Summary:
+    We are making progress on our features and hope to have a deployable
+product by Thursday's recitation.

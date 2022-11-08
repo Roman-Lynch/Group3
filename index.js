@@ -46,6 +46,16 @@ const users = {
     username:undefined,
     password:undefined,
 }
+    
+const fitness = {
+    day:undefined,              // filter by day
+    muscle:undefined,           // filter by muscle
+    exercise:undefined,         // filter by exercise  
+    weight:undefined,
+    sets:undefined,
+    reps:undefined
+}
+
 /* HASH FUNCTION */
 // String.hashKey = function() {
 //     var hash = 0;
@@ -90,7 +100,6 @@ app.get('/fitness', (req, res) => {             // navigate to the fitness page
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
     // var password = req.body.password;
-
     // const hash = password.hashKey();
     const values = [req.body.username, req.body.password];
 
@@ -132,6 +141,27 @@ app.post('/login', (req, res) => {
     // Authentication Required
     app.use(auth);
 });
+/* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
+app.post('/fitness', (req, res) => {
+    let query = "INSERT INTO fitness(day, muscle, exercise, sets, reps, weight) VALUES ($1, $2, $3, $4, $5, $6);";
+    const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.sets, req.body.reps, req.body.weight];
+    db.one(query, values)
+        .then((data) => {
+            fitness.day = values[0];
+            fitness.muscle = values[1];
+            fitness.exercise = values[2];
+            fitness.sets = values[3];
+            fitness.reps = values[4];
+            fitness.weight = values[5];
+
+            req.session.user = fitness;
+            req.session.save();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+
 
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
@@ -147,18 +177,6 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
         })
 });
 
-/* GET USERNAME ---------------------------------------------------------------------- */
-app.get('/get_username', (req, res) => { // need to implement specific muscle
-    var query = "SELECT username FROM users WHERE username = $1;";
-    var values = [req.body.username]
-    db.one(query, values)
-        .then((rows) => {
-            res.send(rows);
-        })
-        .catch((error) => {
-            console.log("ERROR:", error.message || error );
-        })
-});
 app.get('/dashboard', (req, res) => {
     res.render("pages/dashboard", {username:req.session.user.username,})
 });
