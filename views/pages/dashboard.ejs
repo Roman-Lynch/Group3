@@ -20,24 +20,49 @@
           <div class="card-body">
             <h5 class="card-title">Exercise History</h5>
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a body part
+              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Select a body part
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <!-- Button trigger modal -->
-                <li><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ChestModal">
+
+                <!-- Button trigger chest modal -->
+                <li><a type="button" class="text-info" data-toggle="modal" data-target="#ChestModal">
                     Chest
                   </a>
                 </li>
-                <li><a href="#">Back</a></li>
-                <li><a href="#">Arms</a></li>
-                <li><a href="#">Shoulders</a></li>
-                <li><a href="#">Legs</a></li>
+
+                <!-- Button trigger back modal -->
+                <li><a type="button" class="text-info" data-toggle="modal" data-target="#BackModal">
+                    Back
+                  </a>
+                </li>
+
+                <!-- Button trigger Arms modal -->
+                <li><a type="button" class="text-info" data-toggle="modal" data-target="#ArmsModal">
+                    Arms
+                  </a>
+                </li> 
+                
+                <!-- Button trigger shoulders modal -->
+                <li><a type="button" class="text-info" data-toggle="modal" data-target="#ShoulderModal">
+                    Shoulders
+                  </a>
+                </li> 
+
+                <!-- Button trigger Legs modal -->
+                <li><a type="button" class="text-info" data-toggle="modal" data-target="#LegsModal">
+                    Legs
+                  </a>
+                </li> 
+
               </ul>
             </div>
           </div>
         </div>
+
+        <!-- Spacing -->
         <br>
         <br>
+
         <!-- Chest Modal -->
         <div class="modal fade" id="ChestModal" tabindex="-1" role="dialog" aria-labelledby="#ChestModalTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -49,7 +74,6 @@
                 </button>
               </div>
               <div class="modal-body">
-                AHHHHHHHHH
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -58,6 +82,90 @@
             </div>
           </div>
         </div>
+        <!-- Back Modal -->
+        <div class="modal fade" id="BackModal" tabindex="-1" role="dialog" aria-labelledby="#BackModalTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="BackModalTitle">Chest History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arms Modal -->
+        <div class="modal fade" id="ArmsModal" tabindex="-1" role="dialog" aria-labelledby="#ArmsModalTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ArmsModalTitle">Chest History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shoulders Modal -->
+        <div class="modal fade" id="Shoulders Modal" tabindex="-1" role="dialog" aria-labelledby="#ShouldersModalTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ShouldersModalTitle">Chest History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legs Modal -->
+        <div class="modal fade" id="LegsModal" tabindex="-1" role="dialog" aria-labelledby="#LegsModalTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="LegsModalTitle">Chest History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="card" style="width: 18rem;"> <!--Card #2: Water Intake-->
           <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Man_Drinking_Water_Cartoon.svg/800px-Man_Drinking_Water_Cartoon.svg.png" class="card-img-top"
@@ -66,7 +174,7 @@
           />
           <h5 class="card-title">Water History</h5>
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Select a time frame
+              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"> Select a time frame
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li><a href="#">Week</a></li>
