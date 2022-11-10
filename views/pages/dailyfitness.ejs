@@ -103,6 +103,8 @@
         <div class="card-body">
           <u><h5 class="card-title">Muscle Groups</h5></u>
           <p class="card-text">Log your muscle group(s) worked today:</p>
+          
+          <!-- INPUT FORM -->
           <form action = "/fitness" method = "POST">
             <!-- TABLE DEFINITION -->
             <table padding-bottom: 30px>
@@ -119,11 +121,11 @@
               <tr>
                 <!-- INPUT DATE FOR FITNESS TABLE -->
                 <td> <input type="date" id="day_id" class="form-control" name="day">  </td>
-                <td> <input type="text" id="muscle_id" class="form-control" name="muscle">  </td>
-                <td> <input type="text" id="exercise_id" class="form-control" name="exercise"> </td>
-                <td> <input type="float" id="weight_id" class="form-control" name="weight"> </td>
-                <td> <input type="int" id="sets_id" class="form-control" name="sets"> </td>
-                <td> <input type="int" id="reps_id" class="form-control" name="reps"> </td>
+                <td> <input type="text" id="muscle_id" class="form-control" placeholder = "Chest, Shoulder, Back, Arms or Legs" name="muscle">  </td>
+                <td> <input type="text" id="exercise_id" class="form-control" placeholder = "Bench Press" name="exercise"> </td>
+                <td> <input type="float" id="weight_id" class="form-control" placeholder = "0.0" name="weight"> </td>
+                <td> <input type="int" id="sets_id" class="form-control" placeholder = "0" name="sets"> </td>
+                <td> <input type="int" id="reps_id" class="form-control" placeholder = "0" name="reps"> </td>
                 <td> <button action = "submit" class = " btn-outline-success" style="background-color:green;">Add</button> </td>
               </tr>
             </table>
