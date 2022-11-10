@@ -1,5 +1,4 @@
 <%- include ('../partials/header') %>
-<%- include ('../partials/menu') %>
 
 <main class="d-flex align-items-center" style="height: 100vh;">
   <form action="/register" method="POST">
@@ -23,6 +22,8 @@
                       <label class="form-label" for="form2Example2">Password</label>
                     </div>
   
+                    <!-- REROUTE TO LOGIN -->
+                    <p>Already have an account? <a href = "/login">Login</a></p>
                     <!-- SUBMIT button -->
                     <button type="submit" class="btn btn-primary button">Register</button>
         

@@ -14,7 +14,7 @@ CREATE TABLE fitness(
 );
 
 CREATE TABLE nutrition(
-	nutrition_id INT PRIMARY KEY,
+	nutrition_id SERIAL PRIMARY KEY,
 	day DATE NOT NULL,
 	meal TEXT NOT NULL,
 	calories INT
