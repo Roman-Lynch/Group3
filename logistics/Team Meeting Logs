@@ -86,3 +86,18 @@ Here is what we're doing now:
 Summary:
     We are making progress on our features and hope to have a deployable
 product by Thursday's recitation.
+
+----- Recitation #2 ----- Thursday, November 10th ----- 12:50-2:35 pm
+1. Fixed the backend of daily fitness, connected to database. 
+    - Merged cole_branch with main. Resolved all issues.
+2. Deployed to CU Servers
+3. Assigned whos doing what:
+    - Roman is working on preparing for meeting with TA.
+    - Ian is working on weekly fitness
+    - Stefan is working on daily fitness
+    - Max and Cole are doing all things backend :D
+        - Max --> dashboard backend
+            - When user selects Muscle from dropdown:
+                - filter 5 most recent exercises by MUSCLE
+        - Cole --> routing edit and creating put routes
+    - Jas is doing release notes and front end of dashboard.
