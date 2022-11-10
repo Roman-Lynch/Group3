@@ -4,7 +4,7 @@ CREATE TABLE users(
 );
 
 CREATE TABLE fitness(
-	fitness_id SERIAL INT PRIMARY KEY,
+	fitness_id SERIAL PRIMARY KEY,
 	day DATE NOT NULL,
 	muscle TEXT NOT NULL,
 	exercise TEXT NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE fitness(
 );
 
 CREATE TABLE nutrition(
-	nutrition_id INT PRIMARY KEY,
+	nutrition_id SERIAL PRIMARY KEY,
 	day DATE NOT NULL,
 	meal TEXT NOT NULL,
 	calories INT

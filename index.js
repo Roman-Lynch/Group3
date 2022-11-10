@@ -42,11 +42,14 @@ app.use(
         resave: true,
     })
 );
+
+/* USERS TABLE EJS REFERENCE */
 const users = {
     username:undefined,
     password:undefined,
 }
-    
+
+/* FITNESS TABLE EJS REFERENCE */
 const fitness = {
     day:undefined,              // filter by day
     muscle:undefined,           // filter by muscle
@@ -120,8 +123,10 @@ app.post('/login', (req, res) => {
         .then((data) => {
             users.username = values;
             users.password = data.password;
+
             req.session.user = users;
             req.session.save();
+            
             res.redirect("/dashboard");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
