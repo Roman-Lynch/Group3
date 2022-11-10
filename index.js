@@ -96,9 +96,14 @@ app.get('/login', (req, res) => {               // navigate to the login page
     res.render("pages/login");
 });
 
-app.get('/fitness', (req, res) => {             // navigate to the fitness page
+app.get('/daily_fitness', (req, res) => {             // navigate to the daily fitness page
     res.render("pages/dailyfitness");
 });
+
+app.get('/weekly_fitness', (req, res) => {
+    res.render("pages/weeklyfitness");
+})
+
 /* ---------------------------------------------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
