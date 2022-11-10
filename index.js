@@ -94,16 +94,23 @@ ORDER BY day DESC LIMIT 5`;
 app.get('/', (req, res) => {                    // upon entry user goes to login
     res.render("pages/login");
 });
-
 app.get('/register', (req, res) => {            // navigate to register page
     res.render("pages/register");
 });
-
 app.get('/login', (req, res) => {               // navigate to the login page
     res.render("pages/login");
 });
+app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness page
+    res.render("pages/dailyfitness");
+});
+app.get('/weekly_fitness', (req, res) => {      // navigating to weekly fitness page
+    res.render("pages/weeklyfitness");
+});
+app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
+    res.render("pages/registrationSurvey");
+});
 
-/* ---------------------------------------------------------------------------------- */
+/* POST REGISTER : rediredct to login ---------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
     // var password = req.body.password;
@@ -141,7 +148,7 @@ app.post('/login', (req, res) => {
     
 });
 
-// Authentication Middleware.
+/* AUTHENTICATION ---------------------------------------------------------------------  */
 const auth = (req, res, next) => {
     if (!req.session.user) {
         // Default to register page.
@@ -152,20 +159,6 @@ const auth = (req, res, next) => {
 
 // Authentication Required
 app.use(auth);
-
-
-app.get('/daily_fitness', (req, res) => {             // navigate to the daily fitness page
-    res.render("pages/dailyfitness");
-});
-
-app.get('/weekly_fitness', (req, res) => {
-    res.render("pages/weeklyfitness");
-})
-
-
-app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
-    res.render("pages/registrationSurvey");
-});
 
 /* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {

@@ -33,6 +33,17 @@ FINA v1.2 11/08/2022
   - Functional front end of register survey
   
   
+  FINA v1.3 11/10/2022
+  
+   - Data is successfully entered into the database for fitness information
+      - back end is connected to front end for the daily fitness page
+      
+   - added stylistic elements to the dashboard
+   
+   - Updated authentication for users
+  
+  
+  
       
     
   
