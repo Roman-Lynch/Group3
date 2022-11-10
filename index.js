@@ -183,7 +183,7 @@ app.post('/fitness', (req, res) => {
             req.session.user = fitness;
             req.session.save();
 
-            console.log(data, "Successful Exercise Entry");
+            console.log("Successful Exercise Entry");
         })
         .catch((error) => {
             console.log(error);
