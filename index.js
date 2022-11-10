@@ -59,6 +59,17 @@ const fitness = {
     reps:undefined
 }
 
+/* RECENT EXERCISES BY MUSCLE */
+const muscle_recent = `
+SELECT
+    day, muscle, exercise, weight, sets, reps
+FROM
+    fitness
+WHERE fitness.muscle = $1
+ORDER BY day DESC LIMIT 5`;
+
+
+
 /* HASH FUNCTION */
 // String.hashKey = function() {
 //     var hash = 0;
@@ -119,7 +130,7 @@ app.post('/login', (req, res) => {
 
             req.session.user = users;
             req.session.save();
-            
+
             res.redirect("/dashboard");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
@@ -158,19 +169,21 @@ app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to int
 
 /* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {
-    let query = "INSERT INTO fitness(day, muscle, exercise, sets, reps, weight) VALUES ($1, $2, $3, $4, $5, $6);";
-    const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.sets, req.body.reps, req.body.weight];
-    db.one(query, values)
+    let query = "INSERT INTO fitness (day, muscle, exercise, weight, sets, reps) VALUES ($1, $2, $3, $4, $5, $6);";
+    const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps];
+    db.none(query, values)
         .then((data) => {
             fitness.day = values[0];
             fitness.muscle = values[1];
             fitness.exercise = values[2];
-            fitness.sets = values[3];
-            fitness.reps = values[4];
-            fitness.weight = values[5];
+            fitness.weight = values[3];
+            fitness.sets = values[4];
+            fitness.reps = values[5];
 
             req.session.user = fitness;
             req.session.save();
+
+            console.log(data, "Successful Exercise Entry");
         })
         .catch((error) => {
             console.log(error);
@@ -180,10 +193,7 @@ app.post('/fitness', (req, res) => {
 
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
-    new Date();
-    var day = Date.getFullYear();   // gets the current date
-    var query = "SELECT TOP 1 * FROM fitness WHERE fitness.day < " + day + " ORDER BY fitness.day DESC;";
-    db.one(query)
+    db.one(muscle_recent, [req.body.muscle])
         .then((rows) => {
             res.send(rows);
         })

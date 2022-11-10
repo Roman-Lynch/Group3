@@ -31,35 +31,22 @@
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
 
-                <!-- Button trigger chest modal -->
+                <!-- CHEST BUTTON MODAL -->
                 <li><a type="button" class="text-info" data-toggle="modal" data-target="#ChestModal">
-                    Chest
-                  </a>
-                </li>
-
-                <!-- Button trigger back modal -->
+                    Chest</a></li>
+                <!-- BACK BUTTON MODAL -->
                 <li><a type="button" class="text-info" data-toggle="modal" data-target="#BackModal">
-                    Back
-                  </a>
-                </li>
-
-                <!-- Button trigger Arms modal -->
+                    Back</a></li>
+                <!-- ARMS BUTTON MODAL-->
                 <li><a type="button" class="text-info" data-toggle="modal" data-target="#ArmsModal">
-                    Arms
-                  </a>
-                </li> 
-                
-                <!-- Button trigger shoulders modal -->
+                    Arms</a></li> 
+                <!-- ARMS BUTTON MODAL -->
                 <li><a type="button" class="text-info" data-toggle="modal" data-target="#ShouldersModal">
-                    Shoulders
-                  </a>
-                </li> 
-
-                <!-- Button trigger Legs modal -->
+                    Shoulders</a></li>
+                <!-- LEGS BUTTON MODAL -->
                 <li><a type="button" class="text-info" data-toggle="modal" data-target="#LegsModal">
-                    Legs
-                  </a>
-                </li> 
+                    Legs</a></li>
+                
               </ul>
             </div>
           </div>
@@ -81,24 +68,40 @@
               </div>
               <div class="modal-body">
 
-                <!-- Chest Table -->
+                <!-- CHEST TABLE -->
                 <table class="table">
+                  <!-- TABLE HEADER -->
                   <thead>
                     <tr>
+                      <th scope="col">Day</th>
                       <th scope="col">Exercise</th>
-                      <th scope="col">Last Recorded Weight</th>
-                      <th scope="col">Sets x Reps</th>
-                      <th scope="col"> PR </th>
+                      <th scope="col">Weight</th>
+                      <th scope="col">Sets</th>
+                      <th scope="col">Reps</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <% fitness.forEach(fitness => ( %>
+                      <tr>
+                        <form> <td> <% fitness.day %> </td> </form>
+                        <form> <td> <% fitness.exercise %> </td> </form>
+                        <form> <td> <% fitness.weight %> </td> </form>
+                        <form> <td> <% fitness.sets %> </td> </form>
+                        <form> <td> <% fitness.reps %> </td> </form>
+                      </tr>
+                        <td>
+                          <% if(fitness.muscle) %>
+                        </td>
+
+
+                    <% ))  %>
+                    <tr> 
                       <th scope="row">Bench Press:</th>
-                      <td> </td>
                       <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
+                      <td></td> -->
                     </tr>
                     <tr>
                       <th scope="row">Flys: </th>
