@@ -109,136 +109,64 @@
         <div class="card-body">
           <u><h5 class="card-title">Muscle Groups</h5></u>
           <p class="card-text">Log your muscle group(s) worked today:</p>
-          
-          <div class="dropdown">
-              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Select a body part
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-
-                <!-- Button trigger chest modal -->
-                <li><a type="button" class="text-info" data-toggle="modal" data-target="#ChestModal">
-                    Chest
-                  </a>
-                </li>
-
-                <!-- Button trigger back modal -->
-                <li><a type="button" class="text-info" data-toggle="modal" data-target="#BackModal">
-                    Back
-                  </a>
-                </li>
-
-                <!-- Button trigger Arms modal -->
-                <li><a type="button" class="text-info" data-toggle="modal" data-target="#ArmsModal">
-                    Arms
-                  </a>
-                </li> 
-                
-                <!-- Button trigger shoulders modal -->
-                <li><a type="button" class="text-info" data-toggle="modal" data-target="#ShouldersModal">
-                    Shoulders
-                  </a>
-                </li> 
-
-                <!-- Button trigger Legs modal -->
-                <li><a type="button" class="text-info" data-toggle="modal" data-target="#LegsModal">
-                    Legs
-                  </a>
-                </li> 
-
-              </ul>
-            </div>
-            
-          <p class="card-text"><small class="text-muted">Updated just now</small></p>
-        </div>
-
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1620188526357-ff08e03da266?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="...">
-        <div class="card-body">
-          <u><h5 class="card-title">Exercises</h5></u>
-          <p class="card-text">Log your exercises performed today below:</p>
-
-          <table padding-bottom: 30px>
-            <tr style="border-bottom:1px solid black">
-              <th>Exercise:</th>
-            </tr>
-
-            <tr>
-              <td> <input type="text" id="exerciseID" class="form-control" name="exercise"> </td>
-            </tr>
-            
-          </table>
-          <p class="card-text"><small class="text-muted">Updated just now</small></p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1391&q=80" class="card-img-top" alt="...">
-        <div class="card-body">
-          <u><h5 class="card-title">Weight</h5></u>
-          <p class="card-text">Log your weight for their respective exercises below:</p>
-
-          <table padding-bottom: 30px>
-            <tr style="border-bottom:1px solid black">
-              <th>Weight:</th>
-            </tr>
-
-            <tr>
-              <td> <input type="text" id="weightAmount" class="form-control" name="weight"> </td>
-            </tr>
-            </table>
-
-            <p class="card-text"><small class="text-muted">Updated just now</small></p>
-
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1391&q=80" class="card-img-top" alt="...">
-        <div class="card-body">
-          <u><h5 class="card-title">Sets</h5></u>
-          <p class="card-text">Log your sets for their respective exercises below:</p>
-            
+            <!-- TABLE DEFINITION -->
             <table padding-bottom: 30px>
+              <!-- HEADER -->
               <tr style="border-bottom:1px solid black">
-                <th>Sets:</th>
+                <th>Day</th>
+                <th>Muscle</th>
+                <th>Exercise</th>
+                <th>Weight</th>
+                <th>Sets</th>
+                <th>Reps</th>
               </tr>
-  
+              <!-- INPUT ROW-->
               <tr>
-                <td> <input type="text" id="setsrepsAmount" class="form-control" name="sets&reps"> </td>
+                <!-- INPUT DATE FOR FITNESS TABLE -->
+                <td> <input type="datetime-local" id="day_id" class="form-control" name="day">  </td>
+                <td> <input type="text" id="muscle_id" class="form-control" name="muscle">  </td>
+                <td> <input type="text" id="exercise_id" class="form-control" name="exercise"> </td>
+                <td> <input type="number" id="weight_id" class="form-control" name="weight"> </td>
+                <td> <input type="number" id="sets_id" class="form-control" name="sets"> </td>
+                <td> <input type="number" id="reps_id" class="form-control" name="reps"> </td>
               </tr>
-
+            <!-- SUBMIT BUTTON -->
+            <% if(locals.action == "submit") { %>
+              <form action = "/fitness" method = "POST">
+                <td><button action = "submit" class = "btn btn-primary" type = "submit" style="background-color:green;"> Add </button></td>
+              </form>
+            <% } %>
             </table>
 
           </div>
-        </div>
-  
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1391&q=80" class="card-img-top" alt="...">
-        <div class="card-body">
-          <u><h5 class="card-title">Reps</h5></u>
-          <p class="card-text">Log your reps for their respective sets below:</p>
-                  
-            <table padding-bottom: 30px>
-              <tr style="border-bottom:1px solid black">
-                <th>Reps:</th>
-              </tr>
-        
-                <tr>
-                  <td> <input type="text" id="setsrepsAmount" class="form-control" name="sets&reps"> </td>
-                </tr>
-      
-            </table>
-
-            <button class = "btn btn-primary" type = "submit" style="background-color:green;"> Add </button>
-
-            <p class="card-text"><small class="text-muted">Updated just now</small></p>
 
         </div>
+        <!-- END OF CARD -->
       </div>
     </div>
-</body>
-  
+  </body>
 </html>
 
 <%- include ('../partials/footer') %>
+
+<!-- <div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Select a body part
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+
+    <li><a type="button" class="text-info" data-toggle="modal" data-target="#ChestModal">
+        Chest</a></li>
+
+    <li><a type="button" class="text-info" data-toggle="modal" data-target="#BackModal">
+        Back</a></li>
+
+    <li><a type="button" class="text-info" data-toggle="modal" data-target="#ArmsModal">
+        Arms</a></li> 
+    
+    <li><a type="button" class="text-info" data-toggle="modal" data-target="#ShouldersModal">
+        Shoulders</a></li> 
+
+    <li><a type="button" class="text-info" data-toggle="modal" data-target="#LegsModal">
+        Legs</a></li> 
+  </ul>
+</div> -->

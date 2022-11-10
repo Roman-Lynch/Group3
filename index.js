@@ -59,6 +59,17 @@ const fitness = {
     reps:undefined
 }
 
+/* RECENT EXERCISES BY MUSCLE */
+const muscle_recent = `
+SELECT
+    day, muscle, exercise, weight, sets, reps
+FROM
+    fitness
+WHERE fitness.muscle = $1
+ORDER BY day DESC LIMIT 5`;
+
+
+
 /* HASH FUNCTION */
 // String.hashKey = function() {
 //     var hash = 0;
@@ -126,7 +137,7 @@ app.post('/login', (req, res) => {
 
             req.session.user = users;
             req.session.save();
-            
+
             res.redirect("/dashboard");         // once the data is inserted, render the proper page
         })
         .catch((err) => {
@@ -170,10 +181,7 @@ app.post('/fitness', (req, res) => {
 
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
-    new Date();
-    var day = Date.getFullYear();   // gets the current date
-    var query = "SELECT TOP 1 * FROM fitness WHERE fitness.day < " + day + " ORDER BY fitness.day DESC;";
-    db.one(query)
+    db.one(muscle_recent, [req.body.muscle])
         .then((rows) => {
             res.send(rows);
         })
