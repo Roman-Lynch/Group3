@@ -4,8 +4,8 @@
     "\\init_data",
     "\\views",
     "\\views\\pages",
-    "\\views\\partials"
+    "\\views\\partials",
+    "\\views\\resources"
   ],
-  "SelectedNode": "\\views\\pages\\home.ejs",
   "PreviewInSolutionExplorer": false
 }

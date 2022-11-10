@@ -143,7 +143,7 @@ app.post('/login', (req, res) => {
 });
 /* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {
-    let query = "INSERT INTO fitness(day, muscle, exercise, sets, reps, weight) VALUES ($1, $2, $3, $4, $5, $6);";
+    let query = "INSERT INTO fitness(day, muscle, exercise, sets, reps, weight) VALUES ('2022-02-20', $2, $3, $4, $5, $6);";
     const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.sets, req.body.reps, req.body.weight];
     db.one(query, values)
         .then((data) => {
