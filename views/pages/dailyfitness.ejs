@@ -23,56 +23,54 @@
           </div>
           <div class="modal-body">
               <form>
-  
-                  <div class="mb-3">
-                      <label for="Weekday" class="form-label">Workout Date</label>
-                  </div>
-                  
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select a date
-                      </button>
+                <div class="mb-3">
+                    <label for="Weekday" class="form-label">Workout Date</label>
+                </div>
+                
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select a date
+                    </button>
 
-                    </div>
-  
-                  <div class="mb-3">
-                    <label for="Time" class="form-label">Time</label>
-                    <input type="time" class="form-control" id="Time">
                   </div>
-  
-                  <div class="mb-3">
-                      <label for="Time" class="form-label">Modality</label>
+
+                <div class="mb-3">
+                  <label for="Time" class="form-label">Time</label>
+                  <input type="time" class="form-control" id="Time">
+                </div>
+
+                <div class="mb-3">
+                    <label for="Time" class="form-label">Modality</label>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select One
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">In-Person</a></li>
+                      <li><a class="dropdown-item" href="#">Remote</a></li>
+                    </ul>
                   </div>
-  
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select One
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">In-Person</a></li>
-                        <li><a class="dropdown-item" href="#">Remote</a></li>
-                      </ul>
-                    </div>
-  
-                    <div class="mb-3">
-                      <label for="Location" class="form-label">Location</label>
-                      <input type="Location" class="form-control" id="Location" aria-describedby="LocationHelp">
-                    </div>
-  
-                    <div class="mb-3">
-                      <label for="URL" class="form-label">Remote URL</label>
-                      <input type="text" pattern="^[A-Z].+" />
-  
-                      <div id="URL" class="form-text">Enter a Meeting URL (Zoom, MS Teams, etc.).</div>
-                    </div>
-  
-                    <div class="mb-3">
-                      <label for="Attendees" class="form-label">Attendees</label>
-                      <input type="Attendees" class="form-control" id="Attendees" aria-describedby="AttendeesHelp">
-                      <div id="Attendees" class="form-text">Enter the attendees' names separated by commas.</div>
-                    </div>
-  
-                </form>
+
+                  <div class="mb-3">
+                    <label for="Location" class="form-label">Location</label>
+                    <input type="Location" class="form-control" id="Location" aria-describedby="LocationHelp">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="URL" class="form-label">Remote URL</label>
+                    <input type="text" pattern="^[A-Z].+" />
+
+                    <div id="URL" class="form-text">Enter a Meeting URL (Zoom, MS Teams, etc.).</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="Attendees" class="form-label">Attendees</label>
+                    <input type="Attendees" class="form-control" id="Attendees" aria-describedby="AttendeesHelp">
+                    <div id="Attendees" class="form-text">Enter the attendees' names separated by commas.</div>
+                  </div>
+              </form>
           </div>
           <div class="modal-footer">
             <button id="submit_button" class="btn btn-secondary" data-bs-dismiss="modal" type="submit">Close</button>
@@ -80,12 +78,8 @@
           </div>
         </div>
       </div>
-  
      </div>
-  
-  
     </div>
-
   </head>
 
   <body>
@@ -109,6 +103,7 @@
         <div class="card-body">
           <u><h5 class="card-title">Muscle Groups</h5></u>
           <p class="card-text">Log your muscle group(s) worked today:</p>
+          <form action = "/fitness" method = "POST">
             <!-- TABLE DEFINITION -->
             <table padding-bottom: 30px>
               <!-- HEADER -->
@@ -123,23 +118,18 @@
               <!-- INPUT ROW-->
               <tr>
                 <!-- INPUT DATE FOR FITNESS TABLE -->
-                <td> <input type="datetime-local" id="day_id" class="form-control" name="day">  </td>
+                <td> <input type="date" id="day_id" class="form-control" name="day">  </td>
                 <td> <input type="text" id="muscle_id" class="form-control" name="muscle">  </td>
                 <td> <input type="text" id="exercise_id" class="form-control" name="exercise"> </td>
-                <td> <input type="number" id="weight_id" class="form-control" name="weight"> </td>
-                <td> <input type="number" id="sets_id" class="form-control" name="sets"> </td>
-                <td> <input type="number" id="reps_id" class="form-control" name="reps"> </td>
+                <td> <input type="float" id="weight_id" class="form-control" name="weight"> </td>
+                <td> <input type="int" id="sets_id" class="form-control" name="sets"> </td>
+                <td> <input type="int" id="reps_id" class="form-control" name="reps"> </td>
+                <td> <button action = "submit" class = " btn-outline-success" style="background-color:green;">Add</button> </td>
               </tr>
-            <!-- SUBMIT BUTTON -->
-            <% if(locals.action == "submit") { %>
-              <form action = "/fitness" method = "POST">
-                <td><button action = "submit" class = "btn btn-primary" type = "submit" style="background-color:green;"> Add </button></td>
-              </form>
-            <% } %>
             </table>
-
+            <!-- END OF TABLE -->
+          </form>
           </div>
-
         </div>
         <!-- END OF CARD -->
       </div>
