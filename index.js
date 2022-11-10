@@ -184,7 +184,7 @@ app.post('/fitness', (req, res) => {
             req.session.save();
 
             console.log("Successful Exercise Entry");
-            
+
         })
         .catch((error) => {
             console.log(error);
