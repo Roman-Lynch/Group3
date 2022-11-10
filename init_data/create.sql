@@ -8,9 +8,9 @@ CREATE TABLE fitness(
 	day DATE NOT NULL,
 	muscle TEXT NOT NULL,
 	exercise TEXT NOT NULL,
+	weight FLOAT NOT NULL,
 	sets INT NOT NULL,
-	reps INT NOT NULL,
-	weight FLOAT NOT NULL
+	reps INT NOT NULL
 );
 
 CREATE TABLE nutrition(
@@ -40,7 +40,6 @@ CREATE TABLE user_water(
 	username VARCHAR(50) REFERENCES users(username),
 	water_id INT NOT NULL REFERENCES water(water_id)
 );
-
 
 -- -- Views to simplify queires in the server --
 -- CREATE OR REPLACE VIEW 
