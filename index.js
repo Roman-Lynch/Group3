@@ -99,17 +99,10 @@ app.get('/register', (req, res) => {            // navigate to register page
     res.render("pages/register");
 });
 
-app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
-    res.render("pages/registrationSurvey");
-});
-
 app.get('/login', (req, res) => {               // navigate to the login page
     res.render("pages/login");
 });
 
-app.get('/fitness', (req, res) => {             // navigate to the fitness page
-    res.render("pages/dailyfitness");
-});
 /* ---------------------------------------------------------------------------------- */
 app.post('/register', (req, res) => {
     let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
@@ -145,18 +138,35 @@ app.post('/login', (req, res) => {
             console.log(err);
             res.redirect("/register");
         })
-    // Authentication Middleware.
-    const auth = (req, res, next) => {
-        if (!req.session.user) {
-            // Default to register page.
-            return res.redirect('/register');
-        }
-        next();
-    };
-
-    // Authentication Required
-    app.use(auth);
+    
 });
+
+// Authentication Middleware.
+const auth = (req, res, next) => {
+    if (!req.session.user) {
+        // Default to register page.
+        return res.redirect('/register');
+    }
+    next();
+};
+
+// Authentication Required
+app.use(auth);
+
+
+app.get('/daily_fitness', (req, res) => {             // navigate to the daily fitness page
+    res.render("pages/dailyfitness");
+});
+
+app.get('/weekly_fitness', (req, res) => {
+    res.render("pages/weeklyfitness");
+})
+
+
+app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
+    res.render("pages/registrationSurvey");
+});
+
 /* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {
     let query = "INSERT INTO fitness (day, muscle, exercise, weight, sets, reps) VALUES ($1, $2, $3, $4, $5, $6);";
