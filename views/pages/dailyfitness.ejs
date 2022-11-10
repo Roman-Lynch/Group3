@@ -1,143 +1,226 @@
-<%- include ('../partials/header') %>
-<%- include ('../partials/menu') %>
+<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Today's Fitness Journey</title>
+<style type="text/css">
+  body {
+    background-color: rgba(164, 195, 178);
+  }
+</style>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<button
+  type="submit"
+  class="btn btn-primary button"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Edit previous workouts
+</button>
 
-    <button type="submit" class="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Edit previous workouts
-    </button>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Workouts</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                    <label for="Weekday" class="form-label">Workout Date</label>
-                </div>
-                
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Select a date
-                    </button>
-
-                  </div>
-
-                <div class="mb-3">
-                  <label for="Time" class="form-label">Time</label>
-                  <input type="time" class="form-control" id="Time">
-                </div>
-
-                <div class="mb-3">
-                    <label for="Time" class="form-label">Modality</label>
-                </div>
-
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Select One
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">In-Person</a></li>
-                      <li><a class="dropdown-item" href="#">Remote</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="Location" class="form-label">Location</label>
-                    <input type="Location" class="form-control" id="Location" aria-describedby="LocationHelp">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="URL" class="form-label">Remote URL</label>
-                    <input type="text" pattern="^[A-Z].+" />
-
-                    <div id="URL" class="form-text">Enter a Meeting URL (Zoom, MS Teams, etc.).</div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="Attendees" class="form-label">Attendees</label>
-                    <input type="Attendees" class="form-control" id="Attendees" aria-describedby="AttendeesHelp">
-                    <div id="Attendees" class="form-text">Enter the attendees' names separated by commas.</div>
-                  </div>
-              </form>
-          </div>
-          <div class="modal-footer">
-            <button id="submit_button" class="btn btn-secondary" data-bs-dismiss="modal" type="submit">Close</button>
-            <button id="submit_button" class="btn btn-primary" type="submit">Create/Update Event</button>
-          </div>
-        </div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Workouts</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-     </div>
-    </div>
-  </head>
-
-  <body>
-    <style type="text/css">
-       body {
-                background-color:rgba(164, 195, 178);
-            }
-    </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <b><i><h1>Today</h1></i></b>
-
-    <div class="card-group">
-      <style type="text/css">
-        div {
-                 background-color:rgba(164, 195, 178);
-             }
-     </style>
-      <div class="card">
-        <img src="/resources/muscles.jpg" class="card-img-top" alt="Exercise">
-        <div class="card-body">
-          <u><h5 class="card-title">Muscle Groups</h5></u>
-          <p class="card-text">Log your muscle group(s) worked today:</p>
-          
-          <!-- INPUT FORM -->
-          <form action = "/fitness" method = "POST">
-            <!-- TABLE DEFINITION -->
-            <table padding-bottom: 30px>
-              <!-- HEADER -->
-              <tr style="border-bottom:1px solid black">
-                <th>Day</th>
-                <th>Muscle</th>
-                <th>Exercise</th>
-                <th>Weight</th>
-                <th>Sets</th>
-                <th>Reps</th>
-              </tr>
-              <!-- INPUT ROW-->
-              <tr>
-                <!-- INPUT DATE FOR FITNESS TABLE -->
-                <td> <input type="date" id="day_id" class="form-control" name="day">  </td>
-                <td> <input type="text" id="muscle_id" class="form-control" placeholder = "Chest, Shoulder, Back, Arms or Legs" name="muscle">  </td>
-                <td> <input type="text" id="exercise_id" class="form-control" placeholder = "Bench Press" name="exercise"> </td>
-                <td> <input type="float" id="weight_id" class="form-control" placeholder = "0.0" name="weight"> </td>
-                <td> <input type="int" id="sets_id" class="form-control" placeholder = "0" name="sets"> </td>
-                <td> <input type="int" id="reps_id" class="form-control" placeholder = "0" name="reps"> </td>
-                <td> <button action = "submit" class = " btn-outline-success" style="background-color:green;">Add</button> </td>
-              </tr>
-            </table>
-            <!-- END OF TABLE -->
-          </form>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="Weekday" class="form-label">Workout Date</label>
           </div>
-        </div>
-        <!-- END OF CARD -->
+
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Select a date
+            </button>
+          </div>
+
+          <div class="mb-3">
+            <label for="Time" class="form-label">Time</label>
+            <input type="time" class="form-control" id="Time" />
+          </div>
+
+          <div class="mb-3">
+            <label for="Time" class="form-label">Modality</label>
+          </div>
+
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Select One
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">In-Person</a></li>
+              <li><a class="dropdown-item" href="#">Remote</a></li>
+            </ul>
+          </div>
+
+          <div class="mb-3">
+            <label for="Location" class="form-label">Location</label>
+            <input
+              type="Location"
+              class="form-control"
+              id="Location"
+              aria-describedby="LocationHelp"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="URL" class="form-label">Remote URL</label>
+            <input type="text" pattern="^[A-Z].+" />
+
+            <div id="URL" class="form-text">
+              Enter a Meeting URL (Zoom, MS Teams, etc.).
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="Attendees" class="form-label">Attendees</label>
+            <input
+              type="Attendees"
+              class="form-control"
+              id="Attendees"
+              aria-describedby="AttendeesHelp"
+            />
+            <div id="Attendees" class="form-text">
+              Enter the attendees' names separated by commas.
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          id="submit_button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          type="submit"
+        >
+          Close
+        </button>
+        <button id="submit_button" class="btn btn-primary" type="submit">
+          Create/Update Event
+        </button>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+
+<b
+  ><i><h1>Today</h1></i></b
+>
+
+<div class="card-group">
+  <style type="text/css">
+    div {
+      background-color: rgba(164, 195, 178);
+    }
+  </style>
+  <div class="card">
+    <img src="/resources/muscles.jpg" class="card-img-top" alt="Exercise" />
+    <div class="card-body">
+      <u><h5 class="card-title">Muscle Groups</h5></u>
+      <p class="card-text">Log your muscle group(s) worked today:</p>
+
+      <!-- INPUT FORM -->
+      <form action="/fitness" method="POST">
+        <!-- TABLE DEFINITION -->
+        <table padding-bottom: 30px>
+          <!-- HEADER -->
+          <tr style="border-bottom: 1px solid black">
+            <th>Day</th>
+            <th>Muscle</th>
+            <th>Exercise</th>
+            <th>Weight</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+          <!-- INPUT ROW-->
+          <tr>
+            <!-- INPUT DATE FOR FITNESS TABLE -->
+            <td>
+              <input type="date" id="day_id" class="form-control" name="day" />
+            </td>
+            <td>
+              <input
+                type="text"
+                id="muscle_id"
+                class="form-control"
+                placeholder="Chest, Shoulder, Back, Arms or Legs"
+                name="muscle"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                id="exercise_id"
+                class="form-control"
+                placeholder="Bench Press"
+                name="exercise"
+              />
+            </td>
+            <td>
+              <input
+                type="float"
+                id="weight_id"
+                class="form-control"
+                placeholder="0.0"
+                name="weight"
+              />
+            </td>
+            <td>
+              <input
+                type="int"
+                id="sets_id"
+                class="form-control"
+                placeholder="0"
+                name="sets"
+              />
+            </td>
+            <td>
+              <input
+                type="int"
+                id="reps_id"
+                class="form-control"
+                placeholder="0"
+                name="reps"
+              />
+            </td>
+            <td>
+              <button
+                action="submit"
+                class="btn-outline-success"
+                style="background-color: green"
+              >
+                Add
+              </button>
+            </td>
+          </tr>
+        </table>
+        <!-- END OF TABLE -->
+      </form>
+    </div>
+  </div>
+  <!-- END OF CARD -->
+</div>
 
 <%- include ('../partials/footer') %>
 
