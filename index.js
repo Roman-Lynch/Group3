@@ -65,8 +65,7 @@ SELECT
     day, muscle, exercise, weight, sets, reps
 FROM
     fitness
-WHERE fitness.muscle = $1
-ORDER BY day DESC LIMIT 5`;
+ORDER BY day DESC;`;
 
 
 
@@ -177,7 +176,7 @@ app.post('/fitness', (req, res) => {
             req.session.save();
 
             console.log("Successful Exercise Entry");
-
+            res.render('pages/dailyfitness');
         })
         .catch((error) => {
             console.log(error);
@@ -197,7 +196,13 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
 });
 
 app.get('/dashboard', (req, res) => {
-    res.render("pages/dashboard", {username:req.session.user.username,})
+    db.any(muscle_recent, [req.body.muscle])
+        .then((rows) => {
+            res.render("pages/dashboard", { username: req.session.user.username, rows});
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error);
+        })
 });
 /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
