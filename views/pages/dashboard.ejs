@@ -76,20 +76,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <% 
- if (rows) { 
-  var buttons = '';
-var i = 0;
-  rows.forEach(function(item){
-if (i < 5) { 
-   if(item.muscle == 'Chest'){ 
-    buttons += '<tr><th scope="col">' + item.day + '</th><td>' + item.exercise + '</td><td>' + item.weight + '</td><td>' + item.sets + '</td><td>' + item.reps + '</td></tr>';
-i++; 
-   }
-  }
-}); %> 
- <%- buttons %> 
-<% } %>
+                  <% if (rows) { 
+                    var buttons = '';
+                    var i = 0;
+                    rows.forEach(function(item){
+                      if (i < 5) { 
+                        if(item.muscle == 'Chest'){ 
+                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                                      item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                      item.sets + '</td><td>' + item.reps + '</td></tr>';
+                          i++; 
+                        }
+                      }
+                  }); %>
+                  <%- buttons %> 
+                  <% } %>
                   </tbody>   
                 </table>
               </div>
@@ -125,20 +126,21 @@ i++;
                     </tr>
                   </thead>
                   <tbody>
-                    <% 
- if (rows) { 
-  var buttons = '';
-var i = 0;
-  rows.forEach(function(item){
-if (i < 5) { 
-   if(item.muscle == 'Back'){ 
-    buttons += '<tr><th scope="col">' + item.day + '</th><td>' + item.exercise + '</td><td>' + item.weight + '</td><td>' + item.sets + '</td><td>' + item.reps + '</td></tr>';
-i++; 
-   }
-  }
-}); %> 
- <%- buttons %> 
-<% } %>
+                    <% if (rows) { 
+                    var buttons = '';
+                    var i = 0;
+                    rows.forEach(function(item){
+                      if (i < 5) { 
+                        if(item.muscle == 'Back'){ 
+                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                                      item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                      item.sets + '</td><td>' + item.reps + '</td></tr>';
+                          i++; 
+                        }
+                      }
+                  }); %>
+                  <%- buttons %> 
+                  <% } %>
                   </tbody>
                 </table>
               </div>
@@ -174,20 +176,21 @@ i++;
                     </tr>
                   </thead>
                   <tbody>
-                    <% 
- if (rows) { 
-  var buttons = '';
-var i = 0;
-  rows.forEach(function(item){
-if (i < 5) { 
-   if(item.muscle == 'Arms'){ 
-    buttons += '<tr><th scope="col">' + item.day + '</th><td>' + item.exercise + '</td><td>' + item.weight + '</td><td>' + item.sets + '</td><td>' + item.reps + '</td></tr>';
-i++; 
-   }
-  }
-}); %> 
- <%- buttons %> 
-<% } %>
+                    <% if (rows) { 
+                    var buttons = '';
+                    var i = 0;
+                    rows.forEach(function(item){
+                      if (i < 5) { 
+                        if(item.muscle == 'Arms'){ 
+                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                                      item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                      item.sets + '</td><td>' + item.reps + '</td></tr>';
+                          i++; 
+                        }
+                      }
+                  }); %>
+                  <%- buttons %> 
+                  <% } %>
                   </tbody>
                 </table>
               </div>
@@ -223,20 +226,21 @@ i++;
                     </tr>
                   </thead>
                   <tbody>
-                    <% 
- if (rows) { 
-  var buttons = '';
-var i = 0;
-  rows.forEach(function(item){
-if (i < 5) { 
-   if(item.muscle == 'Shoulders'){ 
-    buttons += '<tr><th scope="col">' + item.day + '</th><td>' + item.exercise + '</td><td>' + item.weight + '</td><td>' + item.sets + '</td><td>' + item.reps + '</td></tr>';
-i++; 
-   }
-  }
-}); %> 
- <%- buttons %> 
-<% } %>
+                    <% if (rows) { 
+                    var buttons = '';
+                    var i = 0;
+                    rows.forEach(function(item){
+                      if (i < 5) { 
+                        if(item.muscle == 'Shoulders'){ 
+                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                                      item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                      item.sets + '</td><td>' + item.reps + '</td></tr>';
+                          i++; 
+                        }
+                      }
+                  }); %>
+                  <%- buttons %> 
+                  <% } %>
                   </tbody>
                 </table>
               </div>
@@ -272,20 +276,21 @@ i++;
                     </tr>
                   </thead>
                   <tbody>
-                    <% 
- if (rows) { 
-  var buttons = '';
-var i = 0;
-  rows.forEach(function(item){
-if (i < 5) { 
-   if(item.muscle == 'Legs'){ 
-    buttons += '<tr><th scope="col">' + item.day + '</th><td>' + item.exercise + '</td><td>' + item.weight + '</td><td>' + item.sets + '</td><td>' + item.reps + '</td></tr>';
-i++; 
-   }
-  }
-}); %> 
- <%- buttons %> 
-<% } %>
+                    <% if (rows) { 
+                    var buttons = '';
+                    var i = 0;
+                    rows.forEach(function(item){
+                      if (i < 5) { 
+                        if(item.muscle == 'Legs'){ 
+                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                                      item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                      item.sets + '</td><td>' + item.reps + '</td></tr>';
+                          i++; 
+                        }
+                      }
+                  }); %>
+                  <%- buttons %> 
+                  <% } %>
                   </tbody>
                 </table>
               </div>
@@ -324,4 +329,5 @@ i++;
     </div>
   </div>
 </main>
+
 <%- include ('../partials/footer') %>
