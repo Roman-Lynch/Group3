@@ -159,7 +159,7 @@ const auth = (req, res, next) => {
 // Authentication Required
 app.use(auth);
 
-/* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
+/* POST EXERCISE ----------------------------------------------------------------------- */
 app.post('/fitness', (req, res) => {
     let query = "INSERT INTO fitness (day, muscle, exercise, weight, sets, reps) VALUES ($1, $2, $3, $4, $5, $6);";
     const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps];
@@ -183,6 +183,14 @@ app.post('/fitness', (req, res) => {
         })
 });
 
+/* EDIT EXERCISE ---------------------------------------------------------------------- */
+app.put('/edit_workout', (req, res) => {
+    let query = `
+    UPDATE fitness 
+        SET day = $1 AND exercise = $2 AND muscle = $3 AND weight = $4 AND sets = $4 AND reps = $5
+        WHERE;`;
+
+});
 
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
