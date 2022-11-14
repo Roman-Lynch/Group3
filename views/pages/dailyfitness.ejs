@@ -6,14 +6,19 @@
   }
 </style>
 
+<br>
+
 <button
   type="submit"
   class="btn btn-primary button"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
+  style="background-color:darksalmon"
 >
   Edit previous workouts
 </button>
+
+<br>
 
 <div
   class="modal fade"
@@ -25,12 +30,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Workouts</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i> Edit Workouts </i></h5>
         <button
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          style="background-color: crimson;"
         ></button>
       </div>
       <div class="modal-body">
@@ -50,61 +56,65 @@
             </button>
           </div>
 
-          <div class="mb-3">
-            <label for="Time" class="form-label">Time</label>
-            <input type="time" class="form-control" id="Time" />
-          </div>
+          <tr>
+            <!-- INPUT DATE FOR FITNESS TABLE -->
+            <td>
+              <input
+                type="text"
+                id="muscle_id"
+                class="form-control"
+                placeholder="Chest, Shoulder, Back, Arms or Legs"
+                name="muscle"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                id="exercise_id"
+                class="form-control"
+                placeholder="Bench Press"
+                name="exercise"
+              />
+            </td>
+            <td>
+              <input
+                type="float"
+                id="weight_id"
+                class="form-control"
+                placeholder="0.0"
+                name="weight"
+              />
+            </td>
+            <td>
+              <input
+                type="int"
+                id="sets_id"
+                class="form-control"
+                placeholder="0"
+                name="sets"
+              />
+            </td>
+            <td>
+              <input
+                type="int"
+                id="reps_id"
+                class="form-control"
+                placeholder="0"
+                name="reps"
+              />
+            </td>
+            <td>
+              <button
+                action="submit"
+                class="btn-outline-success"
+                style="background-color: green"
+              >
+                Add
+              </button>
+            </td>
+          </tr>
+        </table>
 
-          <div class="mb-3">
-            <label for="Time" class="form-label">Modality</label>
-          </div>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Select One
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">In-Person</a></li>
-              <li><a class="dropdown-item" href="#">Remote</a></li>
-            </ul>
-          </div>
-
-          <div class="mb-3">
-            <label for="Location" class="form-label">Location</label>
-            <input
-              type="Location"
-              class="form-control"
-              id="Location"
-              aria-describedby="LocationHelp"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="URL" class="form-label">Remote URL</label>
-            <input type="text" pattern="^[A-Z].+" />
-
-            <div id="URL" class="form-text">
-              Enter a Meeting URL (Zoom, MS Teams, etc.).
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="Attendees" class="form-label">Attendees</label>
-            <input
-              type="Attendees"
-              class="form-control"
-              id="Attendees"
-              aria-describedby="AttendeesHelp"
-            />
-            <div id="Attendees" class="form-text">
-              Enter the attendees' names separated by commas.
-            </div>
-          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -113,11 +123,9 @@
           class="btn btn-secondary"
           data-bs-dismiss="modal"
           type="submit"
+          style="background-color: crimson"
         >
           Close
-        </button>
-        <button id="submit_button" class="btn btn-primary" type="submit">
-          Create/Update Event
         </button>
       </div>
     </div>
@@ -135,7 +143,6 @@
     }
   </style>
   <div class="card">
-    <img src="/resources/muscles.jpg" class="card-img-top" alt="Exercise" />
     <div class="card-body">
       <u><h5 class="card-title">Muscle Groups</h5></u>
       <p class="card-text">Log your muscle group(s) worked today:</p>
@@ -219,6 +226,11 @@
       </form>
     </div>
   </div>
+  <img src="https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+    class="card-img-top" 
+    alt="Exercise" 
+    height="600"
+    />
   <!-- END OF CARD -->
 </div>
 
