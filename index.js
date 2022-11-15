@@ -146,7 +146,9 @@ app.post('/login', async (req, res) => {
 
         if (match)
         {
-            req.session.user = {};
+            users.username = req.body.username;
+            users.password = req.body.password;
+            req.session.user = users;
             req.session.save();
             res.redirect('/dashboard');
         }
@@ -189,8 +191,6 @@ app.post('/fitness', (req, res) => {
             fitness.weight = values[3];
             fitness.sets = values[4];
             fitness.reps = values[5];
-
-            req.session.user = fitness;
             req.session.save();
 
             console.log("Successful Exercise Entry");
