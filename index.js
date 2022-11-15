@@ -146,7 +146,9 @@ app.post('/login', async (req, res) => {
 
         if (match)
         {
-            res.redirect('/daily_fitness');
+            req.session.user = {};
+            req.session.save();
+            res.redirect('/dashboard');
         }
 
         else 
@@ -156,7 +158,9 @@ app.post('/login', async (req, res) => {
     })
 
     .catch (function (err) {
+
         res.redirect('/register');
+
         return console.log(err);
     });
 });
@@ -212,7 +216,7 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
 app.get('/dashboard', (req, res) => {
     db.any(muscle_recent, [req.body.muscle])
         .then((rows) => {
-            res.render("pages/dashboard", { username: req.session.user.username, rows});
+            res.render('pages/dashboard', { username: req.session.user.username, rows});
         })
         .catch((error) => {
             console.log("ERROR:", error.message || error);
