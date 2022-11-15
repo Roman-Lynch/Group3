@@ -116,13 +116,19 @@ app.post('/register', async (req, res) => {
     const hash = await bcrypt.hash(req.body.password, 8);
 
     let query = `INSERT INTO users (username, password) VALUES ($1, $2);`;
-    
+
     db.none(query, [
         req.body.username,
         hash
       ])
         .then(function (data) {
-          res.redirect('/login');
+
+            /* start session */
+            req.session.user = {};
+            req.session.save();
+
+            /* Bring to Post-Registration Survey */
+            res.redirect('/registrationSurvey')
         })
         .catch(function (err) {
           res.redirect('/register');
