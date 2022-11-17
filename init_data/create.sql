@@ -11,6 +11,7 @@ CREATE TABLE fitness(
 	weight FLOAT NOT NULL,
 	sets INT NOT NULL,
 	reps INT NOT NULL
+	-- body_weight FLOAT NOT NULL
 );
 
 CREATE TABLE nutrition(

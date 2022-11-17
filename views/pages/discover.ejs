@@ -1,0 +1,103 @@
+<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
+
+<main>
+  <div class="container" style="margin-top: 15px">
+    <div class="card container">
+      <h1>Workouts</h1>
+      <select name="muscle-select" id="muscle-select">
+        <option value="chest">Chest</option>
+        <option value="back">Back</option>
+        <option value="arms">Arms</option>
+        <option value="legs">Legs</option>
+        <option value="shoulders">Shoulders</option>
+      </select>
+      <button id="update">Update</button>
+      <div class="container" id="muscle-data"></div>
+    </div>
+  </div>
+  <script>
+    const chest = ["Bench", "Something", "Something"];
+    const back = ["Stuff", "Things", "Other things"];
+    const arms = [];
+    const legs = [];
+    const shoulders = [];
+
+    const button = document.getElementById("update");
+    const muscle_container = document.getElementById("muscle-data");
+
+    button.onclick = (event) => {
+      muscle_container.innerHTML = "";
+      const value = document.getElementById("muscle-select").value;
+      const content = document.createElement("h2");
+
+      if (value == "chest") {
+        content.append("Chest");
+        muscle_container.append(content);
+
+        const muscle_list = document.createElement("ul");
+
+        var muscle_element;
+        chest.forEach((muscle) => {
+          muscle_element = document.createElement("li");
+          muscle_element.append(muscle);
+          muscle_list.append(muscle_element);
+        });
+        muscle_container.append(muscle_list);
+      } else if (value == "back") {
+        content.append("Back");
+        muscle_container.append(content);
+
+        const muscle_list = document.createElement("ul");
+
+        var muscle_element;
+        back.forEach((muscle) => {
+          muscle_element = document.createElement("li");
+          muscle_element.append(muscle);
+          muscle_list.append(muscle_element);
+        });
+        muscle_container.append(muscle_list);
+      } else if (value == "arms") {
+        content.append("Arms");
+        muscle_container.append(content);
+
+        const muscle_list = document.createElement("ul");
+
+        var muscle_element;
+        arms.forEach((muscle) => {
+          muscle_element = document.createElement("li");
+          muscle_element.append(muscle);
+          muscle_list.append(muscle_element);
+        });
+        muscle_container.append(muscle_list);
+      } else if (value == "legs") {
+        content.append("Legs");
+        muscle_container.append(content);
+
+        const muscle_list = document.createElement("ul");
+
+        var muscle_element;
+        legs.forEach((muscle) => {
+          muscle_element = document.createElement("li");
+          muscle_element.append(muscle);
+          muscle_list.append(muscle_element);
+        });
+        muscle_container.append(muscle_list);
+      } else if (value == "shoulders") {
+        content.append("Shoulders");
+        muscle_container.append(content);
+
+        const muscle_list = document.createElement("ul");
+
+        var muscle_element;
+        shoulders.forEach((muscle) => {
+          muscle_element = document.createElement("li");
+          muscle_element.append(muscle);
+          muscle_list.append(muscle_element);
+        });
+        muscle_container.append(muscle_list);
+      }
+    };
+  </script>
+</main>
+
+<%- include ('../partials/footer') %>
