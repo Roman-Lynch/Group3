@@ -2,68 +2,148 @@
 
 <main>
   <!-- <a href="/daily_fitness">Daily Fitness</a> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+  <div id="result"></div>
 
   <div class="container">
     <h1>Weekly Fitness</h1>
 
     <div class="card-group">
       <div class="card m-1 bg-white rounded">
+
+        <!-- Yesterday CARD -->
         <div class="card-header">
-          <h6>Monday <a href="/daily_fitness">Edit</a></h6>
+          <h6> <%= yd_s %> <a href="/daily_fitness">Edit</a></h6>
         </div>
         <div class="card-body">
-          <h4>Arms</h4>
-          <p>&emsp;- Bench Press -- 3x8 @ 150</p>
-          <p>&emsp;- Flys</p>
-          <p>&emsp;- Incline Bench Press</p>
-          <p>&emsp;- Push Ups</p>
-          <p>&emsp;- Decline Bench Press</p>
+
+          <!-- MONDAY TABLE -->
+          <table class="table">
+            <!-- TABLE HEADER -->
+            <thead>
+              <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Reps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+                var buttons = '';
+                if (rows) {
+                  var i = 0;
+                  rows.forEach(function(item){
+                    if (i < 5) { 
+
+                      let var1 = (item.day).toString().substring(0, 10)
+                      let var2 = yd_s.toString().substring(0, 10)
+
+                      if(!(var1.localeCompare(var2))){ 
+                        buttons += '<tr><td>' + 
+                                    item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                    item.sets + '</td><td>' + item.reps + '</td></tr>';
+                        i++; 
+                      }
+                    }
+                  });
+                }
+              %>
+              <%- buttons %>
+            </tbody>   
+          </table>
         </div>
       </div>
 
+      <!-- TUESDAY CARD -->
       <div class="card m-1 bg-white rounded">
         <div class="card-header">
-          <h6>Tuesday <a href="/daily_fitness">Edit</a></h6>
+          <h6><%= td_s %><a href="/daily_fitness">Edit</a></h6>
         </div>
         <div class="card-body">
-          <h4>Legs</h4>
+
+          <!-- TUESDAY TABLE -->
+          <table class="table">
+            <!-- TABLE HEADER -->
+            <thead>
+              <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Reps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+                var buttons = '';
+                if (rows) {
+                  var i = 0;
+                  rows.forEach(function(item){
+                    if (i < 5) { 
+
+                      let var1 = (item.day).toString().substring(0, 10)
+                      let var2 = td_s.toString().substring(0, 10)
+
+                      if(!(var1.localeCompare(var2))){ 
+                        buttons += '<tr><td>' + 
+                                    item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                    item.sets + '</td><td>' + item.reps + '</td></tr>';
+                        i++; 
+                      }
+                    }
+                  });
+                }
+              %>
+              <%- buttons %>
+            </tbody>   
+          </table>
         </div>
       </div>
 
       <div class="card m-1 bg-white rounded">
         <div class="card-header">
-          <h6>Wednesday <a href="/daily_fitness">Add</a></h6>
+          <h6><%= tm_s %> <a href="/daily_fitness">Add</a></h6>
         </div>
-        <div class="card-body"></div>
-      </div>
+        <div class="card-body">
+          
+          <!-- WEDNESDAY TABLE -->
+          <table class="table">
+            <!-- TABLE HEADER -->
+            <thead>
+              <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Reps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+                var buttons = '';
+                if (rows) {
+                  var i = 0;
+                  rows.forEach(function(item){
+                    if (i < 5) { 
 
-      <!-- <div class="card m-1 bg-white rounded">
-        <div class="card-header">
-          <h6>Thursday <a href="/daily_fitness">Add</a></h6>
-        </div>
-        <div class="card-body"></div>
-      </div>
+                      let var1 = (item.day).toString().substring(0, 10)
+                      let var2 = tm_s.toString().substring(0, 10)
 
-      <div class="card m-1 bg-white rounded">
-        <div class="card-header">
-          <h6>Friday <a href="/daily_fitness">Add</a></h6>
+                      if(!(var1.localeCompare(var2))){ 
+                        buttons += '<tr><td>' + 
+                                    item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                    item.sets + '</td><td>' + item.reps + '</td></tr>';
+                        i++; 
+                      }
+                    }
+                  });
+                }
+              %>
+              <%- buttons %>
+            </tbody>   
+          </table>
         </div>
-        <div class="card-body"></div>
       </div>
-
-      <div class="card m-1 bg-white rounded">
-        <div class="card-header">
-          <h6>Saturday <a href="/daily_fitness">Add</a></h6>
-        </div>
-        <div class="card-body"></div>
-      </div>
-
-      <div class="card m-1 bg-white rounded">
-        <div class="card-header">
-          <h6>Sunday <a href="/daily_fitness">Add</a></h6>
-        </div>
-        <div class="card-body"></div>
-      </div> -->
     </div>
   </div>
 </main>
