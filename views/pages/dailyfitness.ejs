@@ -34,7 +34,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action = "/edit_workout" method = "PUT"> <!-- PUT ROUTE FORM :: UPDATE EXERCISE -->
           <div class="mb-3">
             <label for="Weekday" class="form-label">Workout Date</label>
           </div>
@@ -52,7 +52,7 @@
 
           <div class="mb-3">
             <label for="Time" class="form-label">Time</label>
-            <input type="time" class="form-control" id="Time" />
+            <input type="date" class="form-control" id="Time" />
           </div>
 
           <div class="mb-3">

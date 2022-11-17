@@ -46,7 +46,7 @@ app.use(
 /* USERS TABLE EJS REFERENCE */
 const users = {
     username:undefined,
-    password:undefined,
+    password:undefined
 }
 
 /* FITNESS TABLE EJS REFERENCE */
@@ -66,7 +66,6 @@ SELECT
 FROM
     fitness
 ORDER BY day DESC;`;
-
 
 
 /* HASH FUNCTION */
@@ -101,9 +100,6 @@ app.get('/login', (req, res) => {               // navigate to the login page
 });
 app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness page
     res.render("pages/dailyfitness");
-});
-app.get('/weekly_fitness', (req, res) => {      // navigating to weekly fitness page
-    res.render("pages/weeklyfitness");
 });
 app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/registrationSurvey");
@@ -185,11 +181,34 @@ app.post('/fitness', (req, res) => {
 
 /* EDIT EXERCISE ---------------------------------------------------------------------- */
 app.put('/edit_workout', (req, res) => {
-    let query = `
+    const query = `
     UPDATE fitness 
-        SET day = $1 AND exercise = $2 AND muscle = $3 AND weight = $4 AND sets = $4 AND reps = $5
+        SET day = `+ fitness.day + `
+        AND exercise = $2 
+        AND muscle = $3 
+        AND weight = $4 
+        AND sets = $4 
+        AND reps = $5
         WHERE;`;
+    const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps];
+    db.any(query, values)
+        .then((data) => {
+            fitness.day = values[0];
+            fitness.muscle = values[1];
+            fitness.exercise = values[2];
+            fitness.weight = values[3];
+            fitness.sets = values[4];
+            fitness.reps = values[5];
 
+            req.session.user = fitness;
+            req.session.save();
+
+            console.log("Exercise Successfully Updated");
+            res.render('pages/dailyfitness', {data});
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 });
 
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
@@ -203,10 +222,59 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
         })
 });
 
+/* DASHBOARD EJS ---------------------------------------------------------------------- */
 app.get('/dashboard', (req, res) => {
     db.any(muscle_recent, [req.body.muscle])
         .then((rows) => {
+            console.log(rows);
             res.render("pages/dashboard", { username: req.session.user.username, rows});
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error);
+        })
+});
+
+/* WEEKLY FITNESS EJS ----------------------------------------------------------------- */
+app.get('/weekly_fitness', (req, res) => {
+    /* DATE DEFINITION */
+    let today = new Date;
+    let tomorrow = new Date(today.getTime() + 86400000);
+    let yesterday = new Date(today.getTime() - 86400000);
+    /* TAKE ONLY: Mon Nov 15 2022 */
+    const today1 = today.toString().substring(0, 15);
+    const yesterday1 = yesterday.toString().substring(0, 15);
+    const tomorrow1 = tomorrow.toString().substring(0, 15);
+    /* CONSOLE LOG */
+    console.log("Today: " + today1.toString());
+    console.log("Yesterday: " + yesterday1.toString())
+    console.log("Tomorrow: " + tomorrow1.toString())
+
+    /* COMPARISON ENTRY */
+    const month = today.getMonth() + 1;         // 0-11
+    const year = today.getFullYear();           // 2022
+    const yd_temp = yesterday.toString().substring(8, 10);  // 0-31
+    const td_temp = today.toString().substring(8, 10);
+    const tm_temp = tomorrow.toString().substring(8, 10);
+
+    /* CONCATENATION */
+    const yd = year + "-" + month + "-" + yd_temp;
+    const td = year + "-" + month + "-" + td_temp;
+    const tm = year + "-" + month + "-" + tm_temp;
+    /* CONSOLE LOG */
+    console.log("Today_Comparison: " + td.toString());
+    console.log("Yesterday_Comparison: " + yd.toString())
+    console.log("Tomorrow Comparison: " + tm.toString())
+
+    console.log("Passed initialization")
+
+    /* TO DO, check edge cases on day operations (ie. end of month into next month) */
+    console.log("Passed Variables")
+
+    /* ROUTE QUERY EXECUTION */
+    db.any(muscle_recent)
+        .then((rows) => {
+            console.log(rows);
+            res.render("pages/weeklyfitness", { username: req.session.user.username, yd: yd, td: td, tm: tm, yd_s: yesterday1, td_s: today1, tm_s: tomorrow1, rows });
         })
         .catch((error) => {
             console.log("ERROR:", error.message || error);
@@ -214,3 +282,41 @@ app.get('/dashboard', (req, res) => {
 });
 /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
+
+
+
+    // if(week_num == 1) {
+    //     yester = "Sunday";
+    //     week_day = "Monday";
+    //     tomor = "Tuesday";
+    // }
+    // else if(week_num == 2) {
+    //     yester = "Monday";
+    //     week_day = "Tuesday";
+    //     tomor = "Wednesday";
+    // }
+    // else if(week_num == 3) {
+    //     yester = "Tuesday";
+    //     week_day = "Wednesday";
+    //     tomor = "Thursday";
+    // }
+    // else if(week_num == 4) {
+    //     yester = "Wednesday";
+    //     week_day = "Thursday";
+    //     tomor = "Friday";
+    // }
+    // else if(week_num == 5) {
+    //     yester = "Thursday";
+    //     week_day = "Friday";
+    //     tomor = "Saturday";
+    // }
+    // else if(week_num == 6) {
+    //     yester = "Friday";
+    //     week_day = "Saturday";
+    //     tomor = "Sunday";
+    // }
+    // else if(week_num == 0) {
+    //     yester = "Saturday";
+    //     week_day = "Sunday";
+    //     tomor = "Monday";
+    // }
