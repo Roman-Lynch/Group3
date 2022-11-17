@@ -181,13 +181,6 @@ const auth = (req, res, next) => {
 // Authentication Required
 app.use(auth);
 
-app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness page
-    res.render("pages/dailyfitness");
-});
-app.get('/weekly_fitness', (req, res) => {      // navigating to weekly fitness page
-    res.render("pages/weeklyfitness");
-});
-
 /* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {
     let query = "INSERT INTO fitness (day, muscle, exercise, weight, sets, reps) VALUES ($1, $2, $3, $4, $5, $6);";
@@ -267,30 +260,32 @@ app.get('/dashboard', (req, res) => {
 
 /* WEEKLY FITNESS EJS ----------------------------------------------------------------- */
 app.get('/weekly_fitness', (req, res) => {
+    console.log("Route entry successful");
+
     /* DATE DEFINITION */
     let today = new Date;
     let tomorrow = new Date(today.getTime() + 86400000);
     let yesterday = new Date(today.getTime() - 86400000);
     /* TAKE ONLY: Mon Nov 15 2022 */
-    const today1 = today.toString().substring(0, 15);
-    const yesterday1 = yesterday.toString().substring(0, 15);
-    const tomorrow1 = tomorrow.toString().substring(0, 15);
+    let today1 = today.toString().substring(0, 15);
+    let yesterday1 = yesterday.toString().substring(0, 15);
+    let tomorrow1 = tomorrow.toString().substring(0, 15);
     /* CONSOLE LOG */
     console.log("Today: " + today1.toString());
     console.log("Yesterday: " + yesterday1.toString())
     console.log("Tomorrow: " + tomorrow1.toString())
 
     /* COMPARISON ENTRY */
-    const month = today.getMonth() + 1;         // 0-11
-    const year = today.getFullYear();           // 2022
-    const yd_temp = yesterday.toString().substring(8, 10);  // 0-31
-    const td_temp = today.toString().substring(8, 10);
-    const tm_temp = tomorrow.toString().substring(8, 10);
+    let month = today.getMonth() + 1;         // 0-11
+    let year = today.getFullYear();           // 2022
+    let yd_temp = yesterday.toString().substring(8, 10);  // 0-31
+    let td_temp = today.toString().substring(8, 10);
+    let tm_temp = tomorrow.toString().substring(8, 10);
 
     /* CONCATENATION */
-    const yd = year + "-" + month + "-" + yd_temp;
-    const td = year + "-" + month + "-" + td_temp;
-    const tm = year + "-" + month + "-" + tm_temp;
+    let yd = year + "-" + month + "-" + yd_temp;
+    let td = year + "-" + month + "-" + td_temp;
+    let tm = year + "-" + month + "-" + tm_temp;
     /* CONSOLE LOG */
     console.log("Today_Comparison: " + td.toString());
     console.log("Yesterday_Comparison: " + yd.toString())
