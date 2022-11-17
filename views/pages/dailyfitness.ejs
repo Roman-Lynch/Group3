@@ -1,6 +1,17 @@
-<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
 
 <br>
+
+<!--  GROUP MODAL BUTTONS -->
+<div class="btn-group">
+
+<style>
+   .btn-group
+  {
+    font-family: 'Exo 2', sans-serif;
+  }
+</style>
 
 <button
   type="submit"
@@ -12,6 +23,17 @@
   Edit previous workouts
 </button>
 
+<button
+  type="submit"
+  class="btn btn-primary button"
+  data-bs-toggle="modal"
+  data-bs-target="#bodyWeightModal"
+  style="background-color:darksalmon"
+>
+  Add Body Weight
+</button>
+
+</div>
 <br>
 
 <div
@@ -24,7 +46,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i> Edit Workouts </i></h5>
+
+        <style>
+          div.modal-header 
+          {
+            background-color: rgb(107,144,128);
+            font-family: 'Exo 2', sans-serif;
+          }
+        </style>
+
+        <h5 class="modal-title" id="exampleModalLabel" style="font-family: Exo 2"> <i> Edit Workouts </i></h5>
         <button
           type="button"
           class="btn-close"
@@ -34,6 +65,15 @@
         ></button>
       </div>
       <div class="modal-body">
+
+        <style>
+          div.modal-body 
+          {
+            background-color:rgba(164, 195, 178);
+            font-family: 'Exo 2', sans-serif;
+          } 
+        </style>
+
         <form>
           <div class="mb-3">
             <label for="Weekday" class="form-label">Workout Date</label>
@@ -120,8 +160,8 @@
             <td>
               <button
                 action="submit"
-                class="btn-outline-success"
-                style="background-color: green"
+                class="btn-success"
+                style="background-color: rgb(4, 125, 153)"
               >
                 Edit
               </button>
@@ -133,6 +173,15 @@
       </div>    
 
       <div class="modal-footer">
+
+        <style>
+          div.modal-footer 
+          {
+            background-color: rgb(107,144,128);
+            font-family: 'Exo 2', sans-serif;
+          } 
+        </style>
+
         <button
           id="submit_button"
           class="btn btn-secondary"
@@ -148,20 +197,6 @@
 </div>
 
 <!--  USER ENTER BODY WEIGHT -->
-
-<br>
-
-<button
-  type="submit"
-  class="btn btn-primary button"
-  data-bs-toggle="modal"
-  data-bs-target="#bodyWeightModal"
-  style="background-color:darksalmon"
->
-  Add Body Weight
-</button>
-
-<br>
 
 <div 
   class="modal fade"
@@ -199,8 +234,8 @@
               <td>
                 <button
                   action="submit"
-                  class="btn-outline-success"
-                  style="background-color: green"
+                  class="btn-success"
+                  style="background-color: rgb(66, 167, 245);"
                 >
                 Add
                 </button>
@@ -226,15 +261,35 @@
   </div>
 </div>
 
-<b
-  ><i><h1>Today</h1></i></b
->
+<b>
+  <style>
+  b
+  {
+    font-family: 'Exo 2', sans-serif;
+  }
+  </style>
+
+  <i><h1>Today</h1></i>
+</b>
 
 <div class="card-text">
 
+  <style>
+    .card-text
+  {
+    font-family: 'Exo 2', sans-serif;
+  }
+  </style>
   
   <div class="card">
     <div class="card-body">
+
+      <style>
+        div.card-body 
+        {
+          background-color:rgba(164, 195, 178);
+        }
+      </style>
 
       <u><h5 class="card-title">Muscle Groups</h5></u>
       <p class="card-text">Log your muscle group(s) worked today:</p>
@@ -362,7 +417,7 @@
               <button
                 action="submit"
                 class="btn-outline-success"
-                style="background-color: green"
+                style="background-color: rgb(4, 125, 153)"
               >
                 Add
               </button>
