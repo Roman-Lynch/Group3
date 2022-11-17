@@ -56,7 +56,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="ChestModalTitle">Chest History</h5>
+                <h5 class="modal-title modal-text" id="ChestModalTitle">Chest History</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -107,7 +107,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="BackModalTitle">Back History</h5>
+                <h5 class="modal-title modal-text" id="BackModalTitle">Back History</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -157,7 +157,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="ArmsModalTitle">Arms History</h5>
+                <h5 class="modal-title modal-text" id="ArmsModalTitle">Arms History</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -207,7 +207,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="ShouldersModalTitle">Shoulders History</h5>
+                <h5 class="modal-title modal-text" id="ShouldersModalTitle">Shoulders History</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -257,7 +257,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="LegsModalTitle">Legs History</h5>
+                <h5 class="modal-title modal-text" id="LegsModalTitle">Legs History</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -301,8 +301,86 @@
             </div>
           </div>
         </div>
+        
+        <!--Card #2: Weight Progrssion-->
+        <div class="card dashboard-card" style="width: 18rem;">
 
-        <!--Card #2: Water Intake-->
+          <img 
+          src="https://thumbs.dreamstime.com/b/retro-kitchen-scales-cooking-utensils-isolate-icon-food-measuring-device-isolated-color-line-vector-weighing-libra-appliances-232313005.jpg" 
+          class="card-img-top" 
+          alt="..."
+          height=" 200px"
+          >
+
+          <div class="card-body">
+
+            <!-- Button trigger modal -->
+            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#weightGoal">
+              Body Weight Progress
+            </button>
+          </div>
+        </div>
+
+        <!-- Weight Proggress Modal -->
+        <div class="modal fade" id="weightGoal" tabindex="-1" aria-labelledby="#weightGoalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fs-5 modal-text" id="weightGoalLabel"> Weight Proggression </h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <!-- Source for Scatter Plot -->
+                    <script
+                    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+                    </script>
+
+                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
+                <!-- The chart -->
+                    <script> 
+                      var xyValues = [
+                        {x:50, y:7},
+                        {x:60, y:8},
+                        {x:70, y:8},
+                        {x:80, y:9},
+                        {x:90, y:9},
+                        {x:100, y:9},
+                        {x:110, y:10},
+                        {x:120, y:11},
+                        {x:130, y:14},
+                        {x:140, y:14},
+                        {x:150, y:15}
+                      ];
+
+                      new Chart("myChart", { 
+                        type: "scatter",
+                        data: {
+                          datasets: [{
+                            pointRadius: 4,
+                            pointBackgroundColor: "rgba(0,0,255,1)",
+                            data: xyValues
+                          }]
+                        },
+                      });
+                    </script>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacing -->
+        <br>
+        <br>
+
+        <!--Card #3: Water Intake-->
         <div class="card dashboard-card" style="width: 18rem;"> 
           <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Man_Drinking_Water_Cartoon.svg/800px-Man_Drinking_Water_Cartoon.svg.png" class="card-img-top"

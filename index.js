@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
 const session = require("express-session");
 app.use(bodyParser.json());
+const bcrypt = require('bcryptjs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = 80;
@@ -106,41 +107,66 @@ app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to int
 });
 
 /* POST REGISTER : rediredct to login ---------------------------------------------- */
-app.post('/register', (req, res) => {
-    let query = `INSERT INTO users(username, password) VALUES ($1, $2);`;
-    // var password = req.body.password;
-    // const hash = password.hashKey();
-    const values = [req.body.username, req.body.password];
+app.post('/register', async (req, res) => {
 
-    db.any(query, values)
-        .then((rows) => {
-            res.render('pages/login');              // once the data is inserted, navigate to the login page
-        })
-        .catch((error) => {
-            res.render('pages/register');
-        });
-});
+    const hash = await bcrypt.hash(req.body.password, 8);
 
-/* POST LOGIN : redirect to register ? survey? ------------------------------------- */
-app.post('/login', (req, res) => {
-    let query = `SELECT * FROM users WHERE username = $1;`;
-    const values = [req.body.username];
-    db.one(query, values)
-        .then((data) => {
-            users.username = values;
-            users.password = data.password;
+    let query = `INSERT INTO users (username, password) VALUES ($1, $2);`;
 
-            req.session.user = users;
+    db.none(query, [
+        req.body.username,
+        hash
+      ])
+        .then(function (data) {
+
+            /* start session */
+            req.session.user = {};
             req.session.save();
 
-            res.redirect("/dashboard");         // once the data is inserted, render the proper page
+            /* Bring to Post-Registration Survey */
+            res.redirect('/registrationSurvey')
         })
-        .catch((err) => {
-            console.log("Incorrect username or password.")
-            console.log(err);
-            res.redirect("/register");
-        })
-    
+        .catch(function (err) {
+          res.redirect('/register');
+          return console.log(err);
+        }); 
+});
+
+
+/* POST LOGIN : redirect to register ? survey? ------------------------------------- */
+app.post('/login', async (req, res) => {
+
+    let query = `SELECT * FROM users WHERE username = $1;`;
+
+    db.one(query, [
+        req.body.username,
+        req.body.password
+    ])
+    .then(async (user) => {
+
+        const match = await bcrypt.compare(req.body.password, user.password);
+
+        if (match)
+        {
+            users.username = req.body.username;
+            users.password = req.body.password;
+            req.session.user = users;
+            req.session.save();
+            res.redirect('/dashboard');
+        }
+
+        else 
+        {
+            res.redirect('pages/login', {message: "Incorrect Password", error: true});
+        }
+    })
+
+    .catch (function (err) {
+
+        res.redirect('/register');
+
+        return console.log(err);
+    });
 });
 
 /* AUTHENTICATION ---------------------------------------------------------------------  */
@@ -155,7 +181,14 @@ const auth = (req, res, next) => {
 // Authentication Required
 app.use(auth);
 
-/* POST EXERCISE ----------------------------------------------------------------------- */
+app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness page
+    res.render("pages/dailyfitness");
+});
+app.get('/weekly_fitness', (req, res) => {      // navigating to weekly fitness page
+    res.render("pages/weeklyfitness");
+});
+
+/* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {
     let query = "INSERT INTO fitness (day, muscle, exercise, weight, sets, reps) VALUES ($1, $2, $3, $4, $5, $6);";
     const values = [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps];
@@ -167,8 +200,6 @@ app.post('/fitness', (req, res) => {
             fitness.weight = values[3];
             fitness.sets = values[4];
             fitness.reps = values[5];
-
-            req.session.user = fitness;
             req.session.save();
 
             console.log("Successful Exercise Entry");
@@ -282,41 +313,3 @@ app.get('/weekly_fitness', (req, res) => {
 });
 /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
-
-
-
-    // if(week_num == 1) {
-    //     yester = "Sunday";
-    //     week_day = "Monday";
-    //     tomor = "Tuesday";
-    // }
-    // else if(week_num == 2) {
-    //     yester = "Monday";
-    //     week_day = "Tuesday";
-    //     tomor = "Wednesday";
-    // }
-    // else if(week_num == 3) {
-    //     yester = "Tuesday";
-    //     week_day = "Wednesday";
-    //     tomor = "Thursday";
-    // }
-    // else if(week_num == 4) {
-    //     yester = "Wednesday";
-    //     week_day = "Thursday";
-    //     tomor = "Friday";
-    // }
-    // else if(week_num == 5) {
-    //     yester = "Thursday";
-    //     week_day = "Friday";
-    //     tomor = "Saturday";
-    // }
-    // else if(week_num == 6) {
-    //     yester = "Friday";
-    //     week_day = "Saturday";
-    //     tomor = "Sunday";
-    // }
-    // else if(week_num == 0) {
-    //     yester = "Saturday";
-    //     week_day = "Sunday";
-    //     tomor = "Monday";
-    // }

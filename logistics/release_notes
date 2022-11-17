@@ -41,6 +41,17 @@ FINA v1.2 11/08/2022
    - added stylistic elements to the dashboard
    
    - Updated authentication for users
+   
+   
+   FINA v1.4 11/14/2022
+   
+   - Dashboard backend bug fixes from v1.3
+   
+   - Style of Front end dashboard changed
+   
+   - User is able to select muscle group from dropdown and filter 5 most recent exercises by muscle
+   
+   - Daily fitness front end layout complete
   
   
   
