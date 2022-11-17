@@ -185,6 +185,9 @@ app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness
 app.get('/weekly_fitness', (req, res) => {      // navigating to weekly fitness page
     res.render("pages/weeklyfitness");
 });
+app.get('/discover', (req, res) => {      // navigating to discover page
+    res.render("pages/discover");
+});
 
 /* POST EXERCISE :: arr_exercise[{exercise}, {exercise}] ------------------------------ */
 app.post('/fitness', (req, res) => {
