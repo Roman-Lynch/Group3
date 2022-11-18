@@ -104,4 +104,42 @@ product by Thursday's recitation.
 
 Summary:
     Great backend progress, should have a reasonably functional project by next week.
-We are still debating whether or not to do the nutrition page.
+
+----- Meeting #3 ----- Monday, November 14th ----- 4:45-5:10 pm
+
+1. Presented release notes
+2. Presented features:
+    - authenticated login
+    - dashboard --> display exercise history BY MUSCLE
+    - weeklyfitness --> TO BE COMPLETED, display exercise history BY DAY
+3. Discussed our plan to impliment the following:
+    - dashboard --> weight tracker
+    - Goal setting and tracking
+    - Water intake tracking
+    - Body weight tracking
+
+Summary:
+    We had a successful meeting with Cory where we presented all the required benchmarks.
+He was proud of our progress and excited to see what more was to come.
+
+----- Group Work #3 ----- Tuesday, November 15th ----- 2:00-4:30 pm
+
+1. Cole Max and Ian debugger the weeklyfitness page backend
+2. Stefan improved the daily fitness page
+3. Jaskarn and Roman worked on the lab --> user testing
+
+Summary:
+    In addition to the above, we discussed our final design queries bearing in mind
+the limited time remaining to complete our project.
+
+----- Recitation #3 ----- Thursday, November 17th ----- 12:50-2:35 pm
+
+1. Max Cole and Ian FINALLY figured out what was wrong with WeeklyFitness
+    - completed routing, ejs display and dynamic day calendar
+2. Stefan worked on implimenting weight and goal tracking with Roman
+
+Summary:
+    We got a lot of work done. We should be able to complete our project in full
+by the end of Thanksgiving break. Though unfortunate that we must work over the break,
+I am proud of the progress we've made and how far we've come as a group. I think that
+we have the potential of creating something worthy of sharing. Great work team.
