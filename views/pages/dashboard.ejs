@@ -81,8 +81,11 @@
                     var i = 0;
                     rows.forEach(function(item){
                       if (i < 5) { 
+
+                        let day_t = (item.day).toString().substring(0, 10);
+
                         if(item.muscle == 'Chest'){ 
-                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                          buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
                                       item.exercise + '</td><td>' + item.weight + '</td><td>' + 
                                       item.sets + '</td><td>' + item.reps + '</td></tr>';
                           i++; 
@@ -131,8 +134,11 @@
                     var i = 0;
                     rows.forEach(function(item){
                       if (i < 5) { 
+
+                        let day_t = (item.day).toString().substring(0, 10);
+
                         if(item.muscle == 'Back'){ 
-                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                          buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
                                       item.exercise + '</td><td>' + item.weight + '</td><td>' + 
                                       item.sets + '</td><td>' + item.reps + '</td></tr>';
                           i++; 
@@ -181,8 +187,11 @@
                     var i = 0;
                     rows.forEach(function(item){
                       if (i < 5) { 
+
+                        let day_t = (item.day).toString().substring(0, 10);
+
                         if(item.muscle == 'Arms'){ 
-                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                          buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
                                       item.exercise + '</td><td>' + item.weight + '</td><td>' + 
                                       item.sets + '</td><td>' + item.reps + '</td></tr>';
                           i++; 
@@ -231,8 +240,11 @@
                     var i = 0;
                     rows.forEach(function(item){
                       if (i < 5) { 
+
+                        let day_t = (item.day).toString().substring(0, 10);
+
                         if(item.muscle == 'Shoulders'){ 
-                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                          buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
                                       item.exercise + '</td><td>' + item.weight + '</td><td>' + 
                                       item.sets + '</td><td>' + item.reps + '</td></tr>';
                           i++; 
@@ -281,8 +293,11 @@
                     var i = 0;
                     rows.forEach(function(item){
                       if (i < 5) { 
+
+                        let day_t = (item.day).toString().substring(0, 10);
+
                         if(item.muscle == 'Legs'){ 
-                          buttons += '<tr><th scope="col">' + item.day + '</th><td>' + 
+                          buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
                                       item.exercise + '</td><td>' + item.weight + '</td><td>' + 
                                       item.sets + '</td><td>' + item.reps + '</td></tr>';
                           i++; 
