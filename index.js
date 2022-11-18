@@ -226,7 +226,7 @@ app.put('/edit_workout', (req, res) => {
 
             req.session.user = fitness;
             req.session.save();
-
+            
             console.log("Exercise Successfully Updated");
             res.render('pages/dailyfitness', {data});
         })
