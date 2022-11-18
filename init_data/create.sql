@@ -11,14 +11,6 @@ CREATE TABLE fitness(
 	weight FLOAT NOT NULL,
 	sets INT NOT NULL,
 	reps INT NOT NULL
-	-- body_weight FLOAT NOT NULL
-);
-
-CREATE TABLE nutrition(
-	nutrition_id SERIAL PRIMARY KEY,
-	day DATE NOT NULL,
-	meal TEXT NOT NULL,
-	calories INT
 );
 
 CREATE TABLE water(
@@ -27,14 +19,9 @@ CREATE TABLE water(
 	milliliters INT NOT NULL
 );
 
-CREATE TABLE user_fitness(
-	username VARCHAR(50) REFERENCES users(username),
-	fitness_id INT NOT NULL REFERENCES fitness(fitness_id)
-);
-
-CREATE TABLE user_nutrition(
-	username VARCHAR(50) REFERENCES users(username),
-	nutrition_id INT NOT NULL REFERENCES nutrition(nutrition_id)
+CREATE TABLE body_weight(
+	bw_id INT PRIMARY KEY,
+	body_weight FLOAT NOT NULL
 );
 
 CREATE TABLE user_water(

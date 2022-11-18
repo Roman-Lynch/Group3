@@ -68,27 +68,6 @@ FROM
     fitness
 ORDER BY day DESC;`;
 
-
-/* HASH FUNCTION */
-// String.hashKey = function() {
-//     var hash = 0;
-//     var i, char;
-
-//     if(this.length === 0)
-//         return hash;
-
-//     for(i = 0; i < this.length; i++) {
-//         char = this.charCodeAt(i);
-//         hash = ((hash << 5) - hash) + char;
-//         hash = hash | 0;
-//     }
-//     return hash;
-// }
-/* Usage:  
-    req.password = ralphie   // hash encrypts with a corresponding code
-    console.log(req.password, req.password.hashCode());   // store hashCode
-*/
-
 /* NAVIGATION ROUTES -------------------------------------------------------------- */
 app.get('/', (req, res) => {                    // upon entry user goes to login
     res.render("pages/login");
@@ -105,7 +84,90 @@ app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness
 app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/registrationSurvey");
 });
+/* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
+app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
+    db.one(muscle_recent, [req.body.muscle])
+        .then((rows) => {
+            res.send(rows);
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error );
+        })
+});
+/* DASHBOARD EJS ---------------------------------------------------------------------- */
+app.get('/dashboard', (req, res) => {
+    db.any(muscle_recent, [req.body.muscle])
+        .then((rows) => {
+            console.log(rows);
+            res.render("pages/dashboard", { username: req.session.user.username, rows});
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error);
+        })
+});
+/* WEEKLY FITNESS EJS ----------------------------------------------------------------- */
+app.get('/weekly_fitness', (req, res) => {
+    console.log("Route entry successful");
 
+    /* DATE DEFINITION */
+    let today = new Date;
+    let tomorrow = new Date(today.getTime() + 86400000);
+    let yesterday = new Date(today.getTime() - 86400000);
+    /* TAKE ONLY: Mon Nov 15 2022 */
+    let today1 = today.toString().substring(0, 15);
+    let yesterday1 = yesterday.toString().substring(0, 15);
+    let tomorrow1 = tomorrow.toString().substring(0, 15);
+    /* CONSOLE LOG */
+    console.log("Today: " + today1.toString());
+    console.log("Yesterday: " + yesterday1.toString())
+    console.log("Tomorrow: " + tomorrow1.toString())
+
+    /* COMPARISON ENTRY */
+    let month = today.getMonth() + 1;         // 0-11
+    let year = today.getFullYear();           // 2022
+    let yd_temp = yesterday.toString().substring(8, 10);  // 0-31
+    let td_temp = today.toString().substring(8, 10);
+    let tm_temp = tomorrow.toString().substring(8, 10);
+
+    /* CONCATENATION */
+    let yd = year + "-" + month + "-" + yd_temp;
+    let td = year + "-" + month + "-" + td_temp;
+    let tm = year + "-" + month + "-" + tm_temp;
+    /* CONSOLE LOG */
+    console.log("Today_Comparison: " + td.toString());
+    console.log("Yesterday_Comparison: " + yd.toString())
+    console.log("Tomorrow Comparison: " + tm.toString())
+
+    console.log("Passed initialization")
+
+    /* TO DO, check edge cases on day operations (ie. end of month into next month) */
+    console.log("Passed Variables")
+
+    /* ROUTE QUERY EXECUTION */
+    db.any(muscle_recent)
+        .then((rows) => {
+            console.log(rows);
+            res.render("pages/weeklyfitness", { username: req.session.user.username, yd: yd, td: td, tm: tm, yd_s: yesterday1, td_s: today1, tm_s: tomorrow1, rows });
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error);
+        })
+});
+/* EXERCISE HISTORY EJS ------------------------------------------------------------ */
+app.get('/exercisehistory', (req, res) => {                    // upon entry user goes to login
+    db.any(muscle_recent, [req.session.user.username])
+        .then((fitness) => {
+            console.log(fitness);
+            res.render("pages/exercisehistory", { 
+                username: req.session.user.username, 
+                fitness: fitness,
+                action: "delete",
+            });
+        })
+        .catch((error) => {
+            console.log("ERROR:", error.message || error);
+        })
+});
 /* POST REGISTER : rediredct to login ---------------------------------------------- */
 app.post('/register', async (req, res) => {
 
@@ -226,7 +288,7 @@ app.put('/edit_workout', (req, res) => {
 
             req.session.user = fitness;
             req.session.save();
-
+            
             console.log("Exercise Successfully Updated");
             res.render('pages/dailyfitness', {data});
         })
@@ -235,76 +297,41 @@ app.put('/edit_workout', (req, res) => {
         })
 });
 
-/* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
-app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
-    db.one(muscle_recent, [req.body.muscle])
-        .then((rows) => {
-            res.send(rows);
-        })
-        .catch((error) => {
-            console.log("ERROR:", error.message || error );
-        })
-});
-
-/* DASHBOARD EJS ---------------------------------------------------------------------- */
-app.get('/dashboard', (req, res) => {
-    db.any(muscle_recent, [req.body.muscle])
-        .then((rows) => {
-            console.log(rows);
-            res.render("pages/dashboard", { username: req.session.user.username, rows});
-        })
-        .catch((error) => {
-            console.log("ERROR:", error.message || error);
-        })
-});
-
-/* WEEKLY FITNESS EJS ----------------------------------------------------------------- */
-app.get('/weekly_fitness', (req, res) => {
-    console.log("Route entry successful");
-
-    /* DATE DEFINITION */
-    let today = new Date;
-    let tomorrow = new Date(today.getTime() + 86400000);
-    let yesterday = new Date(today.getTime() - 86400000);
-    /* TAKE ONLY: Mon Nov 15 2022 */
-    let today1 = today.toString().substring(0, 15);
-    let yesterday1 = yesterday.toString().substring(0, 15);
-    let tomorrow1 = tomorrow.toString().substring(0, 15);
-    /* CONSOLE LOG */
-    console.log("Today: " + today1.toString());
-    console.log("Yesterday: " + yesterday1.toString())
-    console.log("Tomorrow: " + tomorrow1.toString())
-
-    /* COMPARISON ENTRY */
-    let month = today.getMonth() + 1;         // 0-11
-    let year = today.getFullYear();           // 2022
-    let yd_temp = yesterday.toString().substring(8, 10);  // 0-31
-    let td_temp = today.toString().substring(8, 10);
-    let tm_temp = tomorrow.toString().substring(8, 10);
-
-    /* CONCATENATION */
-    let yd = year + "-" + month + "-" + yd_temp;
-    let td = year + "-" + month + "-" + td_temp;
-    let tm = year + "-" + month + "-" + tm_temp;
-    /* CONSOLE LOG */
-    console.log("Today_Comparison: " + td.toString());
-    console.log("Yesterday_Comparison: " + yd.toString())
-    console.log("Tomorrow Comparison: " + tm.toString())
-
-    console.log("Passed initialization")
-
-    /* TO DO, check edge cases on day operations (ie. end of month into next month) */
-    console.log("Passed Variables")
-
-    /* ROUTE QUERY EXECUTION */
-    db.any(muscle_recent)
-        .then((rows) => {
-            console.log(rows);
-            res.render("pages/weeklyfitness", { username: req.session.user.username, yd: yd, td: td, tm: tm, yd_s: yesterday1, td_s: today1, tm_s: tomorrow1, rows });
-        })
-        .catch((error) => {
-            console.log("ERROR:", error.message || error);
-        })
-});
+/* DELETE EXERCISE ------------------------------------------------------------ */
+app.post("/delete_exercise", (req, res) => {
+    db.task("delete-exercise", (task) => {
+      return task.batch([
+        task.none(
+          `DELETE FROM
+              fitness
+            WHERE
+              day = $1
+              AND muscle = $2
+              AND exercise = $3
+              AND weight = $4
+              AND sets = $5
+              AND reps = $6;`,
+          [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps]
+        ),
+        task.any(fitness, [req.session.user.username]),
+      ]);
+    })
+      .then((fitness) => {
+        console.info(fitness);
+        res.render("pages/exercisehistory", { 
+            username: req.session.user.username, 
+            fitness: fitness,
+            action: "delete",
+        });
+      })
+      .catch((err) => {
+        res.render("pages/exercisehistory", {
+            username: req.session.user.username,
+            fitness: [],
+            error: true,
+            message: err.message,
+        });
+      });
+  });
 /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
