@@ -3,11 +3,6 @@ CREATE TABLE users(
 	password CHAR(60) NOT NULL
 );
 
-CREATE TABLE user_fitness(
-	username VARCHAR(50) REFERENCES users(username),
-	fitness_id INT NOT NULL REFERENCES fitness(fitness_id)
-);
-
 CREATE TABLE fitness(
 	fitness_id SERIAL PRIMARY KEY,
 	day DATE NOT NULL,
