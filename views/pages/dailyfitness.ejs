@@ -1,28 +1,46 @@
-<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
-
-<style type="text/css">
-  body {
-    background-color: rgba(164, 195, 178);
-  }
-</style>
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
 
 <br>
+
+<!--  GROUP MODAL BUTTONS -->
+<div class="btn-group">
+
+<style>
+   .btn-group
+  {
+    font-family: 'Exo 2', sans-serif;
+  }
+</style>
 
 <button
   type="submit"
   class="btn btn-primary button"
   data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
+  data-bs-target="#editModal"
   style="background-color:darksalmon"
 >
   Edit previous workouts
 </button>
 
+<button
+  type="submit"
+  class="btn btn-primary button"
+  data-bs-toggle="modal"
+  data-bs-target="#bodyWeightModal"
+  style="background-color:darksalmon"
+>
+  Add Body Weight
+</button>
+
+</div>
 <br>
 
+
+<!-- EDIT WORKOUT MODAL -->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="editModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -30,7 +48,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i> Edit Workouts </i></h5>
+
+        <style>
+          div.modal-header 
+          {
+            background-color: rgb(107,144,128);
+            font-family: 'Exo 2', sans-serif;
+          }
+        </style>
+
+        <h5 class="modal-title" id="exampleModalLabel" style="font-family: Exo 2"> <i> Edit Workouts </i></h5>
         <button
           type="button"
           class="btn-close"
@@ -40,7 +67,17 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form>
+
+        <style>
+          div.modal-body 
+          {
+            background-color:rgba(164, 195, 178);
+            font-family: 'Exo 2', sans-serif;
+          } 
+        </style>
+
+        <!-- PUT ROUTE FORM :: UPDATE EXERCISE -->
+        <form action = "/edit_workout" method = "PUT">
           <div class="mb-3">
             <label for="Weekday" class="form-label">Workout Date</label>
           </div>
@@ -54,6 +91,22 @@
             >
               Select a date
             </button>
+
+          <div class="mb-3">
+            <label for="Time" class="form-label">Time</label>
+            <input type="time" class="form-control" id="Time" />
+          </div>
+
+            <!-- LOOP THROUGH EACH DATE ENTERED BY CURRENT USER -->
+            <!-- <ul class="dropdown-menu">
+              fitness.forEach(user => {  
+              
+                <li><a class="dropdown-item" href="#">  fitness.day  </a></li>
+              })
+            </ul>
+
+            % }); %>
+          -->
           </div>
 
           <tr>
@@ -106,17 +159,92 @@
             <td>
               <button
                 action="submit"
-                class="btn-outline-success"
-                style="background-color: green"
+                class="btn-success"
+                style="background-color: rgb(4, 125, 153)"
               >
-                Add
+                Edit
               </button>
             </td>
           </tr>
         </table>
 
         </form>
+      </div>    
+
+      <div class="modal-footer">
+
+        <style>
+          div.modal-footer 
+          {
+            background-color: rgb(107,144,128);
+            font-family: 'Exo 2', sans-serif;
+          } 
+        </style>
+
+        <button
+          id="submit_button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          type="submit"
+          style="background-color: crimson"
+        >
+          Close
+        </button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!--  USER ENTER BODY WEIGHT -->
+
+<div 
+  class="modal fade"
+  id="bodyWeightModal"
+  tabindex="-1"
+  aria-labelledby="bodyWeightModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bodyWeightModal"><i> Record Body Weight (lbs)</i></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          style="background-color: crimson;"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <tr>
+                <!-- INPUT BODY WEIGHT FOR FITNESS TABLE -->
+              <td>
+                <input
+                  type="text"
+                  id="body_weight_id"
+                  class="form-control"
+                  placeholder="145.5 "
+                  name="body_weight"
+                >
+              </td>
+              
+              <td>
+                <button
+                  action="submit"
+                  class="btn-success"
+                  style="background-color: rgb(66, 167, 245);"
+                >
+                Add
+                </button>
+              </td>
+            </tr>
+          </table>
+        
+        </form>
+      </div>    
+
       <div class="modal-footer">
         <button
           id="submit_button"
@@ -132,18 +260,36 @@
   </div>
 </div>
 
-<b
-  ><i><h1>Today</h1></i></b
->
-
-<div class="card-group">
-  <style type="text/css">
-    div {
-      background-color: rgba(164, 195, 178);
-    }
+<b>
+  <style>
+  b
+  {
+    font-family: 'Exo 2', sans-serif;
+  }
   </style>
+
+  <i><h1>Today</h1></i>
+</b>
+
+<div class="card-text">
+
+  <style>
+    .card-text
+  {
+    font-family: 'Exo 2', sans-serif;
+  }
+  </style>
+  
   <div class="card">
     <div class="card-body">
+
+      <style>
+        div.card-body 
+        {
+          background-color:rgba(164, 195, 178);
+        }
+      </style>
+
       <u><h5 class="card-title">Muscle Groups</h5></u>
       <p class="card-text">Log your muscle group(s) worked today:</p>
 
@@ -166,6 +312,8 @@
             <td>
               <input type="date" id="day_id" class="form-control" name="day" />
             </td>
+
+            <!-- INPUT MUSCLE GROUP -->
             <td>
               <input
                 type="text"
@@ -173,8 +321,57 @@
                 class="form-control"
                 placeholder="Chest, Shoulder, Back, Arms or Legs"
                 name="muscle"
-              />
+              /> 
             </td>
+              
+
+              <!-- DROPDOWN MENU FOR MUSCLE
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  muscle
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Chest</a>
+                  <a class="dropdown-item" href="#">Back</a>
+                  <a class="dropdown-item" href="#">Biceps</a>
+                </div>
+              </div>
+                -->
+
+              <!--  DROPDOWN MODAL FOR MUSCLE
+            </td>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Select a muscle group
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+
+                      <li><a type="button" class="text-info" data-toggle="modal">
+                        Chest</a></li>
+
+                  <li><a type="button" class="text-info" data-toggle="modal">
+                    Back</a></li>
+
+                  <li><a type="button" class="text-info" data-toggle="modal">
+                    Biceps</a></li>
+  
+                  <li><a type="button" class="text-info" data-toggle="modal">
+                    Triceps</a></li>
+
+                  <li><a type="button" class="text-info" data-toggle="modal">
+                    Legs</a></li>
+    
+                  <li><a type="button" class="text-info" data-toggle="modal">
+                    Shoulders</a></li>
+                  </div>
+                </div>
+              </div>
+            </td>
+            -->
+
             <td>
               <input
                 type="text"
@@ -184,6 +381,7 @@
                 name="exercise"
               />
             </td>
+
             <td>
               <input
                 type="float"
@@ -193,6 +391,7 @@
                 name="weight"
               />
             </td>
+
             <td>
               <input
                 type="int"
@@ -202,6 +401,7 @@
                 name="sets"
               />
             </td>
+
             <td>
               <input
                 type="int"
@@ -211,15 +411,17 @@
                 name="reps"
               />
             </td>
+
             <td>
               <button
                 action="submit"
                 class="btn-outline-success"
-                style="background-color: green"
+                style="background-color: rgb(4, 125, 153)"
               >
                 Add
               </button>
             </td>
+
           </tr>
         </table>
         <!-- END OF TABLE -->
