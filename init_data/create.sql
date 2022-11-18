@@ -30,6 +30,12 @@ CREATE TABLE user_water(
 	water_id INT NOT NULL REFERENCES water(water_id)
 );
 
+CREATE TABLE goals(
+	goal_id INT PRIMARY KEY,
+	body_weight_goal INT NOT NULL,
+	water_intake_goal INT NOT NULL
+);
+
 -- -- Views to simplify queires in the server --
 -- CREATE OR REPLACE VIEW 
 -- 	Fitness_Today AS
