@@ -21,14 +21,10 @@ CREATE TABLE water(
 
 CREATE TABLE body_weight(
 	bw_id INT PRIMARY KEY,
-	body_weight FLOAT NOT NULL,
-	day DATE NOT NULL
+	day DATE NOT NULL,
+	body_weight FLOAT NOT NULL
 );
 
-CREATE TABLE user_water(
-	username VARCHAR(50) REFERENCES users(username),
-	water_id INT NOT NULL REFERENCES water(water_id)
-);
 
 -- -- Views to simplify queires in the server --
 -- CREATE OR REPLACE VIEW 

@@ -68,6 +68,13 @@ FROM
     fitness
 ORDER BY day DESC;`;
 
+const muscle_bw = `
+SELECT
+    day, body_weight
+FROM 
+    body_weight
+ORDER BY day DESC LIMIT 10;`;
+
 /* NAVIGATION ROUTES -------------------------------------------------------------- */
 app.get('/', (req, res) => {                    // upon entry user goes to login
     res.render("pages/login");
