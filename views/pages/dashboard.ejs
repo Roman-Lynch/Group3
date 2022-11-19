@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col">
       </div>
-      <div class="col-6 welcome-message">
+      <div class="col-md-auto">
         <h1>Welcome, <%= username %></h1><!--EJS reference to Usernames-->
         <br>
         <br>
@@ -13,11 +13,10 @@
         <br>
 
         <!-- Card One: Exercise History-->
-        <div class="card dashboard-card" style="width: 18rem;"> 
+        <div class="card dashboard-card"> 
           <img 
           src="https://i.ytimg.com/vi/W23xfdEqHtg/maxresdefault.jpg" class="card-img-top" alt="..."
           alt="Logo"
-          width="30px"
           />
           <div class="card-body">
             <h5 class="card-title">Exercise History</h5>
@@ -50,7 +49,7 @@
         <!-- Spacing -->
         <br>
         <br>
-
+        
         <!-- Chest Modal -->
         <div class="modal fade" id="ChestModal" tabindex="-1" role="dialog" aria-labelledby="#ChestModalTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -318,13 +317,13 @@
         </div>
         
         <!--Card #2: Weight Progrssion-->
-        <div class="card dashboard-card" style="width: 18rem;">
+        <div class="card dashboard-card">
 
           <img 
           src="https://thumbs.dreamstime.com/b/retro-kitchen-scales-cooking-utensils-isolate-icon-food-measuring-device-isolated-color-line-vector-weighing-libra-appliances-232313005.jpg" 
           class="card-img-top" 
           alt="..."
-          height=" 200px"
+          /* height=" 200px" */
           >
 
           <div class="card-body">
@@ -336,12 +335,12 @@
           </div>
         </div>
 
-        <!-- Weight Proggress Modal -->
+        <!-- Weight Progress Modal -->
         <div class="modal fade" id="weightGoal" tabindex="-1" aria-labelledby="#weightGoalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title fs-5 modal-text" id="weightGoalLabel"> Weight Proggression </h5>
+                <h5 class="modal-title fs-5 modal-text" id="weightGoalLabel"> Weight Progression </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -352,36 +351,44 @@
                     <script
                     src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     </script>
+                    
+                    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
 
                     <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-
-                <!-- The chart -->
-                    <script> 
-                      var xyValues = [
-                        {x:50, y:7},
-                        {x:60, y:8},
-                        {x:70, y:8},
-                        {x:80, y:9},
-                        {x:90, y:9},
-                        {x:100, y:9},
-                        {x:110, y:10},
-                        {x:120, y:11},
-                        {x:130, y:14},
-                        {x:140, y:14},
-                        {x:150, y:15}
-                      ];
-
-                      new Chart("myChart", { 
-                        type: "scatter",
-                        data: {
-                          datasets: [{
-                            pointRadius: 4,
-                            pointBackgroundColor: "rgba(0,0,255,1)",
-                            data: xyValues
-                          }]
-                        },
-                      });
+                    
+                    <script
+                    src="https://www.gstatic.com/charts/loader.js">
                     </script>
+
+                 <!-- The chart -->
+                    
+                    var i = 0;
+                    var xyValues = [
+
+                    //  user.forEach 
+                    //     if (i < 10);
+                        
+                    //     {x: req.body.day, y:req.body.body_weight};
+
+                    //     i ++;
+                    //  
+                    
+                    ];
+
+                    <script> 
+
+                    new Chart("myChart", {
+                      type: "scatter",
+                      data: {
+                        datasets: [{
+                          pointRadius: 4,
+                          pointBackgroundColor: "rgba(0,0,255,1)",
+                          data: xyValues
+                        }]
+                      },
+                    });
+              
+                </script>
 
               </div>
               <div class="modal-footer">
@@ -396,7 +403,7 @@
         <br>
 
         <!--Card #3: Water Intake-->
-        <div class="card dashboard-card" style="width: 18rem;"> 
+        <div class="card dashboard-card"> 
           <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Man_Drinking_Water_Cartoon.svg/800px-Man_Drinking_Water_Cartoon.svg.png" class="card-img-top"
           alt="Logo"
