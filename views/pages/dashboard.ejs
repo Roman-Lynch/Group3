@@ -362,20 +362,26 @@
 
                  <!-- The chart -->
                     
-                    var i = 0;
-                    var xyValues = [
-
-                    //  user.forEach 
-                    //     if (i < 10);
-                        
-                    //     {x: req.body.day, y:req.body.body_weight};
-
-                    //     i ++;
-                    //  
-                    
-                    ];
-
                     <script> 
+                      
+                      const rowsHold = JSON.parse('<%- JSON.stringify(rows) %>');
+
+                      var i = 0;
+                      var xyValues = [
+
+                      rowsHold.forEach(function(iteam){
+
+                        let bw_day_t = (iteam.bw_day).toString().substring(0, 10);
+                        let body_weight = iteam.body_weight;
+
+                         if (i < 10)
+                          {
+                            {body_weight, bw_day_t};
+
+                            i++;
+                          }
+                      })
+                    ] 
 
                     new Chart("myChart", {
                       type: "scatter",
@@ -389,10 +395,75 @@
                     });
               
                 </script>
+                
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Set new Goal -->
+                <div class="container text-center">
+                  <div class="row">
+                    <div class="col">
+                      Goal Weight:
+                    </div>
+                    <div class="col">
+                      <% rows.body_weight_goal%>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Pounds left to go  -->
+                <div class="container text-center">
+                  <div class="row">
+                    <div class="col">
+                      Pounds left to go:
+                    </div>
+                    <div class="col">
+                     <% rows.body_weight_goal - rows.body_weight%>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#bodyWeightGoalSetModal">
+                  Set New Body Weight Goal
+                </button>
+
 
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body WeightGoals Set Modal  -->
+        <div class="modal fade" id="bodyWeightGoalSetModal" tabindex="-1" aria-labelledby="bodyWeightGoalSetModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="bodyWeightGoalSetModalLabel"> SetNew Body Weight Goal </h1>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span> </button>
+              </div>
+              <div class="modal-body">
+                <div class="input-group input-group-default mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">New Body Weight Goal</span>
+                  <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  <span class="input-group-text">lbs</span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>

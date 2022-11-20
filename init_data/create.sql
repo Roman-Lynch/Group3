@@ -21,7 +21,7 @@ CREATE TABLE water(
 
 CREATE TABLE body_weight(
 	bw_id INT PRIMARY KEY,
-	day DATE NOT NULL,
+	bw_day DATE NOT NULL,
 	body_weight FLOAT NOT NULL
 );
 

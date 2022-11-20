@@ -70,10 +70,17 @@ ORDER BY day DESC;`;
 
 const muscle_bw = `
 SELECT
-    day, body_weight
+    bw_day, body_weight
 FROM 
     body_weight
 ORDER BY day DESC LIMIT 10;`;
+
+const muscle_goal = `
+SELECT
+    body_weight_goal, water_intake_goal
+FROM 
+    goals
+ORDER BY goal_id DESC LIMIT 1;`;
 
 /* NAVIGATION ROUTES -------------------------------------------------------------- */
 app.get('/', (req, res) => {                    // upon entry user goes to login
@@ -103,7 +110,7 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
 });
 /* DASHBOARD EJS ---------------------------------------------------------------------- */
 app.get('/dashboard', (req, res) => {
-    db.any(muscle_recent, [req.body.muscle])
+    db.any(muscle_recent, [req.body.muscle], muscle_bw, [req.body.body_weight], muscle_goal, [req.body.body_weight_goal])
         .then((rows) => {
             console.log(rows);
             res.render("pages/dashboard", { username: req.session.user.username, rows});
