@@ -338,35 +338,35 @@ app.post('/registrationSurvey', (req, res) => {
 });
 
 /* DELETE EXERCISE ------------------------------------------------------------ */
-// app.delete("/delete_exercise", (req, res) => {
-//     const query = 
-//     `DELETE FROM
-//         fitness
-//      WHERE
-//         day = $1
-//         AND muscle = $2
-//         AND exercise = $3
-//         AND weight = $4
-//         AND sets = $5
-//         AND reps = $6;`;
+app.delete("/delete_exercise", (req, res) => {
+    const query = 
+    `DELETE FROM
+        fitness
+     WHERE
+        day = $1
+        AND muscle = $2
+        AND exercise = $3
+        AND weight = $4
+        AND sets = $5
+        AND reps = $6;`;
 
-//     db.any(query, [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps])
-//         .then((rows) => {
-//             res.render("pages/exercisehistory", { 
-//                 username: req.session.user.username, 
-//                 fitness: rows,
-//                 action: "delete",
-//                 });
-//         })
-//         .catch((err) => {
-//             res.render("pages/exercisehistory", {
-//                 username: req.session.user.username,
-//                 fitness: [],
-//                 error: true,
-//                 message: err.message,
-//             });
-//         });
-// });
+    db.any(query, [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps])
+        .then((rows) => {
+            res.render("pages/exercisehistory", { 
+                username: req.session.user.username, 
+                fitness: rows,
+                action: "delete",
+                });
+        })
+        .catch((err) => {
+            res.render("pages/exercisehistory", {
+                username: req.session.user.username,
+                fitness: [],
+                error: true,
+                message: err.message,
+            });
+        });
+});
 app.post("/delete_exercise", (req, res) => {
     db.task("delete-exercise", (task) => {
       return task.batch([
