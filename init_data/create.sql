@@ -27,7 +27,6 @@ CREATE TABLE body_weight(
 
 
 CREATE TABLE goals(
-	goal_id INT PRIMARY KEY,
 	body_weight_goal INT NOT NULL,
 	water_intake_goal INT NOT NULL
 );

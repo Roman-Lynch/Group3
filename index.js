@@ -60,6 +60,11 @@ const fitness = {
     reps:undefined
 }
 
+const goals = {
+    body_weight_goal: undefined,
+    water_intake_goal: undefined
+}
+
 /* RECENT EXERCISES BY MUSCLE */
 const muscle_recent = `
 SELECT
@@ -110,7 +115,7 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
 });
 /* DASHBOARD EJS ---------------------------------------------------------------------- */
 app.get('/dashboard', (req, res) => {
-    db.any(muscle_recent, [req.body.muscle], muscle_bw, [req.body.body_weight], muscle_goal, [req.body.body_weight_goal])
+    db.any(muscle_recent, [req.body.muscle], muscle_bw, [req.body.body_weight], muscle_goal, [req.body.body_weight_goal, req.body.water_intake_goal])
         .then((rows) => {
             console.log(rows);
             res.render("pages/dashboard", { username: req.session.user.username, rows});
@@ -305,6 +310,27 @@ app.put('/edit_workout', (req, res) => {
             
             console.log("Exercise Successfully Updated");
             res.render('pages/dailyfitness', {data});
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+
+app.post('/registrationSurvey', (req, res) => {
+
+    const query = 
+    `INSERT INTO goals (body_weight_goal, water_intake_goal) VALUES ($1, $2);`;
+
+    const values = [req.body.body_weight_goal, req.body.water_intake_goal];
+
+    db.none(query, values)
+        .then((data) => {
+            goals.body_weight_goal = values[0];
+            goals.water_intake_goal = values[1];
+            req.session.save();
+
+            console.log("Successful Goal Entry");
+            res.redirect('/dashboard');
         })
         .catch((error) => {
             console.log(error);

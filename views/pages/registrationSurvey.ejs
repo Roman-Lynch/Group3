@@ -1,9 +1,8 @@
 <%- include ('../partials/header') %>
 <%- include ('../partials/menu') %>
 <main>
+    <form action = "/registrationSurvey" method = "POST">
     <div class="container text-center">
-
-
             <!--Welcome Message -->
             <div class="welcome-message">
                 <br>
@@ -24,35 +23,34 @@
             </button>
 
             <!-- Goal Weight and Water Modal Trigger -->
-            <dciv class="modal fade" id="goalPageOne" tabindex="-1" role="dialog" aria-labelledby="goalPageOneTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content modal">
-                    <div class="modal-header modal-style">
-                    <h5 class="modal-title modal-style" id="goalPageOneTitle"> Weight and Water Goals</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body modal-style">
-                        <form class="form-floating">
-                            <input type="number" class="form-control" id="floatingInputValue" placeholder="cups" value="cups">
-                            <label for="floatingInputValue">Enter Water Goal</label>
-                        </form>
-                        <form class="form-floating">
-                            <input type="number" class="form-control" id="floatingInputValue" placeholder="lbs" value="lbs">
-                            <label for="floatingInputInvalid">Enter Bodyweight Goal</label>
-                        </form>
-                    </div>
-                    <div class="modal-footer modal-style">
-                    <button type="button" class="btn btn-secondary modal-button" data-dismiss="modal">Close</button>
+            <form>
+                <dciv class="modal fade" id="goalPageOne" tabindex="-1" role="dialog" aria-labelledby="goalPageOneTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modal">
+                            <div class="modal-header modal-style">
+                                <h5 class="modal-title modal-style" id="goalPageOneTitle"> Weight and Water Goals</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
-                    <!-- Next Button -->
-                    <a type="button" class="btn btn-primary modal-button" href = "/dashboard">
-                        Done
-                </div>
-                </div>
-                </div>
-            </div>
+                            <div class="modal-body modal-style">
+                                    <input type="number" class="form-control" id="integerInputValue" placeholder="cups" value="cups" name ="water_intake_goal">
+                                    <label for="integerInputValue">Enter Water Goal</label>
+                                    <input type="number" class="form-control" id="integerInputValue" placeholder="lbs" value="lbs" name = "body_weight_goal">
+                                    <label for="integerInputInvalid">Enter Bodyweight Goal</label>
+                            </div>
+                            <div class="modal-footer modal-style">
+                                <button type="button" class="btn btn-secondary modal-button" data-dismiss="modal">Close</button>
+
+                                <!-- Next Button -->
+                                <button type="submit" class="btn btn-primary modal-button">
+                                    Done
+                                </button>
+                            </div>
+                </dciv>
+            </form>
+        </div>
+    </form>
 </main>
-
 <%- include ('../partials/footer') %>
