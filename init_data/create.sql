@@ -26,6 +26,20 @@ CREATE TABLE body_weight(
 );
 
 
+CREATE TABLE user_fitness(
+	username VARCHAR(50) REFERENCES users(username),
+	fitness_id INT NOT NULL REFERENCES fitness(fitness_id) 
+);
+
+CREATE TABLE user_weight(
+	username VARCHAR(50) REFERENCES users(username),
+	bw_id INT NOT NULL REFERENCES body_weight(bw_id)
+);
+
+CREATE TABLE user_water(
+	username VARCHAR(50) REFERENCES users(username),
+	water INT NOT NULL REFERENCES water(water_id) 
+);
 -- -- Views to simplify queires in the server --
 -- CREATE OR REPLACE VIEW 
 -- 	Fitness_Today AS
