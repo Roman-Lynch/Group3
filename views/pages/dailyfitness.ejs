@@ -92,11 +92,9 @@
               Select a date
             </button>
 
-          <div class="mb-3">
-            <label for="Time" class="form-label">Time</label>
-            <input type="time" class="form-control" id="Time" />
-          </div>
-
+          <td>
+            <input type="date" id="day_id" class="form-control" name="day" />
+          </td>
             <!-- LOOP THROUGH EACH DATE ENTERED BY CURRENT USER -->
             <!-- <ul class="dropdown-menu">
               fitness.forEach(user => {  
@@ -219,7 +217,12 @@
       <div class="modal-body">
         <form>
             <tr>
-                <!-- INPUT BODY WEIGHT FOR FITNESS TABLE -->
+                <!-- INPUT DATE FOR FITNESS TABLE -->
+              <td>
+                <input type="date" id="day_id" class="form-control" name="day" />
+              </td>
+
+              <!-- INPUT BODY WEIGHT FOR FITNESS TABLE -->
               <td>
                 <input
                   type="text"
