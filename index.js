@@ -60,6 +60,11 @@ const fitness = {
     reps:undefined
 }
 
+const goals = {
+    body_weight_goal: undefined,
+    water_intake_goal: undefined
+}
+
 /* RECENT EXERCISES BY MUSCLE */
 const muscle_recent = `
 SELECT
@@ -70,10 +75,17 @@ ORDER BY day DESC;`;
 
 const muscle_bw = `
 SELECT
-    day, body_weight
+    bw_day, body_weight
 FROM 
     body_weight
 ORDER BY day DESC LIMIT 10;`;
+
+const muscle_goal = `
+SELECT
+    body_weight_goal, water_intake_goal
+FROM 
+    goals
+ORDER BY goal_id DESC LIMIT 1;`;
 
 /* NAVIGATION ROUTES -------------------------------------------------------------- */
 app.get('/', (req, res) => {                    // upon entry user goes to login
@@ -103,7 +115,7 @@ app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
 });
 /* DASHBOARD EJS ---------------------------------------------------------------------- */
 app.get('/dashboard', (req, res) => {
-    db.any(muscle_recent, [req.body.muscle])
+    db.any(muscle_recent, [req.body.muscle], muscle_bw, [req.body.body_weight], muscle_goal, [req.body.body_weight_goal, req.body.water_intake_goal])
         .then((rows) => {
             console.log(rows);
             res.render("pages/dashboard", { username: req.session.user.username, rows});
@@ -304,36 +316,57 @@ app.put('/edit_workout', (req, res) => {
         })
 });
 
-/* DELETE EXERCISE ------------------------------------------------------------ */
-// app.delete("/delete_exercise", (req, res) => {
-//     const query = 
-//     `DELETE FROM
-//         fitness
-//      WHERE
-//         day = $1
-//         AND muscle = $2
-//         AND exercise = $3
-//         AND weight = $4
-//         AND sets = $5
-//         AND reps = $6;`;
+app.post('/registrationSurvey', (req, res) => {
 
-//     db.any(query, [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps])
-//         .then((rows) => {
-//             res.render("pages/exercisehistory", { 
-//                 username: req.session.user.username, 
-//                 fitness: rows,
-//                 action: "delete",
-//                 });
-//         })
-//         .catch((err) => {
-//             res.render("pages/exercisehistory", {
-//                 username: req.session.user.username,
-//                 fitness: [],
-//                 error: true,
-//                 message: err.message,
-//             });
-//         });
-// });
+    const query = 
+    `INSERT INTO goals (body_weight_goal, water_intake_goal) VALUES ($1, $2);`;
+
+    const values = [req.body.body_weight_goal, req.body.water_intake_goal];
+
+    db.none(query, values)
+        .then((data) => {
+            goals.body_weight_goal = values[0];
+            goals.water_intake_goal = values[1];
+            req.session.save();
+
+            console.log("Successful Goal Entry");
+            res.redirect('/dashboard');
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+
+/* DELETE EXERCISE ------------------------------------------------------------ */
+app.delete("/delete_exercise", (req, res) => {
+    const query = 
+    `DELETE FROM
+        fitness
+     WHERE
+        day = $1
+        AND muscle = $2
+        AND exercise = $3
+        AND weight = $4
+        AND sets = $5
+        AND reps = $6;`;
+
+    db.any(query, [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps])
+        .then((rows) => {
+            res.render("pages/exercisehistory", { 
+                username: req.session.user.username, 
+                fitness: rows,
+                action: "delete",
+                });
+        })
+        .catch((err) => {
+            res.render("pages/exercisehistory", {
+                username: req.session.user.username,
+                fitness: [],
+                error: true,
+                message: err.message,
+            });
+        });
+});
 app.post("/delete_exercise", (req, res) => {
     db.task("delete-exercise", (task) => {
       return task.batch([

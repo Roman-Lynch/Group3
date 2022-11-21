@@ -21,13 +21,26 @@ CREATE TABLE water(
 
 CREATE TABLE body_weight(
 	bw_id INT PRIMARY KEY,
-	day DATE NOT NULL,
+	bw_day DATE NOT NULL,
 	body_weight FLOAT NOT NULL
 );
 
+CREATE TABLE user_fitness(
+	username VARCHAR(50) REFERENCES users(username),
+	fitness_id INT NOT NULL REFERENCES fitness(fitness_id) 
+);
+
+CREATE TABLE user_weight(
+	username VARCHAR(50) REFERENCES users(username),
+	bw_id INT NOT NULL REFERENCES body_weight(bw_id)
+);
+
+CREATE TABLE user_water(
+	username VARCHAR(50) REFERENCES users(username),
+	water INT NOT NULL REFERENCES water(water_id) 
+);
 
 CREATE TABLE goals(
-	goal_id INT PRIMARY KEY,
 	body_weight_goal INT NOT NULL,
 	water_intake_goal INT NOT NULL
 );
