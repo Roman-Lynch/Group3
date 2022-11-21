@@ -33,6 +33,16 @@
   Add Body Weight
 </button>
 
+<button
+  type="submit"
+  class="btn btn-primary button"
+  data-bs-toggle="modal"
+  data-bs-target="#waterIntakeModal"
+  style="background-color:darksalmon"
+>
+  Add Water Intake
+</button>
+
 </div>
 <br>
 
@@ -230,6 +240,74 @@
                   class="form-control"
                   placeholder="145.5 "
                   name="body_weight"
+                >
+              </td>
+
+              <td>
+                <button
+                  action="submit"
+                  class="btn-success"
+                  style="background-color: rgb(66, 167, 245);"
+                >
+                Add
+                </button>
+              </td>
+            </tr>
+          </table>
+        
+        </form>
+      </div>    
+
+      <div class="modal-footer">
+        <button
+          id="submit_button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          type="submit"
+          style="background-color: crimson"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div 
+  class="modal fade"
+  id="waterIntakeModal"
+  tabindex="-1"
+  aria-labelledby="bodyWeightModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bodyWeightModal"><i> Record Your Water Intake Today</i></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          style="background-color: crimson;"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <tr>
+                <!-- INPUT DATE FOR FITNESS TABLE -->
+              <td>
+                <input type="date" id="day_id" class="form-control" name="day" />
+              </td>
+
+              <!-- INPUT BODY WEIGHT FOR FITNESS TABLE -->
+              <td>
+                <input
+                  type="number"
+                  id="water_intake_id"
+                  class="form-control"
+                  placeholder="3 (cups)"
+                  name="water_intake"
                 >
               </td>
 
