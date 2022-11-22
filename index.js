@@ -288,7 +288,7 @@ app.post('/fitness', (req, res) => {
 });
 
 /* EDIT EXERCISE ---------------------------------------------------------------------- */
-app.put('/daily_fitness', (req, res) => {
+app.put('/edit_workout', (req, res) => {
     const query = `
     UPDATE fitness 
         SET day = `+ fitness.day + `
