@@ -204,7 +204,9 @@ app.post('/register', async (req, res) => {
         .then(function (data) {
 
             /* start session */
-            req.session.user = {};
+            users.username = req.body.username;
+            users.password = req.body.password;
+            req.session.user = users;
             req.session.save();
 
             /* Bring to Post-Registration Survey */
