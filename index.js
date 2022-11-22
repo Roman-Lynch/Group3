@@ -103,6 +103,9 @@ app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness
 app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/registrationSurvey");
 });
+app.get('/discover', (req, res) => {
+    res.render("pages/discover");
+});
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
     db.one(muscle_recent, [req.body.muscle])
@@ -285,7 +288,7 @@ app.post('/fitness', (req, res) => {
 });
 
 /* EDIT EXERCISE ---------------------------------------------------------------------- */
-app.put('/edit_workout', (req, res) => {
+app.put('/daily_fitness', (req, res) => {
     const query = `
     UPDATE fitness 
         SET day = `+ fitness.day + `

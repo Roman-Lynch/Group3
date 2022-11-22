@@ -7,6 +7,6 @@
     "\\views\\partials",
     "\\views\\resources"
   ],
-  "SelectedNode": "\\views\\pages\\weeklyfitness.ejs",
+  "SelectedNode": "\\docker-compose.yaml",
   "PreviewInSolutionExplorer": false
 }
