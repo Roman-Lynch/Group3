@@ -24,7 +24,20 @@
 
     const button = document.getElementById("update");
     const muscle_container = document.getElementById("muscle-data");
+    muscle_container.innerHTML = "";
+      const content = document.createElement("h2");
+      content.append("Chest");
+        muscle_container.append(content);
 
+        const muscle_list = document.createElement("ul");
+
+        var muscle_element;
+        chest.forEach((muscle) => {
+          muscle_element = document.createElement("li");
+          muscle_element.append(muscle);
+          muscle_list.append(muscle_element);
+        });
+        muscle_container.append(muscle_list);
     button.onclick = (event) => {
       muscle_container.innerHTML = "";
       const value = document.getElementById("muscle-select").value;

@@ -97,11 +97,16 @@ app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness
 app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/registrationSurvey");
 });
+<<<<<<< HEAD
 app.get('/bw_goal_set', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/bw_goal_set");
 });
 app.get('/water_goal_set', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/water_goal_set");
+=======
+app.get('/discover', (req, res) => {
+    res.render("pages/discover");
+>>>>>>> f6b4d2d4e273d5ac04fd858e04069c14c3f4babf
 });
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
@@ -216,7 +221,9 @@ app.post('/register', async (req, res) => {
         .then(function (data) {
 
             /* start session */
-            req.session.user = {};
+            users.username = req.body.username;
+            users.password = req.body.password;
+            req.session.user = users;
             req.session.save();
 
             /* Bring to Post-Registration Survey */
