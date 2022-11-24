@@ -21,7 +21,6 @@
 
                 <!-- Spacing -->
                 <br>
-                <br>
 
                 <!-- Current Goal -->
                 <div class="container text-center">
@@ -49,7 +48,7 @@
                         </div>
                         <div class="col">
 
-                            <%= bw_goalH - rows %> lbs
+                            <%= (bw_goalH - rows.body_weight) %>
                         </div>
                     </div>
                 </div>
@@ -59,9 +58,9 @@
                 <br>
 
                 <!-- Set New Body Weight Goal Modal Button-->
-                <button type="button" class="btn btn-info" href = "bw_goal_set.ejs">
+                <a type="button" class="btn btn-info" href = "bw_goal_set">
                 Set New Body Weight Goal
-                </button>
+                </a>
                 <br>
                 <br>
 
@@ -106,8 +105,28 @@
                         Average Daily Water Intake:
                         </div>
                         <div class="col">
+                            
+                            <% 
+                            var i =0;
+                            var total = 0;
+                            rows.forEach(function(item){
+                                total = item.water_intake;
+                                i++;
+                            });
 
-                            <%= bw_goalH - rows %> cups
+                            if (i = 0)
+                            {
+                                total = 0;
+                            }
+
+                            else
+                            {
+                                total = (total / i);
+                            }
+                            %>
+
+                            <%= total %> cups
+
                         </div>
                     </div>
                 </div>

@@ -26,8 +26,8 @@ CREATE TABLE bodyWeight(
 );
 
 CREATE TABLE goals(
-	body_weight_goal INT NOT NULL,
-	water_intake_goal INT NOT NULL
+	body_weight_goal INT,
+	water_intake_goal INT
 );
 
 CREATE TABLE user_fitness(
