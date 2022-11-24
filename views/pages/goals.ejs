@@ -1,0 +1,144 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+<main>
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col">
+            <h1></h1> 
+            <br>
+            <br>
+          </div>
+          <div class="col-md-auto">
+            <h1> Goal Progression </h1> 
+            <br>
+            <br> 
+            <div class="container" id = "bw_goal_div">
+
+                <br>
+
+                <h6> Body weight Progression: </h6>
+                <br>
+
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Current Goal -->
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                        Goal Weight:
+                        </div>
+                        <div class="col">
+                        
+                        <%= bw_goalH %> lbs
+
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Pounds left to go  -->
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                        Pounds left to go:
+                        </div>
+                        <div class="col">
+
+                            <%= bw_goalH - rows %> lbs
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Set New Body Weight Goal Modal Button-->
+                <button type="button" class="btn btn-info" href = "bw_goal_set.ejs">
+                Set New Body Weight Goal
+                </button>
+                <br>
+                <br>
+
+            </div>
+
+            <br>
+            <br>
+
+            <div class="container" id= "water_goal_div">
+
+                <br>
+
+                <h6> Water Intake Progression: </h6>
+
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Current Goal -->
+                <div id = 
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                        Goal Water Intake:
+                        </div>
+                        <div class="col">
+                        
+                        <%= water_goalH %> cups
+
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Pounds left to go  -->
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                        Average Daily Water Intake:
+                        </div>
+                        <div class="col">
+
+                            <%= bw_goalH - rows %> cups
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spacing -->
+                <br>
+                <br>
+
+                <!-- Set New Body Weight Goal Modal Button-->
+                <a type="button" class="btn btn-info" href = "water_goal_set">
+                Set New Water Goal
+                </a>
+                <br>
+                <br>
+                
+            </div>
+
+            <br>
+            <br>
+
+          </div>
+
+        <div class="col">
+          </div>
+      </div>
+    </div>
+
+    <script>
+        document.getElementById("bw_goal_div").style.outline = "thin solid #FFFFFF";
+        document.getElementById("water_goal_div").style.outline = "thin solid #FFFFFF";
+    </script>
+
+</main>
+<%- include ('../partials/footer') %>
