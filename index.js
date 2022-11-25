@@ -76,10 +76,14 @@ ORDER BY day DESC;`;
 
 const muscle_bw = `
 SELECT
-    day, body_weight
+    water.day, bodyWeight.body_weight, water.cups, bodyWeight.day
 FROM 
     bodyWeight
-ORDER BY day DESC LIMIT 1;`;
+INNER JOIN
+    water
+ON
+    bodyWeight.day = water.day
+ORDER BY bodyWeight.day;`;
 
 /* NAVIGATION ROUTES -------------------------------------------------------------- */
 app.get('/', (req, res) => {                    // upon entry user goes to login
@@ -367,7 +371,16 @@ app.post('/bw_goal_set', (req, res) => {
     db.none(query, values)
         .then((data) => {
             goals.body_weight_goal = values[0];
-            goals.water_intake_goal = values[1];
+
+            if (values[1] == null)
+            {
+                goals.water_intake_goal = 0;
+            }
+
+            else
+            {
+                goals.water_intake_goal = values[1];
+            }
             req.session.save();
 
             console.log("Successful Goal Entry");
@@ -384,12 +397,22 @@ app.post('/water_goal_set', (req, res) => {
     const query = 
     `INSERT INTO goals (body_weight_goal, water_intake_goal) VALUES ($1, $2);`;
 
-    const values = [req.body.water_intake_goal, goals.body_weight_goal];
+    const values = [goals.body_weight_goal, req.body.water_intake_goal];
 
     db.none(query, values)
         .then((data) => {
-            goals.body_weight_goal = values[1];
-            goals.water_intake_goal = values[0];
+            
+            if (values[0] == null)
+            {
+                goals.body_weight_goal = 0;
+            }
+
+            else
+            {
+                goals.body_weight_goal = values[0];
+            }
+
+            goals.water_intake_goal = values[1];
             req.session.save();
 
             console.log("Successful Goal Entry");
