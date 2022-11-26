@@ -16,13 +16,18 @@ CREATE TABLE fitness(
 CREATE TABLE water(
 	water_id INT PRIMARY KEY,
 	day DATE NOT NULL,
-	milliliters INT NOT NULL
+	cups INT NOT NULL
 );
 
-CREATE TABLE body_weight(
-	bw_id INT PRIMARY KEY,
-	bw_day DATE NOT NULL,
+CREATE TABLE bodyWeight(
+	bw_id SERIAL PRIMARY KEY,
+	day DATE NOT NULL,
 	body_weight FLOAT NOT NULL
+);
+
+CREATE TABLE goals(
+	body_weight_goal INT,
+	water_intake_goal INT
 );
 
 CREATE TABLE user_fitness(
@@ -31,8 +36,7 @@ CREATE TABLE user_fitness(
 );
 
 CREATE TABLE user_weight(
-	username VARCHAR(50) REFERENCES users(username),
-	bw_id INT NOT NULL REFERENCES body_weight(bw_id)
+	username VARCHAR(50) REFERENCES users(username)
 );
 
 CREATE TABLE user_water(
@@ -40,10 +44,6 @@ CREATE TABLE user_water(
 	water INT NOT NULL REFERENCES water(water_id) 
 );
 
-CREATE TABLE goals(
-	body_weight_goal INT NOT NULL,
-	water_intake_goal INT NOT NULL
-);
 
 -- -- Views to simplify queires in the server --
 -- CREATE OR REPLACE VIEW 
