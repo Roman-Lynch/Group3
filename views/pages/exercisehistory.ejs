@@ -27,14 +27,14 @@
                     <td>
                         <!-- IF DELETE -->
                         <% if(locals.action == "delete") { %>
-                            <form action = "/delete_exercise" method = "DELETE"> <!-- Routes to the /course/delete route in the sql server -->
-                            <td><button type = "submit" class = "btn btn-outline-danger">Delete</button></td> <!-- Submit button that will be used to delete a course -->
-                            <input type = "hidden" name = "course_id" value = "<%= fitness.day %> "></input>
-                            <input type = "hidden" name = "course_id" value = "<%= fitness.muscle %> "></input>
-                            <input type = "hidden" name = "course_id" value = "<%= fitness.exercise %> "></input>
-                            <input type = "hidden" name = "course_id" value = "<%= fitness.weight %> "></input>
-                            <input type = "hidden" name = "course_id" value = "<%= fitness.sets %> "></input>
-                            <input type = "hidden" name = "course_id" value = "<%= fitness.reps %> "></input>
+                            <form action = "/exercisehistory/delete" method = "POST"> <!-- Routes to the /course/delete route in the sql server -->
+                                <td><button type = "submit" class = "btn btn-outline-danger">Delete</button></td> <!-- Submit button that will be used to delete a course -->
+                                <input type = "hidden" name = "day" value = "<%= fitness.day %>"></input>
+                                <input type = "hidden" name = "muscle" value = "<%= fitness.muscle %>"></input>
+                                <input type = "hidden" name = "exercise" value = "<%= fitness.exercise %>"></input>
+                                <input type = "hidden" name = "weight" value = "<%= fitness.weight %>"></input>
+                                <input type = "hidden" name = "sets" value = "<%= fitness.sets %>"></input>
+                                <input type = "hidden" name = "reps" value = "<%= fitness.reps %>"></input>
                             </form>
                         <% } %>
                     </td>

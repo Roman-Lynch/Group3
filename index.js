@@ -87,6 +87,60 @@ FROM
     goals
 ORDER BY goal_id DESC LIMIT 1;`;
 
+function convertDate(date_t) {
+    
+    let day = date_t.substring(8, 10);
+    let year = date_t.substring(11, 15);
+    let month_str = date_t.substring(4, 7);
+    let month_int;
+
+    if(month_str === "Jan") {
+        month_int = 1;
+    }
+    else if(month_str === "Feb") {
+        month_int = 2;
+    }
+    else if(month_str === "Mar") {
+        month_int = 3;
+    }
+    else if(month_str === "Apr") {
+        month_int = 4;
+    }
+    else if(month_str === "May") {
+        month_int = 5;
+    }
+    else if(month_str === "Jun") {
+        month_int = 6;
+    }
+    else if(month_str === "Jul") {
+        month_int = 7;
+    }
+    else if(month_str === "Aug") {
+        month_int = 8;
+    }
+    else if(month_str === "Sep") {
+        month_int = 9;
+    }
+    else if(month_str === "Oct") {
+        month_int = 10;
+    }
+    else if(month_str === "Nov") {
+        month_int = 11;
+    }
+    else if(month_str === "Dec") {
+        month_int = 12;
+    }
+    else {
+        month_int = -1;
+    }
+    
+    const convert = year + "-" + month_int + "-" + day + "T00:00:00.000Z";
+    
+    console.log(convert + "!");
+
+    return convert;
+}
+
 /* NAVIGATION ROUTES -------------------------------------------------------------- */
 app.get('/', (req, res) => {                    // upon entry user goes to login
     res.render("pages/login");
@@ -317,7 +371,6 @@ app.put('/edit_workout', (req, res) => {
 });
 
 app.post('/registrationSurvey', (req, res) => {
-
     const query = 
     `INSERT INTO goals (body_weight_goal, water_intake_goal) VALUES ($1, $2);`;
 
@@ -338,69 +391,37 @@ app.post('/registrationSurvey', (req, res) => {
 });
 
 /* DELETE EXERCISE ------------------------------------------------------------ */
-app.delete("/delete_exercise", (req, res) => {
-    const query = 
-    `DELETE FROM
-        fitness
-     WHERE
-        day = $1
-        AND muscle = $2
-        AND exercise = $3
-        AND weight = $4
-        AND sets = $5
-        AND reps = $6;`;
-
-    db.any(query, [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps])
-        .then((rows) => {
-            res.render("pages/exercisehistory", { 
-                username: req.session.user.username, 
-                fitness: rows,
-                action: "delete",
-                });
-        })
-        .catch((err) => {
-            res.render("pages/exercisehistory", {
-                username: req.session.user.username,
-                fitness: [],
-                error: true,
-                message: err.message,
-            });
-        });
-});
-app.post("/delete_exercise", (req, res) => {
+app.post("/exercisehistory/delete", (req, res) => {
+    
+    /* Execute Task */
     db.task("delete-exercise", (task) => {
-      return task.batch([
-        task.none(
-          `DELETE FROM
-              fitness
-            WHERE
-              day = $1
-              AND muscle = $2
-              AND exercise = $3
-              AND weight = $4
-              AND sets = $5
-              AND reps = $6;`,
-          [req.body.day, req.body.muscle, req.body.exercise, req.body.weight, req.body.sets, req.body.reps]
-        ),
-        task.any(fitness, [req.session.user.username]),
-      ]);
-    })
-      .then((fitness) => {
+
+        return task.batch([
+
+            db.none(
+                `DELETE FROM
+                    fitness
+                WHERE
+                    day = $1
+                    AND muscle = $2
+                    AND exercise = $3
+                    AND weight = $4
+                    AND sets = $5
+                    AND reps = $6;`,
+                [convertDate(req.body.day), req.body.muscle, req.body.exercise, parseFloat(req.body.weight), parseInt(req.body.sets), parseInt(req.body.reps), req.session.user.username]
+            ), // END OF db.none
+            task.any(muscle_recent, [req.session.user.username])
+        ]) //END OF task.batch
+        
+    })  // END OF db.task
+    .then(([, fitness]) => {
         console.info(fitness);
-        res.render("pages/exercisehistory", { 
-            username: req.session.user.username, 
-            fitness: fitness,
-            action: "delete",
-        });
-      })
-      .catch((err) => {
-        res.render("pages/exercisehistory", {
-            username: req.session.user.username,
-            fitness: [],
-            error: true,
-            message: err.message,
-        });
-      });
-  });
+        res.redirect("/exercisehistory");
+    })
+    .catch((err) => {
+        console.log(err);
+        res.redirect("/exercisehistory");
+    })
+});
 // /* ------------------------------------------------------------------------------------ */
 app.listen(3000);
