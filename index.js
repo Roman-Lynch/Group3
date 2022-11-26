@@ -290,8 +290,6 @@ app.post('/register', async (req, res) => {
           return console.log(err);
         }); 
 });
-
-
 /* POST LOGIN : redirect to register ? survey? ------------------------------------- */
 app.post('/login', async (req, res) => {
 
@@ -327,7 +325,6 @@ app.post('/login', async (req, res) => {
         return console.log(err);
     });
 });
-
 /* AUTHENTICATION ---------------------------------------------------------------------  */
 const auth = (req, res, next) => {
     if (!req.session.user) {
@@ -394,6 +391,7 @@ app.put('/edit_workout', (req, res) => {
         })
 });
 
+/* REGISTRATION SURVEY ---------------------------------------------------------------------- */
 app.post('/registrationSurvey', (req, res) => {
     const query = 
     `INSERT INTO goals (body_weight_goal, water_intake_goal) VALUES ($1, $2);`;
@@ -413,7 +411,7 @@ app.post('/registrationSurvey', (req, res) => {
             console.log(error);
         })
 });
-
+/* BODY WEIGHT GOAL ---------------------------------------------------------------------- */
 app.post('/bw_goal_set', (req, res) => {
 
     const query = 
@@ -444,7 +442,7 @@ app.post('/bw_goal_set', (req, res) => {
             console.log(error);
         })
 });
-
+/* WATER WEIGHT GOAL ---------------------------------------------------------------------- */
 app.post('/water_goal_set', (req, res) => {
 
     const query = 
@@ -476,28 +474,6 @@ app.post('/water_goal_set', (req, res) => {
             console.log(error);
         })
 });
-
-// app.post('/dashboard', (req, res) => {
-//     const query = 
-//     `INSERT INTO goals (day, body_weight_goal, water_intake_goal) VALUES ($1, $2, $3);`;
-
-//     const values = [req.body.goal_day, req.body.body_weight_goal, req.body.water_intake_goal];
-
-//     db.none(query, values)
-//         .then((data) => {
-//             goals.day = values[0];
-//             goals.body_weight_goal = values[1];
-//             goals.water_intake_goal = values[2];
-//             req.session.save();
-
-//             console.log("Successful Goal Entry");
-//             res.redirect('/dashboard');
-//         })
-//         .catch((error) => {
-//             console.log(error);
-//         })
-// });
-
 /* DELETE EXERCISE ------------------------------------------------------------ */
 app.post("/exercisehistory/delete", (req, res) => {
     
