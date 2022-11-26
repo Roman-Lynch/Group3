@@ -21,209 +21,214 @@
 
         <h4> Recent Exercises and Weights: </h4>
         <br>
+        <div class="card m-1 bg-white rounded">
+          <div id = "chest_div">
+            <br>
+            <h6> Chest: </h6>
+            <br>
 
-        <div id = "chest_div">
-          <br>
-          <h6> Chest: </h6>
-          <br>
+            <!-- Chest Table -->
+            <table class="table">
+              <!-- TABLE HEADER -->
+              <thead>
+                <tr>
+                  <th scope="col">Day</th>
+                  <th scope="col">Exercise</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Sets</th>
+                  <th scope="col">Reps</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% if (rows) { 
+                var buttons = '';
+                var i = 0;
+                rows.forEach(function(item){
+                  if (i < 5) { 
 
-          <!-- Chest Table -->
-          <table class="table">
-            <!-- TABLE HEADER -->
-            <thead>
-              <tr>
-                <th scope="col">Day</th>
-                <th scope="col">Exercise</th>
-                <th scope="col">Weight</th>
-                <th scope="col">Sets</th>
-                <th scope="col">Reps</th>
-              </tr>
-            </thead>
-            <tbody>
-            <% if (rows) { 
-              var buttons = '';
-              var i = 0;
-              rows.forEach(function(item){
-                if (i < 5) { 
+                    let day_t = (item.day).toString().substring(0, 10);
 
-                  let day_t = (item.day).toString().substring(0, 10);
-
-                  if(item.muscle == 'Chest'){ 
-                    buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
-                                item.exercise + '</td><td>' + item.weight + '</td><td>' + 
-                                item.sets + '</td><td>' + item.reps + '</td></tr>';
-                    i++; 
+                    if(item.muscle == 'Chest'){ 
+                      buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
+                                  item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                  item.sets + '</td><td>' + item.reps + '</td></tr>';
+                      i++; 
+                    }
                   }
-                }
-            }); %>
-            <%- buttons %> 
-            <% } %>
-            </tbody>   
-          </table>
+              }); %>
+              <%- buttons %> 
+              <% } %>
+              </tbody>   
+            </table>
+          </div>
+
+          <br>
         </div>
+        <div class="card m-1 bg-white rounded">
+          <div id = "back_div">
+            <br>
+            <h6> Back: </h6>
+            <br>
+            <!-- Back Table -->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Day</th>
+                          <th scope="col">Exercise</th>
+                          <th scope="col">Weight</th>
+                          <th scope="col">Sets</th>
+                          <th scope="col">Reps</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (rows) { 
+                        var buttons = '';
+                        var i = 0;
+                        rows.forEach(function(item){
+                          if (i < 5) { 
 
-        <br>
+                            let day_t = (item.day).toString().substring(0, 10);
 
-        <div id = "back_div">
-          <br>
-          <h6> Back: </h6>
-          <br>
-          <!-- Back Table -->
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">Exercise</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Sets</th>
-                        <th scope="col">Reps</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% if (rows) { 
-                      var buttons = '';
-                      var i = 0;
-                      rows.forEach(function(item){
-                        if (i < 5) { 
-
-                          let day_t = (item.day).toString().substring(0, 10);
-
-                          if(item.muscle == 'Back'){ 
-                            buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
-                                        item.exercise + '</td><td>' + item.weight + '</td><td>' + 
-                                        item.sets + '</td><td>' + item.reps + '</td></tr>';
-                            i++; 
+                            if(item.muscle == 'Back'){ 
+                              buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
+                                          item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                          item.sets + '</td><td>' + item.reps + '</td></tr>';
+                              i++; 
+                            }
                           }
-                        }
-                    }); %>
-                    <%- buttons %> 
-                    <% } %>
-                    </tbody>
-                  </table>
+                      }); %>
+                      <%- buttons %> 
+                      <% } %>
+                      </tbody>
+                    </table>
+          </div>
+
+          <br>
         </div>
+        <div class="card m-1 bg-white rounded">
+          <div id = "arms_div">
+            <br>
+            <h6> Arms: </h6>
+            <br>
+            <!-- Arms Table -->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Day</th>
+                          <th scope="col">Exercise</th>
+                          <th scope="col">Weight</th>
+                          <th scope="col">Sets</th>
+                          <th scope="col">Reps</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (rows) { 
+                        var buttons = '';
+                        var i = 0;
+                        rows.forEach(function(item){
+                          if (i < 5) { 
 
-        <br>
+                            let day_t = (item.day).toString().substring(0, 10);
 
-        <div id = "arms_div">
-          <br>
-          <h6> Arms: </h6>
-          <br>
-          <!-- Arms Table -->
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">Exercise</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Sets</th>
-                        <th scope="col">Reps</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% if (rows) { 
-                      var buttons = '';
-                      var i = 0;
-                      rows.forEach(function(item){
-                        if (i < 5) { 
-
-                          let day_t = (item.day).toString().substring(0, 10);
-
-                          if(item.muscle == 'Arms'){ 
-                            buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
-                                        item.exercise + '</td><td>' + item.weight + '</td><td>' + 
-                                        item.sets + '</td><td>' + item.reps + '</td></tr>';
-                            i++; 
+                            if(item.muscle == 'Arms'){ 
+                              buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
+                                          item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                          item.sets + '</td><td>' + item.reps + '</td></tr>';
+                              i++; 
+                            }
                           }
-                        }
-                    }); %>
-                    <%- buttons %> 
-                    <% } %>
-                    </tbody>
-                  </table>
+                      }); %>
+                      <%- buttons %> 
+                      <% } %>
+                      </tbody>
+                    </table>
+          </div>
+
+          <br>
         </div>
+        <div class="card m-1 bg-white rounded">
+          <div id = "shoulders_div">
+            <br>
+            <h6> Shoulders: </h6>
+            <br>
+            <!-- Shoulders Table -->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Day</th>
+                          <th scope="col">Exercise</th>
+                          <th scope="col">Weight</th>
+                          <th scope="col">Sets</th>
+                          <th scope="col">Reps</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (rows) { 
+                        var buttons = '';
+                        var i = 0;
+                        rows.forEach(function(item){
+                          if (i < 5) { 
 
-        <br>
+                            let day_t = (item.day).toString().substring(0, 10);
 
-        <div id = "shoulders_div">
-          <br>
-          <h6> Shoulders: </h6>
-          <br>
-          <!-- Shoulders Table -->
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">Exercise</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Sets</th>
-                        <th scope="col">Reps</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% if (rows) { 
-                      var buttons = '';
-                      var i = 0;
-                      rows.forEach(function(item){
-                        if (i < 5) { 
-
-                          let day_t = (item.day).toString().substring(0, 10);
-
-                          if(item.muscle == 'Shoulders'){ 
-                            buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
-                                        item.exercise + '</td><td>' + item.weight + '</td><td>' + 
-                                        item.sets + '</td><td>' + item.reps + '</td></tr>';
-                            i++; 
+                            if(item.muscle == 'Shoulders'){ 
+                              buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
+                                          item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                          item.sets + '</td><td>' + item.reps + '</td></tr>';
+                              i++; 
+                            }
                           }
-                        }
-                    }); %>
-                    <%- buttons %> 
-                    <% } %>
-                    </tbody>
-                  </table>
+                      }); %>
+                      <%- buttons %> 
+                      <% } %>
+                      </tbody>
+                    </table>
+          </div>
+          
+          <br>
         </div>
-        
-        <br>
+        <div class="card m-1 bg-white rounded">
+          <div id = "legs_div">
+            <br>
+            <h6> Legs: </h6>
+            <br>
 
-        <div id = "legs_div">
-          <br>
-          <h6> Legs:: </h6>
-          <br>
+              <!-- Legs Table -->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Day</th>
+                          <th scope="col">Exercise</th>
+                          <th scope="col">Weight</th>
+                          <th scope="col">Sets</th>
+                          <th scope="col">Reps</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (rows) { 
+                        var buttons = '';
+                        var i = 0;
+                        rows.forEach(function(item){
+                          if (i < 5) { 
 
-            <!-- Legs Table -->
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">Exercise</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Sets</th>
-                        <th scope="col">Reps</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% if (rows) { 
-                      var buttons = '';
-                      var i = 0;
-                      rows.forEach(function(item){
-                        if (i < 5) { 
+                            let day_t = (item.day).toString().substring(0, 10);
 
-                          let day_t = (item.day).toString().substring(0, 10);
-
-                          if(item.muscle == 'Legs'){ 
-                            buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
-                                        item.exercise + '</td><td>' + item.weight + '</td><td>' + 
-                                        item.sets + '</td><td>' + item.reps + '</td></tr>';
-                            i++; 
+                            if(item.muscle == 'Legs'){ 
+                              buttons += '<tr><th scope="col">' + day_t + '</th><td>' + 
+                                          item.exercise + '</td><td>' + item.weight + '</td><td>' + 
+                                          item.sets + '</td><td>' + item.reps + '</td></tr>';
+                              i++; 
+                            }
                           }
-                        }
-                    }); %>
-                    <%- buttons %> 
-                    <% } %>
-                    </tbody>
-                  </table>
-        </div>
+                      }); %>
+                      <%- buttons %> 
+                      <% } %>
+                      </tbody>
+                    </table>
+          </div>
 
-        <br>
+          <br>
+        </div>
         <br>
       </div>
       <div class="col">

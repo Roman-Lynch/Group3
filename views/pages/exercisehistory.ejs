@@ -2,46 +2,57 @@
 
 <main>
     <div class="container">
-        <!-- TABLE DEFINITION -->
-        <table class="table">
-            <!-- TABLE HEADER -->
-            <thead>
-                <th>Day</th>
-                <th>Muscle</th>
-                <th>Exercise</th>
-                <th>Weight</th>
-                <th>Sets</th>
-                <th>Reps</th>
-            </thead>
-            <!-- TABLE BODY -->
-            <tbody>
-            <!-- Loop for each exercise -->
-            <% fitness.forEach(fitness => { %>
-                <tr>
-                    <form> <td> <%= fitness.day.toString().substring(0, 10) %> </td> </form>
-                    <form> <td> <%= fitness.muscle %> </td> </form>
-                    <form> <td> <%= fitness.exercise %> </td> </form>
-                    <form> <td> <%= fitness.weight %> </td> </form>
-                    <form> <td> <%= fitness.sets %> </td> </form>
-                    <form> <td> <%= fitness.reps %> </td> </form>
-                    <td>
-                        <!-- IF DELETE -->
-                        <% if(locals.action == "delete") { %>
-                            <form action = "/exercisehistory/delete" method = "POST"> <!-- Routes to the /course/delete route in the sql server -->
-                                <td><button type = "submit" class = "btn btn-outline-danger">Delete</button></td> <!-- Submit button that will be used to delete a course -->
-                                <input type = "hidden" name = "day" value = "<%= fitness.day %>"></input>
-                                <input type = "hidden" name = "muscle" value = "<%= fitness.muscle %>"></input>
-                                <input type = "hidden" name = "exercise" value = "<%= fitness.exercise %>"></input>
-                                <input type = "hidden" name = "weight" value = "<%= fitness.weight %>"></input>
-                                <input type = "hidden" name = "sets" value = "<%= fitness.sets %>"></input>
-                                <input type = "hidden" name = "reps" value = "<%= fitness.reps %>"></input>
-                            </form>
-                        <% } %>
-                    </td>
-                </tr>
-            <% }) %>
-            </tbody>
-        </table>
+
+        <div class="card m-1 bg-white rounded">
+
+            <!-- Yesterday CARD -->
+            <div class="card-header">
+              <h3> Excercise History <a href="/daily_fitness">Add</a></h3>
+              <p> Use this page to view all of your logged workouts or delete mis-entries. </p>
+            </div>
+            <div class="card-body">
+                <!-- TABLE DEFINITION -->
+                <table class="table">
+                    <!-- TABLE HEADER -->
+                    <thead>
+                        <th>Day</th>
+                        <th>Muscle</th>
+                        <th>Exercise</th>
+                        <th>Weight</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                    </thead>
+                    <!-- TABLE BODY -->
+                    <tbody>
+                    <!-- Loop for each exercise -->
+                    <% fitness.forEach(fitness => { %>
+                        <tr>
+                            <form> <td> <%= fitness.day.toString().substring(0, 10) %> </td> </form>
+                            <form> <td> <%= fitness.muscle %> </td> </form>
+                            <form> <td> <%= fitness.exercise %> </td> </form>
+                            <form> <td> <%= fitness.weight %> </td> </form>
+                            <form> <td> <%= fitness.sets %> </td> </form>
+                            <form> <td> <%= fitness.reps %> </td> </form>
+                            <td>
+                                <!-- IF DELETE -->
+                                <% if(locals.action == "delete") { %>
+                                    <form action = "/exercisehistory/delete" method = "POST"> <!-- Routes to the /course/delete route in the sql server -->
+                                        <td><button type = "submit" class = "btn btn-outline-danger">Delete</button></td> <!-- Submit button that will be used to delete a course -->
+                                        <input type = "hidden" name = "day" value = "<%= fitness.day %>"></input>
+                                        <input type = "hidden" name = "muscle" value = "<%= fitness.muscle %>"></input>
+                                        <input type = "hidden" name = "exercise" value = "<%= fitness.exercise %>"></input>
+                                        <input type = "hidden" name = "weight" value = "<%= fitness.weight %>"></input>
+                                        <input type = "hidden" name = "sets" value = "<%= fitness.sets %>"></input>
+                                        <input type = "hidden" name = "reps" value = "<%= fitness.reps %>"></input>
+                                    </form>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 
