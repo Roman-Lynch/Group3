@@ -175,6 +175,10 @@ app.get('/water_set', (req, res) => {
 app.get('/body_weight_set', (req, res) => {
     res.render("pages/body_weight_set");
 });
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.render("pages/logout");
+  });
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
     db.one(muscle_recent, [req.body.muscle])
