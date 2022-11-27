@@ -48,7 +48,7 @@
                         </div>
                         <div class="col">
 
-                            <%= currBodyWeightH %>
+                            <%= (bw_goalH - currBodyWeightH) %> lbs
                         </div>
                     </div>
                 </div>
@@ -106,28 +106,56 @@
                         </div>
                         <div class="col">
                             
-                            <% 
+                            <%
                             var i =0;
                             var total = 0;
+                            var hold = 0;
                             rows.forEach(function(item){
-                                total = item.water_intake;
+
+                                if ( i == 0)
+                                {
+                                    hold = item.water_id;
+                                }
+
+                                total += item.cups;
                                 i++;
+
                             });
 
-                            if (i = 0)
+                            if (hold == 0)
                             {
                                 total = 0;
                             }
 
                             else
                             {
-                                total = (total / i);
+                                total = (total / hold);
                             }
+
                             %>
 
-                            <%= total %> cups
+                            <%- Math.floor(total) %> cups
 
                         </div>
+
+                        <br>
+                        <br>
+                        
+                        <% 
+                            var dispaly = '';
+                            if (total >= water_goalH)
+                            {
+                                display = 'Great Job. You have achieved your water goal';
+                            } 
+                            
+                            else
+                            {
+                                display = 'You are still on the way to achieving your goal';
+                            }
+                            %> 
+
+                            <%- display %>
+
                     </div>
                 </div>
 

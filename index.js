@@ -66,8 +66,12 @@ const goals = {
 }
 
 const bodyWeight = {
-    day: undefined,
     body_weight: undefined
+}
+
+const water = {
+    water_id: undefined,
+    cups: undefined
 }
 
 
@@ -79,16 +83,12 @@ FROM
     fitness
 ORDER BY day DESC;`;
 
-const muscle_bw = `
+const muscle_water = `
 SELECT
-    water.day, bodyWeight.body_weight, water.cups, bodyWeight.day
+    water.cups, water_id
 FROM 
-    bodyWeight
-INNER JOIN
     water
-ON
-    bodyWeight.day = water.day
-ORDER BY bodyWeight.day DESC;`;
+ORDER BY water.water_id DESC;`;
 
 function convertDate(date_t) {
     
@@ -160,14 +160,20 @@ app.get('/daily_fitness', (req, res) => {       // navigate to the daily fitness
 app.get('/registrationSurvey', (req, res) => {  // navigate to the survey to intake and initialize data
     res.render("pages/registrationSurvey");
 });
-app.get('/bw_goal_set', (req, res) => {  // navigate to the survey to intake and initialize data
+app.get('/bw_goal_set', (req, res) => {  
     res.render("pages/bw_goal_set");
 });
-app.get('/water_goal_set', (req, res) => {  // navigate to the survey to intake and initialize data
+app.get('/water_goal_set', (req, res) => {
     res.render("pages/water_goal_set");
 });
 app.get('/discover', (req, res) => {
     res.render("pages/discover");
+});
+app.get('/water_set', (req, res) => {
+    res.render("pages/water_set");
+});
+app.get('/body_weight_set', (req, res) => {
+    res.render("pages/body_weight_set");
 });
 /* GET MOST RECENT EXERCISE :: MODAL -------------------------------------------------- */
 app.get('/recent_exercise', (req, res) => { // need to implement specific muscle
@@ -197,7 +203,7 @@ app.get('/goals', (req, res) => {                    //navigate to goals page
     let water_goal = goals.water_intake_goal;
     let currBodyWeight = bodyWeight.body_weight;
 
-    db.any(muscle_bw, [req.body.body_weight])
+    db.any(muscle_water, [req.body.cups])
         .then((rows) => {
             console.log(rows);
             res.render("pages/goals", { username: req.session.user.username, bw_goalH: bw_goal, water_goalH: water_goal, currBodyWeightH: currBodyWeight, rows});
@@ -474,6 +480,50 @@ app.post('/water_goal_set', (req, res) => {
 
             console.log("Successful Goal Entry");
             res.redirect('/goals');
+
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+/* DAILY WATER INTAKE SET*/
+app.post('/water_set', (req, res) => {
+
+    const query = 
+    `INSERT INTO water (cups) VALUES ($1);`;
+
+    const values = [req.body.water_intake];
+
+    db.none(query, values)
+        .then((data) => {
+
+            water.cups = values[0];
+            req.session.save();
+
+            console.log("Successful Goal Entry");
+            res.redirect('/daily_fitness');
+
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+/* BODY WEIGHT GOAL SET*/
+app.post('/body_weight_set', (req, res) => {
+
+    const query = 
+    `INSERT INTO bodyWeight (body_weight) VALUES ($1);`;
+
+    const values = [req.body.body_weight_set];
+
+    db.none(query, values)
+        .then((data) => {
+            
+            bodyWeight.body_weight = values[0];
+            req.session.save();
+
+            console.log("Successful Goal Entry");
+            res.redirect('/daily_fitness');
 
         })
         .catch((error) => {

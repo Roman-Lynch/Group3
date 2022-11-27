@@ -14,13 +14,11 @@ CREATE TABLE fitness(
 );
 
 CREATE TABLE water(
-	water_id INT PRIMARY KEY,
-	day DATE NOT NULL,
+	water_id SERIAL PRIMARY KEY,
 	cups INT NOT NULL
 );
 
 CREATE TABLE bodyWeight(
-	day DATE NOT NULL,
 	body_weight FLOAT NOT NULL
 );
 

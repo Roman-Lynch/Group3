@@ -1,0 +1,45 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+<main>
+    <form action = "/water_set" method = "POST">
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-2">
+          </div>
+          <div class="col-md-auto">
+
+            <br>
+            <h1> Water Log: </h1>
+            <br>
+            <br>
+
+            <div id = "set_bw_goal_div">
+
+                <br>
+                <h6> Log Water Intake For Today: </h6>
+                <br>
+                <br>
+
+                <label for="integerInputInvalid">Enter How Much Water You Drank Today:</label>
+                <br>
+
+                    <input type="number" class="form-control-lg" id="integerInputValue" placeholder="cups" value="cups" name = "water_intake">
+                    <button type="submit" class="btn btn-info" > Save
+
+                    </button>
+
+                <br>
+                <br>
+
+          </div>
+          <div class="col col-lg-2">
+          </div>
+        </div>
+    </div>
+</forum>
+
+    <script>
+        document.getElementById("set_bw_goal_div").style.outline = "thin solid #FFFFFF";
+    </script>
+</main>
+<%- include ('../partials/footer') %>
