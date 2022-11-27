@@ -1,18 +1,27 @@
 <%- include ('../partials/header') %> <%- include ('../partials/menu') %>
 
-<main>
+<main class="discover">
   <div class="container" style="margin-top: 15px">
-    <div class="card container">
-      <h1>Workouts</h1>
-      <select name="muscle-select" id="muscle-select">
-        <option value="chest">Chest</option>
-        <option value="back">Back</option>
-        <option value="arms">Arms</option>
-        <option value="legs">Legs</option>
-        <option value="shoulders">Shoulders</option>
-      </select>
-      <button id="update">Update</button>
-      <div class="container" id="muscle-data"></div>
+    <div class="container">
+      <h1>Discover</h1>
+      <div class="card container discover-container">
+        <div class="input-group">
+          <select
+            class="custom-select discover-select"
+            name="muscle-select"
+            id="muscle-select"
+          >
+            <option value="chest">Chest</option>
+            <option value="back">Back</option>
+            <option value="arms">Arms</option>
+            <option value="legs">Legs</option>
+            <option value="shoulders">Shoulders</option>
+          </select>
+          <button class="discover-button" id="update">Update</button>
+        </div>
+
+        <div class="container" id="muscle-data"></div>
+      </div>
     </div>
   </div>
   <script>
@@ -25,23 +34,23 @@
     const button = document.getElementById("update");
     const muscle_container = document.getElementById("muscle-data");
     muscle_container.innerHTML = "";
-      const content = document.createElement("h2");
-      content.append("Chest");
-        muscle_container.append(content);
+    const content = document.createElement("h4");
+    content.append("Chest");
+    muscle_container.append(content);
 
-        const muscle_list = document.createElement("ul");
+    const muscle_list = document.createElement("ul");
 
-        var muscle_element;
-        chest.forEach((muscle) => {
-          muscle_element = document.createElement("li");
-          muscle_element.append(muscle);
-          muscle_list.append(muscle_element);
-        });
-        muscle_container.append(muscle_list);
+    var muscle_element;
+    chest.forEach((muscle) => {
+      muscle_element = document.createElement("li");
+      muscle_element.append(muscle);
+      muscle_list.append(muscle_element);
+    });
+    muscle_container.append(muscle_list);
     button.onclick = (event) => {
       muscle_container.innerHTML = "";
       const value = document.getElementById("muscle-select").value;
-      const content = document.createElement("h2");
+      const content = document.createElement("h4");
 
       if (value == "chest") {
         content.append("Chest");
