@@ -20,7 +20,6 @@ CREATE TABLE water(
 );
 
 CREATE TABLE bodyWeight(
-	bw_id SERIAL PRIMARY KEY,
 	day DATE NOT NULL,
 	body_weight FLOAT NOT NULL
 );

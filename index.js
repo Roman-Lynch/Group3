@@ -65,6 +65,11 @@ const goals = {
     water_intake_goal: undefined
 }
 
+const bodyWeight = {
+    day: undefined,
+    body_weight: undefined
+}
+
 
 /* RECENT EXERCISES BY MUSCLE */
 const muscle_recent = `
@@ -83,7 +88,7 @@ INNER JOIN
     water
 ON
     bodyWeight.day = water.day
-ORDER BY bodyWeight.day;`;
+ORDER BY bodyWeight.day DESC;`;
 
 function convertDate(date_t) {
     
@@ -190,11 +195,12 @@ app.get('/goals', (req, res) => {                    //navigate to goals page
 
     let bw_goal = goals.body_weight_goal;
     let water_goal = goals.water_intake_goal;
+    let currBodyWeight = bodyWeight.body_weight;
 
     db.any(muscle_bw, [req.body.body_weight])
         .then((rows) => {
             console.log(rows);
-            res.render("pages/goals", { username: req.session.user.username, bw_goalH: bw_goal, water_goalH: water_goal, rows});
+            res.render("pages/goals", { username: req.session.user.username, bw_goalH: bw_goal, water_goalH: water_goal, currBodyWeightH: currBodyWeight, rows});
         })
         .catch((error) => {
             console.log("ERROR:", error.message || error);
