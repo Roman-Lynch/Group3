@@ -13,6 +13,7 @@
   }
 </style>
 
+<!--  EDIT PREVIOUS WORKOUT BUTTON REMOVED 
 <button
   type="submit"
   class="btn btn-primary button"
@@ -22,6 +23,7 @@
 >
   Edit previous workouts
 </button>
+-->
 
 <a
   type="button"
@@ -84,7 +86,7 @@
           } 
         </style>
 
-        <!-- PUT ROUTE FORM :: UPDATE EXERCISE -->
+        <!-- PUT ROUTE FORM :: UPDATE EXERCISE 
         <form action = "/edit_workout" method = "PUT">
           <div class="mb-3">
             <label for="Weekday" class="form-label">Workout Date</label>
@@ -103,7 +105,7 @@
           <td>
             <input type="date" id="day_id" class="form-control" name="day" />
           </td>
-            <!-- LOOP THROUGH EACH DATE ENTERED BY CURRENT USER -->
+            LOOP THROUGH EACH DATE ENTERED BY CURRENT USER -->
             <!-- <ul class="dropdown-menu">
               fitness.forEach(user => {  
               
@@ -112,8 +114,9 @@
             </ul>
 
             % }); %>
-          -->
+          
           </div>
+        -->
 
           <tr>
             <!-- INPUT DATE FOR FITNESS TABLE -->
@@ -392,7 +395,7 @@
               <input type="date" id="day_id" class="form-control" name="day" />
             </td>
 
-            <!-- INPUT MUSCLE GROUP 
+            <!-- INPUT MUSCLE GROUP -->
             <td>
               <input
                 type="text"
@@ -402,14 +405,17 @@
                 name="muscle"
               /> 
             </td>
-            -->     
+                
 
-              <!-- DROPDOWN MENU FOR MUSCLE -->
+              <!-- DROPDOWN MENU FOR MUSCLE 
             <td>
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   muscle
                 </button>
+                <select class="form-select" aria-label="dropdownMenuButton">
+                  <option selected> Muscle </option>
+                  <option value="Chest"> Chest </option>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#">Chest</a>
                   <a class="dropdown-item" href="#">Back</a>
@@ -417,9 +423,10 @@
                   <a class="dropdown-item" href="#">Triceps</a>
                   <a class="dropdown-item" href="#">Legs</a>
                   <a class="dropdown-item" href="#">Shoulders</a>
-                </div>
+                   
+                </select>
               </div>
-                
+            -->
 
               <!--  DROPDOWN MODAL FOR MUSCLE 
             </td>
@@ -510,11 +517,14 @@
       </form>
     </div>
   </div>
+
+  <!-- IMAGE 
   <img src="https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
     class="card-img-top" 
     alt="Exercise" 
     height="600"
     />
+    -->
   <!-- END OF CARD -->
 </div>
 
