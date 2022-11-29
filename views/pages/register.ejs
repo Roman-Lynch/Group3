@@ -1,46 +1,63 @@
 <%- include ('../partials/header') %>
 
-<main class="d-flex align-items-center" style="height: 100vh;">
+<main class="d-flex align-items-center" style="height: 100vh">
   <form action="/register" method="POST">
-      <section class=" text-center text-lg-start" class="register">
-            <div class="row g-0 d-flex align-items-center register-page-container d-flex justify-content-center" style="width: 100%">
-
+    <section class="text-center text-lg-start" class="register">
+      <div
+        class="row g-0 d-flex align-items-center register-page-container d-flex justify-content-center"
+        style="width: 100%"
+      >
+        <!-- 
               <div class = "col-1">
               </div>
 
-              <div class="col-11">
+              <div class="col-11"> -->
 
-                <div class="card-body py-5 px-md-5 register-card" >
-                  <h1>Register</h1>
+        <div class="card-body py-5 px-md-5 register-card">
+          <h1>Register</h1>
 
-                  <form>
-                    <!-- USERNAME input -->
-                    <div class="form-outline mb-4">
-                      <input type="text" id="form2Example1" class="form-control" name = "username" />
-                      <label class="form-label" for="form2Example1">Username</label>
-                    </div>
-      
-                    <!-- PASSWORD input -->
-                    <div class="form-outline mb-4">
-                      <input type="password" id="form2Example2" class="form-control" name = "password"/>
-                      <label class="form-label" for="form2Example2">Password</label>
-                    </div>
-  
-                    <!-- REROUTE TO LOGIN -->
-                    <p>Already have an account? <a class="register-text" href = "/login">Login</a></p>
-                    <!-- SUBMIT button -->
-                    <button type="submit" class="btn btn-primary button">Register</button>
-        
-                  </form>
-                </div>
-              </div>
-
-              <div class = "col-1.5">
-              </div>
-
+          <form>
+            <!-- USERNAME input -->
+            <div class="form-outline mb-4">
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="username"
+              />
+              <label class="form-label" for="form2Example1">Username</label>
             </div>
-        </section>
-    </form>
+
+            <!-- PASSWORD input -->
+            <div class="form-outline mb-4">
+              <input
+                type="password"
+                id="form2Example2"
+                class="form-control"
+                name="password"
+              />
+              <label class="form-label" for="form2Example2">Password</label>
+            </div>
+
+            <!-- REROUTE TO LOGIN -->
+            <p>
+              Already have an account?
+              <a class="register-text" href="/login">Login</a>
+            </p>
+            <!-- SUBMIT button -->
+            <button type="submit" class="btn btn-primary button">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- <div class = "col-1.5">
+              </div>
+
+            </div> -->
+    </section>
+  </form>
 </main>
 
 <%- include ('../partials/footer') %>
