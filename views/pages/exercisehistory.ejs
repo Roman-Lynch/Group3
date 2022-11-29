@@ -1,9 +1,12 @@
-<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
 
 <main>
-    <div class="container">
+    <div class="col-4">
+    </div>
 
-        <div class="card m-1 bg-white rounded">
+    <div class = "col-md-auto text-center">
+        <div class="card m-1 bg-white rounded" size = "100%">
 
             <!-- Yesterday CARD -->
             <div class="card-header">
@@ -12,7 +15,7 @@
             </div>
             <div class="card-body">
                 <!-- TABLE DEFINITION -->
-                <table class="table">
+                <table class="table" size = "100%">
                     <!-- TABLE HEADER -->
                     <thead>
                         <th>Day</th>
@@ -54,6 +57,10 @@
             </div>
         </div>
     </div>
+
+    <div class="col-4">
+    </div>
+
 </main>
 
 <%- include ('../partials/footer') %>

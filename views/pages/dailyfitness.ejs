@@ -13,6 +13,7 @@
   }
 </style>
 
+<!--  EDIT PREVIOUS WORKOUT BUTTON REMOVED 
 <button
   type="submit"
   class="btn btn-primary button"
@@ -22,26 +23,25 @@
 >
   Edit previous workouts
 </button>
+-->
 
-<button
-  type="submit"
+<a
+  type="button"
   class="btn btn-primary button"
-  data-bs-toggle="modal"
-  data-bs-target="#bodyWeightModal"
+  href = "body_weight_set"
   style="background-color:darksalmon"
 >
   Add Body Weight
-</button>
+</a>
 
-<button
-  type="submit"
+<a
+  type="button"
   class="btn btn-primary button"
-  data-bs-toggle="modal"
-  data-bs-target="#waterIntakeModal"
+  href = "water_set"
   style="background-color:darksalmon"
 >
   Add Water Intake
-</button>
+</a>
 
 </div>
 <br>
@@ -86,7 +86,7 @@
           } 
         </style>
 
-        <!-- PUT ROUTE FORM :: UPDATE EXERCISE -->
+        <!-- PUT ROUTE FORM :: UPDATE EXERCISE 
         <form action = "/edit_workout" method = "PUT">
           <div class="mb-3">
             <label for="Weekday" class="form-label">Workout Date</label>
@@ -105,7 +105,7 @@
           <td>
             <input type="date" id="day_id" class="form-control" name="day" />
           </td>
-            <!-- LOOP THROUGH EACH DATE ENTERED BY CURRENT USER -->
+            LOOP THROUGH EACH DATE ENTERED BY CURRENT USER -->
             <!-- <ul class="dropdown-menu">
               fitness.forEach(user => {  
               
@@ -114,8 +114,9 @@
             </ul>
 
             % }); %>
-          -->
+          
           </div>
+        -->
 
           <tr>
             <!-- INPUT DATE FOR FITNESS TABLE -->
@@ -404,23 +405,30 @@
                 name="muscle"
               /> 
             </td>
-              
+                
 
-              <!-- DROPDOWN MENU FOR MUSCLE
+              <!-- DROPDOWN MENU FOR MUSCLE 
             <td>
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   muscle
                 </button>
+                <select class="form-select" aria-label="dropdownMenuButton">
+                  <option selected> Muscle </option>
+                  <option value="Chest"> Chest </option>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#">Chest</a>
                   <a class="dropdown-item" href="#">Back</a>
                   <a class="dropdown-item" href="#">Biceps</a>
-                </div>
+                  <a class="dropdown-item" href="#">Triceps</a>
+                  <a class="dropdown-item" href="#">Legs</a>
+                  <a class="dropdown-item" href="#">Shoulders</a>
+                   
+                </select>
               </div>
-                -->
+            -->
 
-              <!--  DROPDOWN MODAL FOR MUSCLE
+              <!--  DROPDOWN MODAL FOR MUSCLE 
             </td>
 
               <div class="input-group mb-3">
@@ -433,23 +441,23 @@
                       <li><a type="button" class="text-info" data-toggle="modal">
                         Chest</a></li>
 
-                  <li><a type="button" class="text-info" data-toggle="modal">
-                    Back</a></li>
+                      <li><a type="button" class="text-info" data-toggle="modal">
+                        Back</a></li>
 
-                  <li><a type="button" class="text-info" data-toggle="modal">
-                    Biceps</a></li>
+                      <li><a type="button" class="text-info" data-toggle="modal">
+                        Biceps</a></li>
   
-                  <li><a type="button" class="text-info" data-toggle="modal">
-                    Triceps</a></li>
+                      <li><a type="button" class="text-info" data-toggle="modal">
+                        Triceps</a></li>
 
-                  <li><a type="button" class="text-info" data-toggle="modal">
-                    Legs</a></li>
+                      <li><a type="button" class="text-info" data-toggle="modal">
+                        Legs</a></li>
     
-                  <li><a type="button" class="text-info" data-toggle="modal">
-                    Shoulders</a></li>
+                      <li><a type="button" class="text-info" data-toggle="modal">
+                        Shoulders</a></li>
+                    </div>
                   </div>
                 </div>
-              </div>
             </td>
             -->
 
@@ -509,11 +517,14 @@
       </form>
     </div>
   </div>
+
+  <!-- IMAGE 
   <img src="https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
     class="card-img-top" 
     alt="Exercise" 
     height="600"
     />
+    -->
   <!-- END OF CARD -->
 </div>
 

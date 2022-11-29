@@ -52,7 +52,23 @@ FINA v1.2 11/08/2022
    - User is able to select muscle group from dropdown and filter 5 most recent exercises by muscle
    
    - Daily fitness front end layout complete
+   
+   
+   FINA v1.5 11/28/2022
+   
+    - Newly registered users led directly to the registration survey where they enter their goal 
+    water intake and bodyweight.
+    
+    - 'Discover' page implemented. Includes a variety of exercises with respect to their muscle group.
+    
+    - Added daily body weight entry and water intake modal for user to input on the 'daily fitness' page.
+    
+    - 'Goal' page implemented. Consists of the user's body weight and water intake progression; can set new goals.
+    
+    - 'Exercise History' page implemented. Displays the user's exercise stats and which dates they 
+    correspond to; can delete any of these entries from their exercise history as well.
   
+    - Cleaned up overall front-end design.
   
   
       
