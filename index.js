@@ -74,7 +74,6 @@ const water = {
     cups: undefined
 }
 
-
 /* RECENT EXERCISES BY MUSCLE */
 const muscle_recent = `
 SELECT
