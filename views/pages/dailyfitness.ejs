@@ -372,8 +372,8 @@
         }
       </style>
 
-      <u><h5 class="card-title">Muscle Groups</h5></u>
-      <p class="card-text">Log your muscle group(s) worked today:</p>
+      <!-- <u><h5 class="card-title">Muscle Groups</h5></u> -->
+      <p class="card-text">Log today's exercises:</p>
 
       <!-- INPUT FORM -->
       <form action="/fitness" method="POST">
@@ -401,6 +401,7 @@
                 type="text"
                 id="muscle_id"
                 class="form-control"
+                style="text-transform: capitalize;"
                 placeholder="Chest, Shoulder, Back, Arms or Legs"
                 name="muscle"
               /> 
@@ -466,6 +467,7 @@
                 type="text"
                 id="exercise_id"
                 class="form-control"
+                style="text-transform: capitalize;"
                 placeholder="Bench Press"
                 name="exercise"
               />
