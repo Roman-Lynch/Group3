@@ -1,7 +1,7 @@
 # Group3
 3308 Group Project Repository 
 
-Fitness and Nutrition FiNu
+FINA
 
 Our application is designed to allow users to track their progress in their pursuit of health.
     Features:

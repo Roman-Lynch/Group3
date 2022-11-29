@@ -1,0 +1,47 @@
+PROJECT REPORT
+
+FINA
+
+- Cole Krant, Roman Lynch, Jaskarn Kahlon, Ian Pavlecic, Stephan Bobick, Maxwell Chang
+
+
+- Fina is a routine building tool that allows you to track fitness progression. A user is able to track bodyweight and exercise weight with
+ an easy to navigate UI. FINA has a daily workout and weekly fitness logging page as well as a dashboard.
+ On the daily fitness page a user can log their workout sessions. The entries include day, muscle group, sets, reps, and weight.
+ These attributes are user specific and can be displayed in a week by week format on the weekly fitness page. Users are able to 
+ view previous sessions by viewing the preceeding week. The data stored on these pages is shown on cards on the dashboard. FINA uses graphs
+ and scatter plots to show progression of bodyweight and exercise weight.
+ 
+ -Github Project Board
+  - INSERT LINK
+  
+  - INSERT SCREENSHOT
+  
+  
+ - VIDEO
+ 
+ -VCS
+  -Github repository link
+    - https://github.com/Roman-Lynch/Group3.git
+    
+ - Contributions
+    Cole Krant - 
+    Roman Lynch - 
+    
+    Jaskarn Kahlon - Responsible for the stylistic elements and design of the Log in/Register page as well as the color and typography elements for the website, created a logo for the page
+    Created a project mapping/wireframe (design of each page), I also co-created the testing plan for the website. I was responsible for the deliverables 
+    for the application (creating the presentation, and project report) as well as the release notes for every week, and the labs for testing and deploying. 
+    
+    Ian Pavlecic - 
+    
+    Stephan Bobick - 
+    
+    Maxwell Chang - 
+    
+  - Case Diagram
+    -INSERT CASE DIAGRAM
+  
+  - Test Results
+    -INSERT TESTING PLAN AND RESULTS
+    
+  - Deployment
