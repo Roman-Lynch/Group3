@@ -2,7 +2,7 @@ PROJECT REPORT
 
 FINA
 
-- Cole Krant, Roman Lynch, Jaskarn Kahlon, Ian Pavlecic, Stephan Bobick, Maxwell Chang
+- Cole Krant, Roman Lynch, Jaskarn Kahlon, Ian Pavlecic, Stefan Bobick, Maxwell Chang
 
 
 - Fina is a routine building tool that allows you to track fitness progression. A user is able to track bodyweight and exercise weight with
@@ -34,7 +34,9 @@ FINA
     
     Ian Pavlecic - 
     
-    Stephan Bobick - 
+    Stefan Bobick - Responsible for the creation of the simplistic and stylish display of the daily fitness page. Worked mainly on the front-end aspects of the page, including
+    a row of entries for an exercise entry for the day, body weight and water intake for the day; all sent to the database. Aside from the functionality of the program, I also worked on week 
+    four's release notes.
     
     Maxwell Chang - 
     
