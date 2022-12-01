@@ -21,10 +21,15 @@ Our application is designed to allow users to track their progress in their purs
             on other pages.
 
         Registration Survey
+            This is where the user initially logs their goal water intake, and goal body weight. This is a critical step in filling the data base with information so the user doesn't go into the app with no info.
 
         Goals
+            This is where the user can see their goals, and how close they are to achieving their goals. There is the table for the water goal, which will show the current water goal,the average water daily water intake, and allows the user to set a new water goal. There is a table for the body weight goal which will show the the current body weight goal, the pounds left for the user to reach their goal, and allows the user to set a new body weight goal.
 
         Dashboard
+
+        Discovery Page
+            Allows the user to select a muscle group, and get preset exercises recommended to them.
 
 Contributors: 
     - Cole Krant
