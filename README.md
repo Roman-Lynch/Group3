@@ -27,6 +27,9 @@ Our application is designed to allow users to track their progress in their purs
             This is where the user can see their goals, and how close they are to achieving their goals. There is the table for the water goal, which will show the current water goal,the average water daily water intake, and allows the user to set a new water goal. There is a table for the body weight goal which will show the the current body weight goal, the pounds left for the user to reach their goal, and allows the user to set a new body weight goal.
 
         Dashboard
+            Creates an overview of your exercise history, showing your most recent workout for each 
+            muscle group. This displays the day you did this workout, the exercise done, weight, sets and 
+            reps for the workout.
 
         Discovery Page
             Allows the user to select a muscle group, and get preset exercises recommended to them.
