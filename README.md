@@ -5,17 +5,26 @@ FINA
 
 Our application is designed to allow users to track their progress in their pursuit of health.
     Features:
-        Fitness Page
-                The fitness page is where users can log their workout sessions. The entries include
-            the day, muscle group, sets, reps as well as weight. These attributes are user specific and
-            displayed in a week by week format. Users are able to view previous sessions by viewing
-            the preceeding week.
-                Furthermore, the data stored in the users log is used to display progress on the Dashboard.
-            More information regarding the specifics of the dashboard can be found in its respective section.
+        Daily Fitness Page
+            This is where users can log exercises with the following parameters:
+                - day, muscle, exercise, weight, sets and reps.
+            The user can also log their current body weight, as well as their water intake
 
-        Nutrition Page (TBD)
+        Weekly Fitness Page
+            This is where users can view their exercises on a three day basis.
+                - yesterday, today and tomorrow
+            The date automatically updates and places the corresponding exercises in their proper container.
 
-        Dashboard (TBD)
+        Exercise History Page
+            This is where users can view all the exercises they've logged since they registered. If
+            the user made a mistake, they can delete the exercise here and it will no longer be reflected
+            on other pages.
+
+        Registration Survey
+
+        Goals
+
+        Dashboard
 
 Contributors: 
     - Cole Krant
